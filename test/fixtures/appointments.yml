@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  business_id: 
+  date: MyString
+  status: MyString
+
+two:
+  user_id: 
+  business_id: 
+  date: MyString
+  status: MyString
