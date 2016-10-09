@@ -10,6 +10,7 @@ class Api::Admin::V1::UsersController < Api::Admin::V1::AdminApiController
 
   def update
     user = User.find(params[:id])
+    authorize user, :update?
     user.update_attributes(user_params)
     render json: user, status: 200
   end
@@ -17,6 +18,7 @@ class Api::Admin::V1::UsersController < Api::Admin::V1::AdminApiController
   def update_password
     user_id = params[:id]
     user = User.find_by_id user_id
+    authorize user, :update?
     options = params.permit(:password)
     user.update! options
     user.reset_auth_token!

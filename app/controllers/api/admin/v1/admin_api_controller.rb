@@ -1,4 +1,7 @@
 class Api::Admin::V1::AdminApiController < ActionController::Base
+  include Pundit
+
+  rescue_from Pundit::NotAuthorizedError, with: :deny_access
 
   attr_accessor :current_user
 
@@ -34,5 +37,9 @@ class Api::Admin::V1::AdminApiController < ActionController::Base
 
   def unauthenticated!
     api_error(status: 401)
+  end
+
+  def deny_access
+    api_error(status: 403)
   end
 end
