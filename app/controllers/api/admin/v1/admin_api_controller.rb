@@ -16,7 +16,7 @@ class Api::Admin::V1::AdminApiController < ActionController::Base
   end
 
   def api_error(opts = {})
-    render nothing: true, status: opts[:status]
+    render json: {  'message' => 'error '+ opts[:status].to_s }, status: opts[:status]
   end
 
   def authenticate_user!

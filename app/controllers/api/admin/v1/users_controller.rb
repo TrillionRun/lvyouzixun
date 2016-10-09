@@ -1,4 +1,7 @@
 class Api::Admin::V1::UsersController < Api::Admin::V1::AdminApiController
+
+  before_action :authenticate_user!
+
   def show
     user_id = params[:id]
     user = User.find_by_id user_id
@@ -6,11 +9,18 @@ class Api::Admin::V1::UsersController < Api::Admin::V1::AdminApiController
   end
 
   def update
-
+    user = User.find(params[:id])
+    user.update_attributes(user_params)
+    render json: user, status: 200
   end
 
   def update_password
-
+    user_id = params[:id]
+    user = User.find_by_id user_id
+    options = params.permit(:password)
+    user.update! options
+    user.reset_auth_token!
+    render json: user, status: 200
   end
 
   def image
@@ -21,7 +31,14 @@ class Api::Admin::V1::UsersController < Api::Admin::V1::AdminApiController
 
   end
 
-  def login
+  def create
+    options = user_params
+    user = User.create! options
+    render json: user, status: 200
+  end
 
+  def user_params
+    columns = [:email, :name, :nickname, :image_url, :last_sign_in,:role, :phone, :status, :password]
+    params.permit(columns)
   end
 end
