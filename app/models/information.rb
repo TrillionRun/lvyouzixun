@@ -1,4 +1,4 @@
 class Information < ApplicationRecord
 
-  belong_to :business
+  belongs_to :business
 end
