@@ -92,4 +92,5 @@ Rails.application.configure do
       s3_region: ENV.fetch('AWS_REGION'),
     }
   }
+  config.action_mailer.default_url_options = { host: 'https://lvyouzixun.herokuapp.com' }
 end
