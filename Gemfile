@@ -59,3 +59,9 @@ gem 'aws-sdk', '~> 2'
 
 # user login authentication
 gem 'devise'
+
+# use boostrap to customer service page
+gem 'bootstrap', '~> 4.0.0.alpha4'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end

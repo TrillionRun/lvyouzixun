@@ -1,0 +1,57 @@
+<!-- <div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Log in</h2>
+  </div>
+  <div class="panel-body">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end -%>
+
+      <div class="actions">
+        <%= f.submit "Log in" %>
+      </div>
+    <% end %>
+  </div>
+  <%= render "devise/shared/links" %>
+</div> -->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 vertical-center">
+      <div class="card" style="width: 320px;">
+        <!-- <img class="card-img-top" src="/login.jpg" alt="Card image cap" width="318" height="180"> -->
+        <div class="card-block">
+          <h4 class="card-title text-xs-center">旅游咨询客服系统</h4>
+          <br/>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="input-group">
+              <%= f.email_field :email, autofocus: true, class: "form-control", placeholder:"邮箱" %>
+            </div>
+            <br/>
+            <div class="input-group">
+              <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder:"密码" %>
+            </div>
+            <br/>
+            <%= f.submit "登录", class: "btn btn-primary btn-block" %>
+            <%= link_to "Sign up", new_registration_path(resource_name) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
+</div>
