@@ -1,6 +1,6 @@
 class Api::SessionsController < Api::AdminApiController
   def create
-    @user = User.find_by(email: create_params[:email])
+    @user = User.find_by(phone: create_params[:phone])
     if @user && @user.authenticate(create_params[:password])
       render json: {  'token' => @user.authentication_token}, status: 200
     else
@@ -8,9 +8,14 @@ class Api::SessionsController < Api::AdminApiController
     end
   end
 
+  def destroy
+    user = User.find_by_id params[:user_id]
+    user.reset_auth_token!
+  end
+
   private
 
   def create_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:phone, :password)
   end
 end

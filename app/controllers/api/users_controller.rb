@@ -34,9 +34,22 @@ class Api::UsersController < Api::AdminApiController
   end
 
   def create
+    user_check = User.find_by(phone: params[:phone])
+    if user_check.present?
+      render json:{'message' => 'error: phone' + params[:phone] + 'has been registered !' }, status: 400
+    end
     options = user_params
     user = User.create! options
     render json: user, status: 200
+  end
+
+  def business_user
+    result = false
+    follow = Follow.find_by(user_id: params[:user_id], object_id: params[:business_id])
+    if follow.present
+      result = true
+    end
+    render json:{'result' => result}, status: 200
   end
 
   def user_params
