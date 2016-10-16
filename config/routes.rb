@@ -25,11 +25,12 @@ Rails.application.routes.draw do
     patch 'users/:user_id/follows/:id' => 'follows#update'
 
     # information
-    get 'businesses/:business_id/informations' => 'informations#show'
+    get 'businesses/:business_id/informations' => 'informations#index'
+    get 'businesses/:business_id/informations/:id' => 'informations#show'
 
     # itineraries
     get 'businesses/:business_id/itineraries' => 'itineraries#index'
-    get 'businesses/:business_id/itineraries/:itinerary_id' => 'itineraries#show'
+    get 'businesses/:business_id/itineraries/:id' => 'itineraries#show'
 
     # news
     get 'businesses/:business_id/news' => 'news#index'

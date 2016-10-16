@@ -12,7 +12,7 @@ users = User.create([
                             last_sign_in: DateTime.now,
                             role: 'member',
                             phone: '15102160807',
-                            password_digest: '123123'
+                            password: '123123'
                         },
                         {
                             email: 'test-user-01@mail.com',
@@ -20,6 +20,6 @@ users = User.create([
                             last_sign_in: DateTime.now,
                             role: 'member',
                             phone: '15102160809',
-                            password_digest: '123123'
+                            password: '123123'
                         }
                     ])

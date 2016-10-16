@@ -2,7 +2,7 @@ class Api::SessionsController < Api::AdminApiController
   def create
     @user = User.find_by(email: create_params[:email])
     if @user && @user.authenticate(create_params[:password])
-      self.current_user = @user
+      render json: {  'token' => @user.authentication_token}, status: 200
     else
       return api_error(status: 401)
     end
