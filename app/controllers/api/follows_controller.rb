@@ -1,4 +1,4 @@
-class Api::Admin::V1::FollowsController < Api::Admin::V1::AdminApiController
+class Api::FollowsController < Api::AdminApiController
   before_action :authenticate_user!
 
   def index
@@ -22,5 +22,17 @@ class Api::Admin::V1::FollowsController < Api::Admin::V1::AdminApiController
 
   def follows_params
     params.permit(:object_id, :status)
+  end
+
+  def show
+  end
+
+  def new
+  end
+
+  def edit
+  end
+
+  def destroy
   end
 end

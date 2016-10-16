@@ -1,4 +1,4 @@
-class Api::Admin::V1::AppointmentsController < ApplicationController
+class Api::AppointmentsController < ApplicationController
   before_action :authenticate_user!
 
   def index

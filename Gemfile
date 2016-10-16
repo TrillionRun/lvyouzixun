@@ -55,6 +55,7 @@ gem 'dotenv-rails'
 
 # use s3 to store image
 gem 'paperclip'
+gem "delayed_paperclip"
 gem 'aws-sdk', '~> 2'
 
 # user login authentication

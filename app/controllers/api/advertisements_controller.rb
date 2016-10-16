@@ -1,4 +1,4 @@
-class Api::Admin::V1::AdvertisementsController < Api::Admin::V1::AdminApiController
+class Api::AdvertisementsController < Api::AdminApiController
   def show
     advertisement_id = params[:id]
     advertisement = Business.find_by_id advertisement_id

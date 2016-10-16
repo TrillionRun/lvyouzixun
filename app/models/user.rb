@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
+  process_in_background :avatar
+
   has_many :appointments
   has_many :follows
 

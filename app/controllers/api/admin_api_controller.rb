@@ -1,4 +1,4 @@
-class Api::Admin::V1::AdminApiController < ActionController::Base
+class Api::AdminApiController < ActionController::Base
   include Pundit
 
   rescue_from Pundit::NotAuthorizedError, with: :deny_access

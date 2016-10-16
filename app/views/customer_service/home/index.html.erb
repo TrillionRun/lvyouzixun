@@ -1,9 +1,12 @@
-<div class="alert alert-success alert-dismissible fade in" role="alert">
+<!-- <div class="alert alert-success alert-dismissible fade in" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
   <strong>Login Successfully!</strong>
+</div> -->
+<div class="row">
+  <div class="col-md-2">
+    <%= render 'shared/sidebar' %>
+  </div>
+  <div class="col-md-10">col-md-11</div>
 </div>
-<%= form_tag(destroy_service_session_path, method: 'delete') do %>
-  <%= submit_tag '登出', class:'btn btn-secondary' %>
-<% end %>

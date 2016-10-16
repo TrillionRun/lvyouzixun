@@ -1,0 +1,14 @@
+<header class="navbar navbar-light navbar-static-top bd-navbar" style="background-color: #e3f2fd;">
+  <div class="container">
+    <nav>
+      <a class="navbar-brand" href="#">旅游咨询客服系统</a>
+      <% if service_signed_in? %>
+        <div class="collapse navbar-toggleable-xs pull-right">
+          <%= form_tag(destroy_service_session_path, method: 'delete') do %>
+            <%= submit_tag '登出', class:'btn btn-secondary' %>
+          <% end %>
+        </div>
+      <% end %>
+    </nav>
+  </div>
+</header>
