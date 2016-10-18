@@ -1,8 +1,12 @@
-class CustomerService::UsersController < ApplicationController
+class CustomerService::UserController < ApplicationController
+  layout 'customer_service_layout'
+
   def index
+    @users = User.all
   end
 
   def show
+    @user = User.find params[:user_id]
   end
 
   def new
@@ -12,6 +16,7 @@ class CustomerService::UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find params[:user_id]
   end
 
   def update

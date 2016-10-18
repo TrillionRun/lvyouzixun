@@ -1,0 +1,74 @@
+<style>
+.card-block {
+  margin: 20px;
+}
+label {
+  font-size: 12px;
+}
+.user-tool {
+  margin-left: 6px;
+  margin-right: -4px;
+  margin-top: 20px;
+}
+</style>
+<div class="row user-tool">
+  <div class="col-xs-2">
+    <%= button_to '<<返回列表', {controller: 'user', action: 'index'}, method: :get, class: 'btn btn-secondary btn-sm' %>
+  </div>
+  <div class="col-xs-9"></div>
+  <div class="col-xs-1">
+    <%= button_to '编辑', {controller: 'user', action: 'edit'}, method: :get, class: 'btn btn-outline-primary btn-sm' %>
+  </div>
+</div>
+<div class="card card-block">
+  <div class="form-group row">
+    <label for="example-text-input" class="col-xs-1 col-form-label">用户ID</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="text" value="<%= @user.id %>" id="example-text-input" disabled>
+    </div>
+    <label for="example-search-input" class="col-xs-1 col-form-label">用户名</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="search" value="<%= @user.name %>" id="example-search-input" disabled>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-search-input" class="col-xs-1 col-form-label">昵称</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="search" value="<%= @user.nickname %>" id="example-search-input" disabled>
+    </div>
+    <label for="example-email-input" class="col-xs-1 col-form-label">邮箱</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="email" value="<%= @user.email %>" id="example-email-input" disabled>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-url-input" class="col-xs-1 col-form-label">头像地址</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="url" value="http://getbootstrap.com" id="example-url-input" disabled>
+    </div>
+    <label for="example-tel-input" class="col-xs-1 col-form-label">最后登录</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="tel" value="<%= @user.last_sign_in %>" id="example-tel-input" disabled>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-password-input" class="col-xs-1 col-form-label">电话</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="text" value="<%= @user.phone %>" id="example-password-input" disabled>
+    </div>
+    <label for="example-number-input" class="col-xs-1 col-form-label">状态</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="text" value="<%= @user.status %>" id="example-number-input" disabled>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-datetime-local-input" class="col-xs-1 col-form-label">创建时间</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="text" value="<%= @user.created_at %>" id="example-datetime-local-input" disabled>
+    </div>
+    <label for="example-date-input" class="col-xs-1 col-form-label">角色</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="text" value="<%= @user.role %>" id="example-date-input" disabled>
+    </div>
+  </div>
+</div>

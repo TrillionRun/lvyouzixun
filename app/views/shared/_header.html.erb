@@ -1,11 +1,21 @@
-<header class="navbar navbar-light navbar-static-top bd-navbar" style="background-color: #e3f2fd;">
-  <div class="container">
+<style>
+.power-off {
+  margin-top: 10px;
+  margin-right: 20px;
+}
+</style>
+<header class="navbar navbar-light navbar-static-top bd-navbar">
+  <div>
     <nav>
-      <a class="navbar-brand" href="#">旅游咨询客服系统</a>
+      <%= image_tag 'logo.png', width: '120', class:'navbar-brand' %>
+      <div><h3 class="navbar-brand">客服系统</h3></div>
+      <div flex></div>
       <% if service_signed_in? %>
-        <div class="collapse navbar-toggleable-xs pull-right">
+        <div class="pull-xs-right power-off">
           <%= form_tag(destroy_service_session_path, method: 'delete') do %>
-            <%= submit_tag '登出', class:'btn btn-secondary' %>
+            <button type="submit" class="btn btn-danger btn-sm">
+              <i class="fi-power"></i>
+            </button>
           <% end %>
         </div>
       <% end %>

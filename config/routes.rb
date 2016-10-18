@@ -5,6 +5,13 @@ Rails.application.routes.draw do
 
   resources :users
 
+  namespace :customer_service do
+    get 'users' => 'user#index'
+    get 'users/:user_id' => 'user#show'
+    get 'users/:user_id/edit' => 'user#edit'
+    get 'businesses' => 'business#index'
+  end
+
   namespace :api do
     resources :users, only: [:show, :update, :create]
     resources :sessions, only: [:create]
