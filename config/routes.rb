@@ -6,10 +6,11 @@ Rails.application.routes.draw do
   resources :users
 
   namespace :customer_service do
-    get 'users' => 'user#index'
-    get 'users/:user_id' => 'user#show'
-    get 'users/:user_id/edit' => 'user#edit'
-    get 'businesses' => 'business#index'
+    resources :user
+    resources :business
+    resources :application_record
+    resources :appointment
+    # resources :advertisement
   end
 
   namespace :api do
@@ -43,10 +44,6 @@ Rails.application.routes.draw do
     # itineraries
     get 'businesses/:business_id/itineraries' => 'itineraries#index'
     get 'businesses/:business_id/itineraries/:id' => 'itineraries#show'
-
-    # news
-    get 'businesses/:business_id/news' => 'news#index'
-    get 'businesses/:business_id/news/:news_id' => 'news#show'
 
     # company_types
     get 'company_types' => 'company_types#index'

@@ -7,16 +7,16 @@
 </style>
 <ul class="nav nav-sidebar nav-pills nav-stacked ">
   <li class="nav-item">
-    <a class="nav-link <%= 'active' if params[:controller] == 'customer_service/user' %>" href="/customer_service/users">用户</a>
+    <a class="nav-link <%= 'active' if params[:controller] == 'customer_service/user' %>" href="/customer_service/user">用户</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link <%= 'active' if params[:controller] == 'customer_service/business' %>" href="/customer_service/businesses">商家</a>
+    <a class="nav-link <%= 'active' if params[:controller] == 'customer_service/business' %>" href="/customer_service/business">商家</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">入驻申请</a>
+    <a class="nav-link <%= 'active' if params[:controller] == 'customer_service/application_record' %>" href="/customer_service/application_record">入驻申请</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link disabled" href="#">预约</a>
+    <a class="nav-link <%= 'active' if params[:controller] == 'customer_service/appointment' %>" href="/customer_service/appointment">预约</a>
   </li>
   <li class="nav-item">
     <a class="nav-link disabled" href="#">留言</a>
