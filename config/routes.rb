@@ -17,6 +17,11 @@ Rails.application.routes.draw do
     resources :sessions, only: [:create]
     resources :advertisements, only: [:show]
 
+    # logout
+    patch 'users/:user_id/logout' => 'sessions#destroy'
+
+    # check follow
+    get 'users/:user_id/business/business_id/check' => 'user#business_user'
 
     # appointments
     get 'users/:user_id/appointments' => 'appointments#index'
@@ -32,11 +37,12 @@ Rails.application.routes.draw do
     patch 'users/:user_id/follows/:id' => 'follows#update'
 
     # information
-    get 'businesses/:business_id/informations' => 'informations#show'
+    get 'businesses/:business_id/informations' => 'informations#index'
+    get 'businesses/:business_id/informations/:id' => 'informations#show'
 
     # itineraries
     get 'businesses/:business_id/itineraries' => 'itineraries#index'
-    get 'businesses/:business_id/itineraries/:itinerary_id' => 'itineraries#show'
+    get 'businesses/:business_id/itineraries/:id' => 'itineraries#show'
 
     # news
     get 'businesses/:business_id/news' => 'news#index'
