@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
     # businesses
     get 'businesses/:id' => 'businesses#show'
+    get 'businesses' => 'businesses#index'
 
     # follows
     get 'users/:user_id/follows' => 'follows#index'
@@ -44,6 +45,9 @@ Rails.application.routes.draw do
     # itineraries
     get 'businesses/:business_id/itineraries' => 'itineraries#index'
     get 'businesses/:business_id/itineraries/:id' => 'itineraries#show'
+
+    # advertisements
+    get 'advertisements' => 'advertisements#index'
 
     # company_types
     get 'company_types' => 'company_types#index'

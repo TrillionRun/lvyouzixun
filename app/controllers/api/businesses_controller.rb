@@ -13,6 +13,8 @@ class Api::BusinessesController < Api::AdminApiController
   end
 
   def index
+    businesses = Business.all
+    render json: businesses, status: 200
   end
 
   def new
