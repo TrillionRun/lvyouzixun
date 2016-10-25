@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     patch 'users/:user_id/logout' => 'sessions#destroy'
 
     # check follow
-    get 'users/:user_id/business/business_id/check' => 'user#business_user'
+    get 'users/:user_id/business/:business_id/check' => 'user#business_user'
 
     # appointments
     get 'users/:user_id/appointments' => 'appointments#index'
