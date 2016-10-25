@@ -37,6 +37,7 @@ class Api::UsersController < Api::AdminApiController
     user_check = User.find_by(phone: params[:phone])
     if user_check.present?
       render json:{'message' => 'error: phone' + params[:phone] + 'has been registered !' }, status: 400
+      return
     end
     options = user_params
     user = User.create! options

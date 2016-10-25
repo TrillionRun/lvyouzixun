@@ -1,1 +1,15 @@
 <%= @business.inspect %>
+<%= @business.picture.url(:medium)%>
+<%= image_tag @business.picture.url(:medium) %>
+
+<%= form_for @business, url: "/customer_service/business/#{@business.id}" , html: { multipart: true } do |f| %>
+  <%= f.file_field :picture %>
+  <%= f.submit %>
+<% end %>
+
+<%= form_tag "/customer_service/business/#{@business.id}/post_detail" do %>
+  <!-- <%= file_field_tag :file %> -->
+  <%= text_area_tag :context_1 %>
+  <%= text_area_tag :context_2 %>
+  <%= submit_tag '提交'%>
+<% end %>
