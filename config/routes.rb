@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   namespace :customer_service do
     resources :user
-    resources :business
+    resources :business do
+      post 'post_detail', on: :member
+    end
     resources :application_record
     resources :appointment
     # resources :advertisement

@@ -53,8 +53,13 @@ ActiveRecord::Schema.define(version: 20161026020550) do
     t.string   "phone"
     t.uuid     "company_type_id"
     t.string   "status"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.text     "details"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "company_types", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
