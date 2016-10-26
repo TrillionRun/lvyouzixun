@@ -3,4 +3,6 @@ class Business < ApplicationRecord
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
   has_many :informations
   has_many :itineraries
+
+  belongs_to :company_type
 end

@@ -16,9 +16,13 @@ class Api::UsersController < Api::AdminApiController
   end
 
   def update_password
-    user_id = params[:id]
+    user_id = params[:user_id]
     user = User.find_by_id user_id
     authorize user, :update?
+    unless user.authenticate(params[:current_password])
+      render json: { 'message' => 'error: current password is not correct!' }, status: 400
+      return
+    end
     options = params.permit(:password)
     user.update! options
     user.reset_auth_token!
@@ -54,7 +58,7 @@ class Api::UsersController < Api::AdminApiController
   end
 
   def user_params
-    columns = [:email, :name, :nickname, :image_url, :last_sign_in,:role, :phone, :status, :password]
+    columns = [:email, :name, :nickname, :image_url, :last_sign_in,:role, :phone, :status]
     params.permit(columns)
   end
 end

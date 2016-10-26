@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     # logout
     patch 'users/:user_id/logout' => 'sessions#destroy'
 
+    # update password
+    patch 'users/:user_id/update_password' => 'users#update_password'
+
     # check follow
     get 'users/:user_id/business/:business_id/check' => 'user#business_user'
 

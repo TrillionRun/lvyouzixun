@@ -8,6 +8,7 @@ class Api::BusinessesController < Api::AdminApiController
     picture_url = business.picture.url
     business_json.merge!("itineraries_info" => itineraries.as_json)
     business_json.merge!("informations_info" => informations.as_json)
+    business_json.merge!(company_type: business.company_type)
     business_json.merge!(picture_url: picture_url)
     render json: business_json, status: 200
   end
