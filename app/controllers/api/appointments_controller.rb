@@ -22,6 +22,6 @@ class Api::AppointmentsController < ApplicationController
   end
 
   def appointments_params
-    params.permit(:business_id, :date, :status)
+    params.permit(:business_id, :date, :status, :name, :phone, :description)
   end
 end
