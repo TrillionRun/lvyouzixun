@@ -4,5 +4,5 @@ class Business < ApplicationRecord
   has_many :informations
   has_many :itineraries
 
-  belongs_to :company_type
+  belongs_to :company_type, required: false
 end

@@ -1,1 +1,7 @@
-<%= @appointments.inspect.to_s %>
+<hr/>
+
+<% @appointments.each do |appointment| %>
+  id: <%= link_to appointment.id, controller: "appointment", action: "show", id: appointment.id %>
+  name:<%= appointment.name %>
+  status:<%= appointment.status %>
+<% end %>

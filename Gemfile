@@ -68,3 +68,9 @@ source 'https://rails-assets.org' do
 end
 
 gem 'foundation-icons-sass-rails'
+
+# business video
+gem 'paperclip-av-transcoder'
+
+# vuejs sounds awesome
+gem 'vuejs-rails'
