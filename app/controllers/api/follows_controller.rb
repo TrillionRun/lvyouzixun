@@ -1,5 +1,5 @@
 class Api::FollowsController < Api::AdminApiController
-  before_action :authenticate_user!
+  before_action :authenticate_userx!
 
   def index
     user = User.find(params[:user_id])

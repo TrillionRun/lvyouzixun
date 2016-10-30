@@ -22,7 +22,7 @@ class Api::AdminApiController < ActionController::Base
     render json: {  'message' => 'error '+ opts[:status].to_s }, status: opts[:status]
   end
 
-  def authenticate_user!
+  def authenticate_userx!
     token, options = ActionController::HttpAuthentication::Token.token_and_options(request)
 
     user_phone = options.blank?? nil : options[:phone]
