@@ -4,9 +4,9 @@ class Api::BusinessesController < Api::AdminApiController
     business = Business.find_by_id business_id
     business_json = business.as_json
     itineraries = business.itineraries
-    itineraries.map! do |itinerary|
-      itinerary['link'] = "/public/business/${business.id}/itinerary/${itinerary.id}"
-    end
+    # itineraries.map! do |itinerary|
+    #   itinerary['link'] = "/public/business/${business.id}/itinerary/${itinerary.id}"
+    # end
     informations = business.informations
     picture_url = business.picture.url
     business_json.merge!("itineraries_info" => itineraries.as_json)
