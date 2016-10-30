@@ -51,7 +51,7 @@ class Api::UsersController < Api::AdminApiController
   def business_user
     result = false
     follow = Follow.find_by(user_id: params[:user_id], object_id: params[:business_id])
-    if follow.present
+    if follow.present?
       result = true
     end
     render json:{'result' => result}, status: 200
