@@ -11,6 +11,7 @@ class Api::FollowsController < Api::AdminApiController
     user = User.find(params[:user_id])
     options = follows_params
     follow = Follow.create! options.merge user_id: user.id
+    render json: {result: true}, status: 201
   end
 
   def update
