@@ -23,3 +23,33 @@ users = User.create([
                             password: '123123'
                         }
                     ])
+company_types = CompanyType.create ([
+  {
+    name: 'lvyouju',
+    description: '旅游局'
+  },
+  {
+    name: 'zutuan',
+    description: '组团'
+  },
+  {
+    name: 'dangdiduijie',
+    description: '当地对接'
+  },
+  {
+    name: 'qita',
+    description: '其他'
+  },
+  {
+    name: 'ziyuan',
+    description: '资源'
+  },
+  {
+    name: 'shetuan',
+    description: '社团'
+  },
+  {
+    name: 'xianxiahuodong',
+    description: '线下活动'
+  }
+])

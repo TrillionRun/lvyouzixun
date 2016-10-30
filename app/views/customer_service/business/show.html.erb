@@ -1,15 +1,33 @@
-<%= @business.inspect %>
-<%= @business.picture.url(:medium)%>
-<%= image_tag @business.picture.url(:medium) %>
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <%= link_to '商家信息', customer_service_business_path(@business), class: 'nav-link active' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to '行程', customer_service_business_itinerary_index_path(@business), class: 'nav-link'%>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#information" role="tab" data-toggle="tab">资讯</a>
+  </li>
+</ul>
 
-<%= form_for @business, url: "/customer_service/business/#{@business.id}" , html: { multipart: true } do |f| %>
-  <%= f.file_field :picture %>
-  <%= f.submit %>
-<% end %>
+<div style="border: solid 1px black;">
+  商户ID:<%= @business.id %><br/>
+  用户ID: <%= @business.user_id %><br/>
+  公司名称: <%= @business.company_name %><br/>
+  电话: <%= @business.phone %><br/>
+  描述: <%= @business.details%><br/>
+  图片地址:<%= @business.picture.url%><br/>
+  <hr/>
+  <%= image_tag @business.picture.url, width: 75, height: 50 %>
 
-<%= form_tag "/customer_service/business/#{@business.id}/post_detail" do %>
-  <!-- <%= file_field_tag :file %> -->
-  <%= text_area_tag :context_1 %>
-  <%= text_area_tag :context_2 %>
-  <%= submit_tag '提交'%>
-<% end %>
+  <%= form_for @business, url: "/customer_service/business/#{@business.id}" , html: { multipart: true } do |f| %>
+    <%= f.file_field :picture %>
+    <%= f.submit '更新图片' %>
+  <% end %>
+  <hr/>
+  <%= form_tag "/customer_service/business/#{@business.id}/post_detail" do %>
+    <%= text_area_tag :context_1 %>
+    <%= text_area_tag :context_2 %>
+    <%= submit_tag '提交'%>
+  <% end %>
+</div>

@@ -1,0 +1,68 @@
+<style>
+.itinerary-page {
+  font-size: 40px;
+}
+.ly-day-font {
+  font-weight: bold;
+  font-size: 48px;
+  margin-top: 20px;
+}
+.ly-orange {
+  color: #e76a32;
+}
+.ly-grey {
+  color: #999;
+}
+.ly-blue {
+  color: #1576da;
+}
+.ly-black {
+  color: #000;
+}
+.ly-white {
+  color: #fff;
+}
+.ly-padding {
+  padding-left: 100px;
+  padding-right: 50px;
+}
+.ly-line {
+  margin-left: 100px;
+  margin-right: 50px;
+  height: 1px;
+  border: solid 1px #ccc;
+}
+.ly-margin-top {
+  margin-top: 40px;
+}
+.ly-margin-top-half {
+  margin-top: 20px;
+}
+.ly-margin-bottom {
+  margin-bottom: 40px;
+}
+.ly-margin-bottom-half {
+  margin-bottom: 20px;
+}
+</style>
+<div class="itinerary-page">
+<% @itinerary.daily_plans.each_with_index do |daily_plan, index|%>
+  <div class="ly-orange ly-padding ly-day-font">第<%= index + 1 %>天</div>
+  <div class="ly-grey ly-padding ly-margin-top-half"><%= daily_plan.places %></div>
+  <!-- <div class="ly-grey ly-padding ly-margin-bottom-half"><%= daily_plan.dates %></div> -->
+  <div class="ly-line ly-margin-top-half"></div>
+  <div class="ly-padding ly-margin-top"><b>行程描述：</b></div>
+  <div class="ly-padding ly-margin-bottom ly-grey"><%= daily_plan.description %></div>
+  <div class="ly-padding ly-margin-bottom"><%= image_tag daily_plan.picture.url, height: '500', width: '100%'  if daily_plan.picture.url!='/pictures/original/missing.png' %></div>
+  <div class="ly-line"></div>
+  <div class="ly-padding ly-margin-top">
+    <b>三餐：</b>
+    <span class="ly-grey"><%= daily_plan.food %></span>
+  </div>
+  <div class="ly-padding ly-margin-bottom">
+    <b>住宿：</b>
+    <span class="ly-grey"><%= daily_plan.hotel %></span>
+  </div>
+  <div class="ly-line"></div>
+<% end%>
+<div>

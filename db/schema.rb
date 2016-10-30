@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026020550) do
+ActiveRecord::Schema.define(version: 20161029115346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,22 @@ ActiveRecord::Schema.define(version: 20161026020550) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "daily_plans", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string   "places"
+    t.string   "dates"
+    t.string   "description"
+    t.string   "food"
+    t.string   "hotel"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.uuid     "itinerary_id"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.index ["itinerary_id"], name: "index_daily_plans_on_itinerary_id", using: :btree
+  end
+
   create_table "follows", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "user_id"
     t.uuid     "object_id"
@@ -113,6 +129,20 @@ ActiveRecord::Schema.define(version: 20161026020550) do
     t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "petitions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string   "name"
+    t.string   "contact"
+    t.string   "contact_phone"
+    t.string   "email"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.uuid     "user_id",         null: false
+    t.uuid     "company_type_id", null: false
+    t.string   "status"
+    t.index ["company_type_id"], name: "index_petitions_on_company_type_id", using: :btree
+    t.index ["user_id"], name: "index_petitions_on_user_id", using: :btree
   end
 
   create_table "services", force: :cascade do |t|

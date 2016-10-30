@@ -1,8 +1,8 @@
 <%= link_to '创建', controller: "business", action: "new"%>
 <br/>
-<%= @businesses.inspect %>
 <hr/>
 <% @businesses.each do |business| %>
   id: <%= link_to business.id, controller: "business", action: "show", id: business.id %>
   name:<%= business.name%>
+  <br/>
 <% end %>

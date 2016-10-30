@@ -1,0 +1,24 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <%= link_to '商家信息', customer_service_business_path(@business), class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to '行程', customer_service_business_itinerary_index_path(@business), class: 'nav-link active'%>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#information" role="tab" data-toggle="tab">资讯</a>
+  </li>
+</ul>
+<%= form_tag customer_service_business_itinerary_index_path, method: :post do %>
+  <input name='name' />
+  <%= submit_tag '添加'%>
+<% end %>
+<hr/>
+<% @itineraries.each do |itinerary| %>
+  <%= link_to itinerary.name, controller: :itinerary, action: :show, id: itinerary.id %>
+  <%= button_to '删除',
+                customer_service_business_itinerary_path(@business, itinerary),
+                method: :delete,
+                data: {confirm: '你确定要删除这个行程吗？'}%>
+  <br/>
+<% end %>

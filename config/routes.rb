@@ -8,11 +8,19 @@ Rails.application.routes.draw do
   namespace :customer_service do
     resources :user
     resources :business do
+      resources :itinerary do
+        resources :daily_plan
+      end
+
       post 'post_detail', on: :member
     end
-    resources :application_record
+    resources :petition
     resources :appointment
     # resources :advertisement
+  end
+
+  namespace :public do
+    get 'business/:business_id/itinerary/:itinerary_id' => 'itinerary#show'
   end
 
   namespace :api do
