@@ -1,5 +1,5 @@
 class Api::MessagesController < Api::AdminApiController
-  before_action :authenticate_userx!
+  before_action :authenticate_user!
 
   def index
   end

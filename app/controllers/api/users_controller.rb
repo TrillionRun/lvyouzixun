@@ -1,6 +1,6 @@
 class Api::UsersController < Api::AdminApiController
 
-  before_action :authenticate_userx!, except: [:create]
+  before_action :authenticate_user!, except: [:create]
 
   def show
     user_id = params[:id]
