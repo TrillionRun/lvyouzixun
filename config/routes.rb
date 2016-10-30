@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
     # check follow
     get 'users/:user_id/business/:business_id/check' => 'users#business_user'
+    delete 'users/:user_id/business/:business_id/uncheck' => 'users#business_user'
 
     # appointments
     get 'users/:user_id/appointments' => 'appointments#index'
@@ -50,6 +51,7 @@ Rails.application.routes.draw do
     get 'users/:user_id/follows' => 'follows#index'
     post 'users/:user_id/follows' => 'follows#create'
     patch 'users/:user_id/follows/:id' => 'follows#update'
+    delete 'users/:user_id/follow/:id' => 'follows#destroy'
 
     # information
     get 'businesses/:business_id/informations' => 'informations#index'
