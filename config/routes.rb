@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     patch 'users/:user_id/update_password' => 'users#update_password'
 
     # check follow
-    get 'users/:user_id/business/:business_id/check' => 'user#business_user'
+    get 'users/:user_id/business/:business_id/check' => 'users#business_user'
 
     # appointments
     get 'users/:user_id/appointments' => 'appointments#index'

@@ -6,7 +6,11 @@ class CustomerService::BusinessController < ApplicationController
 
   def show
     @business = Business.find params[:id]
-    details = @business.details.nil? ? {} : JSON.parse(@business.details)
+    begin
+      details = @business.details.nil? ? {} : JSON.parse(@business.details)
+    rescue
+      details = {'context_1': '', 'context_2': ''}
+    end
     @context_1 = details['context_1']
     @context_2 = details['context_2']
   end
