@@ -18,22 +18,22 @@
 <hr/>
 <div style="border:solid 1px red;">
   <%= form_tag '/customer_service/business/'+@business.id+'/itinerary/'+@itinerary.id+'/daily_plan', multipart: true do %>
-    <%= label_tag 'dates' %>:
+    <%= label_tag '日期' %>:
     <%= text_field_tag :dates %><br/>
 
-    <%= label_tag 'place' %>:
+    <%= label_tag '地点' %>:
     <%= text_field_tag :places %><br/>
 
-    <%= label_tag 'image' %>
+    <%= label_tag '图片' %>
     <%= file_field_tag :picture%><br/>
 
-    <%= label_tag 'description' %>:
+    <%= label_tag '行程描述' %>:
     <%= text_field_tag :description %><br/>
 
-    <%= label_tag 'food' %>:
+    <%= label_tag '餐饮' %>:
     <%= text_field_tag :food %><br/>
 
-    <%= label_tag 'hotel' %>:
+    <%= label_tag '住宿' %>:
     <%= text_field_tag :hotel %><br/>
 
     <%= submit_tag '创建' %>
@@ -48,6 +48,7 @@
       地点：<input name='places' value="<%= daily_plan.places %>"/>
       行程描述：<input name='description' value="<%= daily_plan.description %>"/>
       图片：<%= daily_plan.picture.url%><br/>
+      <%= file_field_tag :picture %>
       餐饮：<input name='food' value="<%= daily_plan.food %>"/>
       住宿：<input name='hotel' value="<%= daily_plan.hotel %>"/>
       <%= submit_tag '更新'%>

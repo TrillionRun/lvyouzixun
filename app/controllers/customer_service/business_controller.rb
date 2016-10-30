@@ -6,6 +6,9 @@ class CustomerService::BusinessController < ApplicationController
 
   def show
     @business = Business.find params[:id]
+    details = @business.details.nil? ? {} : JSON.parse(@business.details)
+    @context_1 = details['context_1']
+    @context_2 = details['context_2']
   end
 
   def new
@@ -23,10 +26,10 @@ class CustomerService::BusinessController < ApplicationController
   def post_detail
     @business = Business.find params[:id]
     hash = {}
-    hash[:image] = ''
-    hash[:context_1] = params[:context_1]
-    hash[:context_2] = params[:context_2]
-    @business.update! details: hash
+    hash['context_1'] = params[:context_1]
+    hash['context_2'] = params[:context_2]
+    @business.update! details: hash.to_json
+    redirect_to customer_service_business_path(@business)
   end
 
   def update
@@ -41,10 +44,11 @@ class CustomerService::BusinessController < ApplicationController
   private
 
   def business_params
-    params.permit(:user_id, :name, :picture)
+    params.permit(:user_id, :name, :picture, :company_name, :phone, :context_1, :context_2)
   end
 
   def image_params
-    params.require(:business).permit(:picture)
+    # params.require(:business).permit(:picture)
+    params.permit(:user_id, :name, :picture, :company_name, :phone, :context_1, :context_2, :email)
   end
 end

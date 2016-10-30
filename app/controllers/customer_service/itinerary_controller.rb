@@ -28,7 +28,12 @@ class CustomerService::ItineraryController < ApplicationController
   def destroy
     @business = Business.find_by_id params[:business_id]
     @itinerary = @business.itineraries.find_by_id params[:id]
-    @itinerary.destroy!
+    ActiveRecord::Base.transaction do
+      @itinerary.daily_plans.each do |daily_plan|
+        daily_plan.destroy!
+      end
+      @itinerary.destroy!
+    end
     redirect_to customer_service_business_itinerary_index_path(@business, @itinerary)
   end
 

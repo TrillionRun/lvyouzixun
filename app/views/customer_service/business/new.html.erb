@@ -1,8 +1,8 @@
-<%= form_tag '/customer_service/business' do %>
-  <%= label_tag :user_id %>:
+<%= form_tag customer_service_business_index_path do %>
+  <%= label_tag '用户ID' %>:
   <%= text_field_tag :user_id %><br />
 
-  <%= label_tag :name %>:
+  <%= label_tag '商家名称' %>:
   <%= text_field_tag :name %><br />
 
   <%= submit_tag '创建' %>
