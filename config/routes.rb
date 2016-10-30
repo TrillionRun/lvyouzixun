@@ -51,7 +51,7 @@ Rails.application.routes.draw do
     get 'users/:user_id/follows' => 'follows#index'
     post 'users/:user_id/follows' => 'follows#create'
     patch 'users/:user_id/follows/:id' => 'follows#update'
-    delete 'users/:user_id/follow/:id' => 'follows#destroy'
+    delete 'users/:user_id/follows' => 'follows#destroy'
 
     # information
     get 'businesses/:business_id/informations' => 'informations#index'

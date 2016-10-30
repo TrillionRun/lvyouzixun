@@ -36,7 +36,7 @@ class Api::FollowsController < Api::AdminApiController
 
   def destroy
     user = User.find(params[:user_id])
-    follow = Follow.find_by user_id: user.id, object_id: params[:id]
+    follow = Follow.find_by user_id: user.id, object_id: params[:object_id]
     follow.destroy!
     render json: {result: true}, status: 200
   end
