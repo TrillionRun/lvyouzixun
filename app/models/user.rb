@@ -16,6 +16,7 @@ class User < ApplicationRecord
 
   has_many :appointments
   has_many :follows
+  has_many :conversations
 
   def generate_authentication_token
        loop do

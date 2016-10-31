@@ -66,5 +66,10 @@ Rails.application.routes.draw do
 
     # company_types
     get 'company_types' => 'company_types#index'
+
+    # conversation
+    post 'users/:user_id/businesses/:business_id/talk' => 'messages#create'
+    get 'users/:user_id/businesses/:business_id/conversation' => 'conversations#show'
+    get 'users/:user_id/conversations' => 'conversations#index'
   end
 end
