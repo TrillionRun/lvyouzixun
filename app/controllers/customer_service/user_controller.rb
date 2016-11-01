@@ -13,6 +13,8 @@ class CustomerService::UserController < ApplicationController
   end
 
   def create
+    @user = User.create! user_params
+    redirect_to action: :show, id: @user.id if @user
   end
 
   def edit
@@ -23,5 +25,9 @@ class CustomerService::UserController < ApplicationController
   end
 
   def destroy
+  end
+
+  def user_params
+    params.permit(:name, :nickname, :email, :role, :phone, :password, :status )
   end
 end

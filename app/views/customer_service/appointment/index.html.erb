@@ -36,10 +36,10 @@
           <td><%= appointment.description %></td>
           <td><%= appointment.status %></td>
           <td>
-            <% if appointment.status != 'active' %>
+            <% if appointment.status != 'inactive' %>
                 <%= form_tag customer_service_appointment_path(appointment), method: :put do %>
-                    <%= hidden_field_tag 'status', 'active'  %>
-                    <%= submit_tag '审核通过' %>
+                    <%= hidden_field_tag 'status', 'inactive'  %>
+                    <%= submit_tag '取消' %>
                 <% end %>
             <%end%>
           </td>
