@@ -14,7 +14,7 @@
   商户ID:<%= @business.id %><br/>
   用户ID: <%= @business.user_id %><br/>
   <%= form_tag customer_service_business_path(@business), method: :put do %>
-    公司名称: <input name="company_name" value="<%= @business.name %>">
+    商家名称: <input name="company_name" value="<%= @business.name %>">
     公司名称: <input name="company_name" value="<%= @business.company_name %>">
     电话: <input name="phone" value="<%= @business.phone %>">
     邮箱: <input name="email" value="<%= @business.email %>">

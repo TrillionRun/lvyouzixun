@@ -5,7 +5,9 @@ class CustomerService::AppointmentController < ApplicationController
   end
 
   def show
-    @appointment = Appointment.find params[:id]
+    # @appointment = Appointment.find params[:id]
+    @appointment = Appointment.joins(:user).joins(:business).
+        select('appointments.*, users.name as user_name, businesses.name as business_name').where('appointments.id = ?', params[:id]).first
   end
 
   def new
@@ -21,6 +23,10 @@ class CustomerService::AppointmentController < ApplicationController
   end
 
   def update
+    @appointment = Appointment.find params[:id]
+    options = params.permit(:status)
+    @appointment.update! options
+    redirect_to action: :index
   end
 
   def destroy
