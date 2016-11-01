@@ -10,10 +10,10 @@ class Api::BusinessesController < Api::AdminApiController
     its.map! do |it|
       it['link'] = "/public/business/${business.id}/itinerary/${it.id}"
     end
+    business_json.merge!(company_type_name: business.company_type.name)
+    business_json.merge!(picture_url: picture_url)
     business_json.merge!("itineraries_info" => its)
     business_json.merge!("informations_info" => informations.as_json)
-    business_json.merge!(company_type: business.company_type)
-    business_json.merge!(picture_url: picture_url)
     render json: business_json, status: 200
   end
 
@@ -21,7 +21,8 @@ class Api::BusinessesController < Api::AdminApiController
   end
 
   def index
-    businesses = Business.all
+    businesses = Business.joins(:company_type).
+        select('businesses.*, company_types.name as company_type_name')
     render json: businesses, status: 200
   end
 

@@ -12,6 +12,8 @@ class CustomerService::AppointmentController < ApplicationController
   end
 
   def create
+    @appointment = Appointment.create! appointment_params
+    redirect_to action: :show, id: @appointment.id if @appointment
   end
 
   def edit
@@ -22,5 +24,10 @@ class CustomerService::AppointmentController < ApplicationController
   end
 
   def destroy
+  end
+
+
+  def appointment_params
+    params.permit(:user_id, :business_id, :date, :status, :name, :phone, :description)
   end
 end

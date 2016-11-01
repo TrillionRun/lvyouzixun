@@ -25,31 +25,31 @@ users = User.create([
                     ])
 company_types = CompanyType.create ([
   {
-    name: 'lvyouju',
+    name: 'TourismOffice',
     description: '旅游局'
   },
   {
-    name: 'zutuan',
+    name: 'GroupTravel',
     description: '组团'
   },
   {
-    name: 'dangdiduijie',
+    name: 'LocalCommunication',
     description: '当地对接'
   },
   {
-    name: 'qita',
+    name: 'Other',
     description: '其他'
   },
   {
-    name: 'ziyuan',
+    name: 'Source',
     description: '资源'
   },
   {
-    name: 'shetuan',
+    name: 'Club',
     description: '社团'
   },
   {
-    name: 'xianxiahuodong',
+    name: 'OfflineSource',
     description: '线下活动'
   }
 ])

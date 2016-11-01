@@ -1,9 +1,10 @@
 class Api::AppointmentsController < Api::AdminApiController
-   before_action :authenticate_user!
+   # before_action :authenticate_user!
 
   def index
     user = User.find(params[:user_id])
-    appointments = Appointment.where('user_id = ?', user.id)
+    appointments = Appointment.joins(:business).
+        select('appointments.*, businesses.name as business_name').where('appointments.user_id = ?', user.id)
     render json: appointments, status: 200
   end
 

@@ -1,0 +1,24 @@
+<%= form_tag customer_service_appointment_index_path do %>
+    <%= label_tag '用户ID' %>:
+    <%= text_field_tag :user_id %><br />
+
+    <%= label_tag '商家ID' %>:
+    <%= text_field_tag :business_id %><br />
+
+    <%= label_tag '日期' %>:
+    <%= text_field_tag :date %><br />
+
+    <%= label_tag '状态' %>:
+    <%= text_field_tag :status %><br />
+
+    <%= label_tag '预约人' %>:
+    <%= text_field_tag :name %><br />
+
+    <%= label_tag '手机号码' %>:
+    <%= text_field_tag :phone %><br />
+
+    <%= label_tag '备注' %>:
+    <%= text_field_tag :description %><br />
+
+    <%= submit_tag '创建' %>
+<% end %>
