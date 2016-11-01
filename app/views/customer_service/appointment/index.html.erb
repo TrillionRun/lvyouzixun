@@ -1,5 +1,4 @@
-<%= link_to '创建', controller: "appointment", action: "new"%>
-<br />
+<%= button_to '创建', {controller: 'appointment', action: 'new'}, method: :get, class: 'btn btn-secondary btn-sm' %>
 
 
 <style>
@@ -11,13 +10,12 @@
   <table class="table table-striped">
     <thead class="bg-primary">
     <tr>
-      <th>预约ID</th>
-      <th>用户ID</th>
-      <th>商家ID</th>
-      <th>日期</th>
       <th>联系人</th>
+      <th>日期</th>
       <th>联系人电话</th>
       <th>备注</th>
+      <th>用户ID</th>
+      <th>商家ID</th>
       <th>状态</th>
       <th>操作</th>
     </tr>
@@ -26,14 +24,13 @@
     <% @appointments.each do |appointment| %>
         <tr>
           <td>
-            <%= link_to appointment.id, controller: "appointment", action: "show", id: appointment.id %>
+            <%= link_to appointment.name, controller: "appointment", action: "show", id: appointment.id %>
           </td>
-          <td><%= appointment.user_id %></td>
-          <td><%= appointment.business_id %></td>
           <td><%= appointment.date %></td>
-          <td><%= appointment.name %></td>
           <td><%= appointment.phone %></td>
           <td><%= appointment.description %></td>
+          <td><%= appointment.user_id %></td>
+          <td><%= appointment.business_id %></td>
           <td><%= appointment.status %></td>
           <td>
             <% if appointment.status != 'inactive' %>

@@ -1,9 +1,9 @@
 <%= form_tag customer_service_appointment_index_path do %>
     <%= label_tag '用户ID' %>:
-    <%= text_field_tag :user_id %><br />
+    <%= select_tag :user_id, options_for_select(@users, params[:user_id]) %><br />
 
     <%= label_tag '商家ID' %>:
-    <%= text_field_tag :business_id %><br />
+    <%= select_tag :business_id, options_for_select(@businesses, params[:business_id]) %><br />
 
     <%= label_tag '日期' %>:
     <%= text_field_tag :date %><br />

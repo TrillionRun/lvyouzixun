@@ -1,6 +1,4 @@
-<%= link_to '创建', controller: "petition", action: "new"%>
-<br />
-
+<%= button_to '创建', {controller: 'petition', action: 'new'}, method: :get, class: 'btn btn-secondary btn-sm' %>
 
 <style>
     .card-block {
@@ -11,13 +9,13 @@
   <table class="table table-striped">
     <thead class="bg-primary">
     <tr>
-      <th>申请ID</th>
       <th>商家名称</th>
-      <th>邮箱</th>
       <th>联系人</th>
       <th>联系人电话</th>
-      <th>用户ID</th>
+      <th>邮箱</th>
+
       <th>状态</th>
+
       <th>操作</th>
     </tr>
     </thead>
@@ -25,14 +23,14 @@
     <% @petitions.each do |petition| %>
         <tr>
           <td>
-            <%= link_to petition.id, controller: "petition", action: "show", id: petition.id %>
+            <%= link_to petition.name, controller: "petition", action: "show", id: petition.id %>
           </td>
-          <td><%= petition.name %></td>
-          <td><%= petition.email %></td>
           <td><%= petition.contact %></td>
           <td><%= petition.contact_phone %></td>
-          <td><%= petition.user_id %></td>
+          <td><%= petition.email %></td>
+
           <td><%= petition.status %></td>
+
           <td>
             <% if petition.status != 'active' %>
             <%= form_tag customer_service_petition_path(petition), method: :put do %>

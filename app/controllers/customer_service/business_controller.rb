@@ -16,6 +16,16 @@ class CustomerService::BusinessController < ApplicationController
   end
 
   def new
+    array_base_user = []
+    array_tmp_user = []
+    users = User.all
+    users.each do |user|
+      array_tmp_user.push(user.name)
+      array_tmp_user.push(user.id)
+      array_base_user.push array_tmp_user
+      array_tmp_user = []
+    end
+    @users = array_base_user
   end
 
   def create

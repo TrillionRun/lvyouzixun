@@ -1,7 +1,80 @@
-申请用户:<%= @petition.user_name %><br/>
-商家名称:<%= @petition.name %><br/>
-联系人姓名: <%= @petition.contact %><br/>
-联系人手机: <%= @petition.contact_phone %><br/>
-邮箱: <%= @petition.email %><br/>
-公司类型: <%= @petition.company_type_name %><br/>
-状态: <%= @petition.status %>
+<style>
+    .card-block {
+        margin: 20px;
+    }
+    label {
+        font-size: 12px;
+    }
+    .user-tool {
+        margin-left: 6px;
+        margin-right: -4px;
+        margin-top: 20px;
+    }
+</style>
+<div class="row user-tool">
+  <div class="col-xs-2">
+    <%= button_to '<<返回列表', {controller: 'petition', action: 'index'}, method: :get, class: 'btn btn-secondary btn-sm' %>
+  </div>
+  <div class="col-xs-9"></div>
+  <div class="col-xs-1">
+    <%= button_to '编辑', {controller: 'petition', action: 'edit'}, method: :get, class: 'btn btn-outline-primary btn-sm' %>
+  </div>
+</div>
+<div class="card card-block">
+  <div class="form-group row">
+    <label for="example-text-input" class="col-xs-1 col-form-label">入驻申请ID</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="text" value="<%= @petition.id %>" id="example-text-input" disabled>
+    </div>
+    <label for="example-search-input" class="col-xs-1 col-form-label">商家名称</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="search" value="<%= @petition.name %>" id="example-search-input" disabled>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-search-input" class="col-xs-1 col-form-label">邮箱</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="search" value="<%= @petition.email %>" id="example-search-input" disabled>
+    </div>
+    <label for="example-email-input" class="col-xs-1 col-form-label">联系人</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="email" value="<%= @petition.contact %>" id="example-email-input" disabled>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-url-input" class="col-xs-1 col-form-label">联系人电话</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="url" value="<%= @petition.contact_phone %>" id="example-url-input" disabled>
+    </div>
+    <label for="example-tel-input" class="col-xs-1 col-form-label">用户ID</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="tel" value="<%= @petition.user_id %>" id="example-tel-input" disabled>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-password-input" class="col-xs-1 col-form-label">用户姓名</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="text" value="<%= @petition.user_name %>" id="example-password-input" disabled>
+    </div>
+    <label for="example-number-input" class="col-xs-1 col-form-label">状态</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="text" value="<%= @petition.status %>" id="example-number-input" disabled>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-datetime-local-input" class="col-xs-1 col-form-label">创建时间</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="text" value="<%= @petition.created_at %>" id="example-datetime-local-input" disabled>
+    </div>
+    <label for="example-date-input" class="col-xs-1 col-form-label">最后更新时间</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="text" value="<%= @petition.updated_at %>" id="example-date-input" disabled>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-datetime-local-input" class="col-xs-1 col-form-label">公司类型</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="text" value="<%= @petition.company_type_name %>" id="example-datetime-local-input" disabled>
+    </div>
+  </div>
+</div>

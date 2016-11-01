@@ -1,5 +1,4 @@
-<%= link_to '创建', controller: "business", action: "new"%>
-<br/>
+<%= button_to '创建', {controller: 'business', action: 'new'}, method: :get, class: 'btn btn-secondary btn-sm' %>
 
 <style>
     .card-block {
@@ -10,17 +9,17 @@
   <table class="table table-striped">
     <thead class="bg-primary">
     <tr>
-      <th>商家ID</th>
       <th>名称</th>
+      <th>商家ID</th>
     </tr>
     </thead>
     <tbody>
     <% @businesses.each do |business| %>
         <tr>
           <td>
-            <%= link_to business.id, controller: "business", action: "show", id: business.id %>
+            <%= link_to business.name, controller: "business", action: "show", id: business.id %>
           </td>
-          <td><%= business.name %></td>
+          <td><%= business.id %></td>
         </tr>
     <% end%>
     </tbody>
