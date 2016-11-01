@@ -6,6 +6,7 @@ class Api::ConversationsController < Api::AdminApiController
     conversation_json = @conversations.as_json
     conversation_json.each do |conversation|
       con = Conversation.find_by_id conversation['id']
+      conversation['business_name'] = con.business.name
       conversation['last_message'] = con.messages.last.content.to_s
       conversation['last_message_at'] = con.messages.last.created_at
     end

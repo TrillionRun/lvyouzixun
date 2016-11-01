@@ -1,0 +1,11 @@
+<%= form_tag customer_service_advertisement_index_path, multipart: true do %>
+  <%= label_tag '协议' %>:
+  <%= text_field_tag :protocol %><br/>
+
+  <%= label_tag '地址' %>:
+  <%= text_field_tag :ad_url %><br/>
+
+  <%= file_field_tag :picture %><br/>
+
+  <%= submit_tag '创建' %>
+<% end %>

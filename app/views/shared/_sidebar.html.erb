@@ -22,9 +22,6 @@
     <a class="nav-link disabled" href="#">留言</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link disabled" href="#">广告</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="#">首页列表</a>
+    <a class="nav-link <%= 'active' if params[:controller] == 'customer_service/advertisement' %>" href="/customer_service/advertisement">首页列表</a>
   </li>
 </ul>

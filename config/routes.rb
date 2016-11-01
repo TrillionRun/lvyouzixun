@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
     resources :petition
     resources :appointment
-    # resources :advertisement
+    resources :advertisement
   end
 
   namespace :public do

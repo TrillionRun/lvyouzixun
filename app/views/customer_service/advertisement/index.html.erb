@@ -1,0 +1,9 @@
+<% @advertisements.each do |advertisement| %>
+  <div><%= link_to advertisement.id, customer_service_advertisement_path %></div>
+  <div><%= advertisement.ad_url %></div>
+  <div><%= advertisement.protocol %></div>
+  <div><%= advertisement.picture.url%></div>
+  <hr/>
+<% end %>
+
+<%= link_to '创建', controller: :advertisement, action: :new %>
