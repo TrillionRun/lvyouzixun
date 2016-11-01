@@ -1,5 +1,5 @@
 <% @advertisements.each do |advertisement| %>
-  <div><%= link_to advertisement.id, customer_service_advertisement_path %></div>
+  <div><%= link_to advertisement.id, customer_service_advertisement_path(advertisement.id) %></div>
   <div><%= advertisement.ad_url %></div>
   <div><%= advertisement.protocol %></div>
   <div><%= advertisement.picture.url%></div>
