@@ -71,5 +71,10 @@ Rails.application.routes.draw do
     post 'users/:user_id/businesses/:business_id/talk' => 'messages#create'
     get 'users/:user_id/businesses/:business_id/conversation' => 'conversations#show'
     get 'users/:user_id/conversations' => 'conversations#index'
+
+    # petitions
+    post 'users/:user_id/petitions' => 'petitions#create'
+    get 'users/:user_id/petitions' => 'petitions#index'
+
   end
 end

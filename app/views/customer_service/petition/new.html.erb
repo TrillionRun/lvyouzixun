@@ -1,0 +1,24 @@
+<%= form_tag customer_service_petition_index_path do %>
+    <%= label_tag '用户ID' %>:
+    <%= text_field_tag :user_id %><br />
+
+    <%= label_tag '入住名称' %>:
+    <%= text_field_tag :name %><br />
+
+    <%= label_tag '联系人' %>:
+    <%= text_field_tag :contact %><br />
+
+    <%= label_tag '联系人电话' %>:
+    <%= text_field_tag :contact_phone %><br />
+
+    <%= label_tag '邮箱' %>:
+    <%= text_field_tag :email %><br />
+
+    <%= label_tag '公司类型' %>:
+    <%= text_field_tag :company_type_id %><br />
+
+    <%= label_tag '状态' %>:
+    <%= text_field_tag :status %><br />
+
+    <%= submit_tag '创建' %>
+<% end %>

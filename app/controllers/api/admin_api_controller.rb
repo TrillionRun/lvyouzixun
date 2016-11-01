@@ -23,17 +23,16 @@ class Api::AdminApiController < ActionController::Base
   end
 
   def authenticate_userx!
-    true
-    # token, options = ActionController::HttpAuthentication::Token.token_and_options(request)
-    #
-    # user_phone = options.blank?? nil : options[:phone]
-    # user = user_phone && User.find_by(phone: user_phone)
-    #
-    # if user && ActiveSupport::SecurityUtils.secure_compare(user.authentication_token, token)
-    #   self.current_user = user
-    # else
-    #   return unauthenticated!
-    # end
+    token, options = ActionController::HttpAuthentication::Token.token_and_options(request)
+
+    user_phone = options.blank?? nil : options[:phone]
+    user = user_phone && User.find_by(phone: user_phone)
+
+    if user && ActiveSupport::SecurityUtils.secure_compare(user.authentication_token, token)
+      self.current_user = user
+    else
+      return unauthenticated!
+    end
   end
 
   def unauthenticated!
