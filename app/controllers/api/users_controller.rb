@@ -57,7 +57,7 @@ class Api::UsersController < Api::AdminApiController
   end
 
   def user_params
-    columns = [:email, :name, :nickname, :image_url, :last_sign_in,:role, :phone, :status]
+    columns = [:email, :name, :nickname, :image_url, :last_sign_in,:role, :phone, :status, :password]
     params.permit(columns)
   end
 end
