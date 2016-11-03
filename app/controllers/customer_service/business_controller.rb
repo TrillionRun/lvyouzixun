@@ -67,7 +67,6 @@ class CustomerService::BusinessController < ApplicationController
   end
 
   def image_params
-    # params.require(:business).permit(:picture)
-    params.permit(:user_id, :name, :picture, :company_name, :phone, :context_1, :context_2, :email)
+    params.permit(:user_id, :name,:video, :picture, :company_name, :phone, :context_1, :context_2, :email)
   end
 end
