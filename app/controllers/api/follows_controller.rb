@@ -3,7 +3,8 @@ class Api::FollowsController < Api::AdminApiController
 
   def index
     user = User.find(params[:user_id])
-    follows = Follow.where('user_id = ?', user.id)
+    follows =  Follow.joins('LEFT OUTER JOIN businesses ON businesses.id = follows.object_id').where('follows.user_id = ?', user.id).
+        select('follows.*, businesses.name as business_name')
     render json: follows, status: 200
   end
 
