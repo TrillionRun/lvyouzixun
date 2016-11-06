@@ -5,6 +5,7 @@ class CustomerService::BusinessController < ApplicationController
   end
 
   def show
+    @company_types = CompanyType.all
     @business = Business.find params[:id]
     begin
       details = @business.details.nil? ? {} : JSON.parse(@business.details)
@@ -47,8 +48,12 @@ class CustomerService::BusinessController < ApplicationController
   end
 
   def update
+    company_type = CompanyType.find_by_id params[:company_type]
+    company_type_id = company_type.nil? ?  '' : company_type.id
+    bu_paramters = image_params
+    bu_paramters.merge!(company_type_id: company_type_id)
     @business = Business.find params[:id]
-    @business.update!(image_params)
+    @business.update!(bu_paramters)
     redirect_to action: :show, id: @business.id if @business
   end
 

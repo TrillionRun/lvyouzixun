@@ -18,6 +18,7 @@
     公司名称: <input name="company_name" value="<%= @business.company_name %>">
     电话: <input name="phone" value="<%= @business.phone %>">
     邮箱: <input name="email" value="<%= @business.email %>">
+    公司类型: <%= select_tag 'company_type', options_from_collection_for_select(@company_types, 'id', 'description', @business.company_type_id) %>
     <%= submit_tag '更新' %>
   <% end %>
   图片地址:<%= @business.picture.url if @business.picture.url != '/pictures/original/missing.png' %><br/>
