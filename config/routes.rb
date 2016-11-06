@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :services
   root to: "customer_service/home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  mount ActionCable.server => '/cable'
   resources :users
 
   namespace :customer_service do
