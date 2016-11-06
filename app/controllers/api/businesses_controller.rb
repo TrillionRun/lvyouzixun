@@ -10,7 +10,8 @@ class Api::BusinessesController < Api::AdminApiController
     its.map! do |it|
       it['link'] = "/public/business/${business.id}/itinerary/${it.id}"
     end
-    business_json.merge!(company_type_name: business.company_type.name)
+    company_type_name = business.company_type.nil? ? '' : business.company_type.name
+    business_json.merge!(company_type_name: company_type_name)
     business_json.merge!(picture_url: picture_url)
     business_json.merge!("itineraries_info" => its)
     business_json.merge!("informations_info" => informations.as_json)
