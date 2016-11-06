@@ -21,7 +21,7 @@ class Api::BusinessesController < Api::AdminApiController
   end
 
   def index
-    businesses = Business.joins(:company_type).
+    businesses = Business.joins('LEFT OUTER JOIN company_types ON businesses.company_type_id = company_types.id').
         select('businesses.*, company_types.name as company_type_name')
     render json: businesses, status: 200
   end
