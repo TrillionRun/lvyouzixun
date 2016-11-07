@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-2">
+    <ul class="nav nav-sidebar nav-pills nav-stacked ">
+        <% @users.each do |u| %>
+            <li class="nav-item">
+                <a class="nav-link <%= 'active' if params[:controller] == 'customer_service/user' %>" href="/customer_service/user" data-user-id="<%= u.id %>"><%= u.name %></a>
+            </li>
+        <%end%>
+    </ul>
+  </div>
+  <div class="col-md-10"></div>
+</div>

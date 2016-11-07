@@ -8,5 +8,5 @@ App.chat = App.cable.subscriptions.create "ChatChannel",
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
 
-  speak: ->
-    @perform 'speak'
+  speak: (message) ->
+    @perform 'speak', message: message

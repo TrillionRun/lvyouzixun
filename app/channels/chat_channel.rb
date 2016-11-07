@@ -8,6 +8,8 @@ class ChatChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def speak
+  def speak(message, sender_id, reciver_id)
+    con = Conversation.find_or_create_by!(user_id: reciver_id, business_id: sender_id)
+    con.messages.create!({ form_id: sender_id, to_id: reciver_id, content: message })
   end
 end

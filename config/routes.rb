@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     resources :petition
     resources :appointment
     resources :advertisement
+    resources :chats do
+      get 'show_messages', on: :member
+    end
   end
 
   namespace :public do
