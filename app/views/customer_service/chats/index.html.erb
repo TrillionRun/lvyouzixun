@@ -3,10 +3,12 @@
     <ul class="nav nav-sidebar nav-pills nav-stacked ">
         <% @users.each do |u| %>
             <li class="nav-item">
-                <a class="nav-link <%= 'active' if params[:controller] == 'customer_service/user' %>" href="/customer_service/user" data-user-id="<%= u.id %>"><%= u.name %></a>
+                <a class="nav-link" href="/customer_service/chats/show_messages" data-user-id="<%= u.id %>"><%= u.name %></a>
             </li>
         <%end%>
     </ul>
   </div>
-  <div class="col-md-10"></div>
+  <div class="col-md-10">
+    <%= yield %>
+  </div>
 </div>

@@ -1,8 +1,12 @@
 <div class='messages'>
-    <p><%= render @messages %></p>
+    <ul class='message'><%= render @messages %></ul>
 </div>
 
 <form>
-    <label>Say something:</label><br>
-    <input type='text' data-behavior='room_speaker'>
+    <input type='text' data-behavior='room_speaker' style='width:600px;' class="form-control" placeholder='回复：'>
 </form>
+<script>
+    $(document).ready(function(){
+        $(".messages").scrollTop($(".messages")[0].scrollHeight);
+    });
+</script>

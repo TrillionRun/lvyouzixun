@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :appointment
     resources :advertisement
     resources :chats do
-      get 'show_messages', on: :member
+      get 'show_messages', on: :collection
     end
   end
 
