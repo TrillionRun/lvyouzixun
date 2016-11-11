@@ -1,12 +1,12 @@
 class CustomerService::ChatsController < ApplicationController
+	layout 'customer_service_layout'
 	def index
-		@users = User.all
+		@business = Business.find_by_id params[:business_id]
+    	@users = User.all
 	end
 
 	def show_messages
-		business_id = 'c377e25d-9bcf-4cc0-b904-10218f985a49'
-		user_id = 'f1e758df-23fe-41a3-8fd8-7af75bcfec90'
-		con = Conversation.find_by(business_id: business_id, user_id: user_id)
-		@messages = con.messages
+		con = Conversation.find_by(business_id: params[:business_id], user_id: params[:user_id])
+		@messages = con.present? ? con.messages : []
 	end
 end

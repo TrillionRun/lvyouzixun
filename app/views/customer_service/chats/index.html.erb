@@ -3,7 +3,7 @@
     <ul class="nav nav-sidebar nav-pills nav-stacked ">
         <% @users.each do |u| %>
             <li class="nav-item">
-                <a class="nav-link" href="/customer_service/chats/show_messages" data-user-id="<%= u.id %>"><%= u.name %></a>
+              <%= link_to u.name, show_messages_customer_service_business_chat_path(@business.id, u.id) %>
             </li>
         <%end%>
     </ul>

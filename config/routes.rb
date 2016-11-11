@@ -11,15 +11,15 @@ Rails.application.routes.draw do
       resources :itinerary do
         resources :daily_plan
       end
-
+      resources :chats do
+        get 'show_messages', on: :member
+      end
       post 'post_detail', on: :member
     end
     resources :petition
     resources :appointment
     resources :advertisement
-    resources :chats do
-      get 'show_messages', on: :collection
-    end
+    
   end
 
   namespace :public do
