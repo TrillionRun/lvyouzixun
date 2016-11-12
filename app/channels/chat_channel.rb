@@ -9,8 +9,6 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    pp data
-    pp '========='
     con = Conversation.find_or_create_by!(user_id: data['reciver_id'], business_id: data['sender_id'])
     con.messages.create!({ from_id: data['sender_id'], to_id: data['reciver_id'], content: data['message'] })
   end
