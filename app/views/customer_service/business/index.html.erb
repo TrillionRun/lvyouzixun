@@ -9,18 +9,16 @@
   <table class="table table-striped">
     <thead class="bg-primary">
     <tr>
+      <th width="320">商家ID</th>
       <th>名称</th>
-      <th>商家ID</th>
     </tr>
     </thead>
     <tbody>
     <% @businesses.each do |business| %>
-        <tr>
-          <td>
-            <%= link_to business.name, controller: "business", action: "show", id: business.id %>
-          </td>
-          <td><%= business.id %></td>
-        </tr>
+      <tr>
+        <td><%= business.id %></td>
+        <td><%= link_to business.name, controller: "business", action: "show", id: business.id %></td>
+      </tr>
     <% end%>
     </tbody>
   </table>

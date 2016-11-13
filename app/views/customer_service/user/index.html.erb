@@ -9,22 +9,18 @@
   <table class="table table-striped">
     <thead class="bg-primary">
       <tr>
+        <th width="320">用户ID</th>
         <th>姓名</th>
         <th>电话</th>
-        <th>邮箱</th>
-        <th>用户ID</th>
         <th>操作</th>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |user| %>
         <tr>
+          <td><%= user.id %></td>
           <td><%= link_to user.name, controller: "user", action: "show", id: user.id %></td>
           <td><%= user.phone %></td>
-          <td><%= user.email %></td>
-          <td>
-            <%= user.id %>
-          </td>
           <td>
             <button type="button" class="btn btn-sm btn-outline-primary">
               <i class="fi-x" style="color: #d9534f"></i>
