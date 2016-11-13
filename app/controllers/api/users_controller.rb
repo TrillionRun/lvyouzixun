@@ -36,6 +36,14 @@ class Api::UsersController < Api::AdminApiController
 
   end
 
+  def upload_picture
+    user_id = params[:user_id]
+    user = User.find_by_id user_id
+    authorize user, :update?
+    user.update picture: params[:picture]
+    render json: user, status: 200
+  end
+  
   def create
     user_check = User.find_by(phone: params[:phone])
     if user_check.present?
