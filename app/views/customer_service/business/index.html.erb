@@ -1,11 +1,15 @@
 <%= button_to '创建', {controller: 'business', action: 'new'}, method: :get, class: 'btn btn-secondary btn-sm' %>
 
 <style>
-    .card-block {
-        margin: 20px;
-    }
+  .card-block {
+      margin: 20px;
+  }
+  .ly-list {
+    max-height: 500px;
+    overflow-y:auto;
+  }
 </style>
-<div class="card card-block">
+<div class="card card-block ly-list">
   <table class="table table-striped">
     <thead class="bg-primary">
     <tr>

@@ -4,8 +4,12 @@
 .card-block {
   margin: 20px;
 }
+.ly-list {
+  max-height: 500px;
+  overflow-y:auto;
+}
 </style>
-<div class="card card-block">
+<div class="card card-block ly-list">
   <table class="table table-striped">
     <thead class="bg-primary">
       <tr>
@@ -22,9 +26,7 @@
           <td><%= link_to user.name, controller: "user", action: "show", id: user.id %></td>
           <td><%= user.phone %></td>
           <td>
-            <button type="button" class="btn btn-sm btn-outline-primary">
-              <i class="fi-x" style="color: #d9534f"></i>
-            </button>
+            <%= link_to '删除', controller: "user", action: "show", id: user.id %>
           </td>
         </tr>
       <% end%>

@@ -1,9 +1,24 @@
-<% @advertisements.each do |advertisement| %>
-  <div><%= link_to advertisement.id, customer_service_advertisement_path(advertisement.id) %></div>
-  <div><%= advertisement.ad_url %></div>
-  <div><%= advertisement.protocol %></div>
-  <div><%= advertisement.picture.url%></div>
-  <hr/>
-<% end %>
-
 <%= link_to '创建', controller: :advertisement, action: :new %>
+<table class="table table-striped">
+  <thead class="bg-primary">
+    <tr>
+      <th align='center'>图片</th>
+      <th width='30'>协议</th>
+      <th align='center'>地址</th>
+      <th width='100'>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @advertisements.each do |advertisement| %>
+      <tr>
+        <td><%= image_tag advertisement.picture.url, width: 75, height: 50 %></td>
+        <td><%= advertisement.protocol %></td>
+        <td><%= advertisement.ad_url %></td>
+        <td>
+          <%= link_to '查看', customer_service_advertisement_path(advertisement.id) %>
+          <%= link_to '删除', customer_service_advertisement_path(advertisement.id) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
