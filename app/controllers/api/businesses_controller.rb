@@ -8,11 +8,11 @@ class Api::BusinessesController < Api::AdminApiController
     picture_url = business.picture.url
     its = itineraries.as_json
     its.map! do |it|
-      it['link'] = "/public/business/${business.id}/itinerary/${it.id}"
+      it['link'] = "/public/business/#{business.id}/itinerary/#{it.id}"
     end
     company_type_name = business.company_type.nil? ? '' : business.company_type.name
     business_json.merge!(company_type_name: company_type_name)
-    business_json.merge!(picture_url: picture_url)
+    business_json.merge!(picture_url: ('https://'+picture_url))
     business_json.merge!("itineraries_info" => its)
     business_json.merge!("informations_info" => informations.as_json)
     render json: business_json, status: 200

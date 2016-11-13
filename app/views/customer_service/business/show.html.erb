@@ -3,6 +3,9 @@
   padding: 20px;
   font-size: 12px;
 }
+.update-image {
+  padding: 12px;
+}
 </style>
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item">
@@ -49,29 +52,38 @@
         <%= select_tag 'company_type',
                        options_from_collection_for_select(@company_types, 'id', 'description', @business.company_type_id), class: 'form-control' %>
       </div>
-    </div>
-    <div>
-      <%= submit_tag '更新', class:"btn btn-secondary" %>
+      <div class="col-xs-3"></div>
+      <div class="col-xs-1">
+        <div flex></div>
+        <%= submit_tag '更新', class:"btn btn-secondary pull-right" %>
+      </div>
     </div>
   <% end %>
-  <!-- 图片地址:<%= @business.picture.url if @business.picture.url != '/pictures/original/missing.png' %><br/> -->
   <hr/>
-  <%= image_tag @business.picture.url, width: 75, height: 50  if @business.picture.url != '/pictures/original/missing.png' %>
 
-  <div class="input-group">
+  <div class="input-group row">
     <%= form_tag customer_service_business_path(@business), multipart: true, method: :put do %>
-      <label class="btn btn-default btn-file">
+      <div class="col-xs-2" hidden="<%= @business.picture.url != '/pictures/original/missing.png' %>">
+        <%= image_tag @business.picture.url, width: 75, height: 50  if @business.picture.url != '/pictures/original/missing.png' %>
+      </div>
+      <label class="btn btn-default btn-file col-xs-3">
         <%= file_field_tag :picture, class:'form-control' %>
       </label>
-      <div class="input-group-btn">
+      <div class="col-xs-3 update-image">
         <%= submit_tag '更新图片', class:"btn btn-secondary"  %>
       </div>
     <% end %>
   </div>
   <hr/>
   <%= form_tag "/customer_service/business/#{@business.id}/post_detail" do %>
-    <textarea name="context_1"><%= @context_1 %></textarea><br/>
-    介绍：<textarea name="context_2"><%= @context_2 %></textarea>
-    <%= submit_tag '提交'%>
+    <div class="form-group">
+      <label>介绍1</label>
+      <textarea class="form-control" name="context_1"><%= @context_1 %></textarea>
+    </div>
+    <div class="form-group">
+      <label>介绍2</label>
+      <textarea class="form-control" name="context_2"><%= @context_2 %></textarea>
+    </div>
+    <%= submit_tag '更新', class:"btn btn-secondary"%>
   <% end %>
 </div>

@@ -49,7 +49,7 @@ company_types = CompanyType.create ([
     description: '社团'
   },
   {
-    name: 'OfflineSource',
+    name: 'BelowTheLineActivity',
     description: '线下活动'
   }
 ])
