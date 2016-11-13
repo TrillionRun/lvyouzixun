@@ -8,7 +8,7 @@ class Api::BusinessesController < Api::AdminApiController
     picture_url = business.picture.url
     its = itineraries.as_json
     its.map! do |it|
-      it['link'] = "/public/business/#{business.id}/itinerary/#{it.id}"
+      it['link'] = "/public/business/#{business.id}/itinerary/#{it['id']}"
     end
     company_type_name = business.company_type.nil? ? '' : business.company_type.name
     business_json.merge!(company_type_name: company_type_name)
@@ -24,6 +24,11 @@ class Api::BusinessesController < Api::AdminApiController
   def index
     businesses = Business.joins('LEFT OUTER JOIN company_types ON businesses.company_type_id = company_types.id').
         select('businesses.*, company_types.name as company_type_name')
+    bjson = businesses.as_json
+    bjson.map! do |business|
+      bu = Business.find_by_id business['id']
+      business['picture_url'] = bu.picture.url
+    end
     render json: businesses, status: 200
   end
 
