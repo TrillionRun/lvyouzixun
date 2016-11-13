@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-2">
+    <ul class="nav nav-sidebar nav-pills nav-stacked ">
+        <% @users.each do |u| %>
+            <li class="nav-item">
+              <%= link_to u.name, show_messages_customer_service_business_chat_path(@business.id, u.id) %>
+            </li>
+        <%end%>
+    </ul>
+  </div>
+  <div class="col-md-10">
+    <%= yield %>
+  </div>
+</div>

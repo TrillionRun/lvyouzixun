@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :services
   root to: "customer_service/home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  mount ActionCable.server => '/cable'
   resources :users
 
   namespace :customer_service do
@@ -11,12 +11,15 @@ Rails.application.routes.draw do
       resources :itinerary do
         resources :daily_plan
       end
-
+      resources :chats do
+        get 'show_messages', on: :member
+      end
       post 'post_detail', on: :member
     end
     resources :petition
     resources :appointment
     resources :advertisement
+    
   end
 
   namespace :public do

@@ -24,3 +24,22 @@
   display: flex;
   align-items: center;
 }
+.messages {
+  height: 450px;
+  width: 600px;
+  overflow-y: scroll;
+  background: -webkit-linear-gradient(-45deg, #183850 0, #183850 25%, #192c46 50%, #22254c 75%, #22254c 100%);
+}
+.message li {
+  float: left;
+  left: -52px;
+  color: #0EC879;
+  position: relative;
+  clear: both;
+  display: inline-block;
+  padding: 16px 40px 16px 20px;
+  margin: 0 0 20px 0;
+  font: 16px/20px 'Noto Sans', sans-serif;
+  border-radius: 10px;
+  background-color: rgba(25, 147, 147, 0.2);
+}
