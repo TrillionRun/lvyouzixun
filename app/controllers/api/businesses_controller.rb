@@ -7,14 +7,18 @@ class Api::BusinessesController < Api::AdminApiController
     informations = business.informations
     picture_url = business.picture.url
     its = itineraries.as_json
-    its.map! do |it|
-      it['link'] = "/public/business/#{business.id}/itinerary/#{it['id']}"
+    its.each do |it|
+      it.merge! link: "/public/business/#{business.id}/itinerary/#{it['id']}"
     end
     company_type_name = business.company_type.nil? ? '' : business.company_type.name
     business_json.merge!(company_type_name: company_type_name)
     business_json.merge!(picture_url: ('https:'+picture_url))
     business_json.merge!("itineraries_info" => its)
     business_json.merge!("informations_info" => informations.as_json)
+    unless business_json['details'].nil?
+      detail = JSON.parse(business_json['details'].to_s)
+      business_json.merge!(details: {context_1: detail['context_1'],context_2: detail['context_2']})
+    end
     render json: business_json, status: 200
   end
 
