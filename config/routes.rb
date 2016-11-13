@@ -38,6 +38,9 @@ Rails.application.routes.draw do
     get 'users/:user_id/business/:business_id/check' => 'users#business_user'
     delete 'users/:user_id/business/:business_id/uncheck' => 'users#business_user'
 
+    # upload picture
+    patch 'users/:user_id/upload_pricture' => 'users#upload_picture'
+
     # appointments
     get 'users/:user_id/appointments' => 'appointments#index'
     post 'users/:user_id/appointments' => 'appointments#create'
