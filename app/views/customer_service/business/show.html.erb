@@ -1,3 +1,9 @@
+<style>
+.ly-tab {
+  padding: 20px;
+  font-size: 12px;
+}
+</style>
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item">
     <%= link_to '商家信息', customer_service_business_path(@business), class: 'nav-link active' %>
@@ -5,30 +11,63 @@
   <li class="nav-item">
     <%= link_to '行程', customer_service_business_itinerary_index_path(@business), class: 'nav-link'%>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#information" role="tab" data-toggle="tab">资讯</a>
-  </li>
 </ul>
 
-<div style="border: solid 1px black;">
-  商户ID:<%= @business.id %><br/>
-  用户ID: <%= @business.user_id %><br/>
+<div class="ly-tab">
+  <div class="form-group row">
+    <label for="example-text-input" class="col-xs-1 col-form-label">商家ID</label>
+    <div class="col-xs-3">
+      <input class="form-control" type="text" value="<%= @business.id %>" id="example-text-input" disabled>
+    </div>
+    <label for="example-search-input" class="col-xs-1 col-form-label">用户ID</label>
+    <div class="col-xs-3">
+      <input class="form-control" type="search" value="<%= @business.user_id %>" id="example-search-input" disabled>
+    </div>
+  </div>
   <%= form_tag customer_service_business_path(@business), method: :put do %>
-    商家名称: <input name="company_name" value="<%= @business.name %>">
-    公司名称: <input name="company_name" value="<%= @business.company_name %>">
-    电话: <input name="phone" value="<%= @business.phone %>">
-    邮箱: <input name="email" value="<%= @business.email %>">
-    公司类型: <%= select_tag 'company_type', options_from_collection_for_select(@company_types, 'id', 'description', @business.company_type_id) %>
-    <%= submit_tag '更新' %>
+    <div class="form-group row">
+      <label for="example-text-input" class="col-xs-1 col-form-label">商家名称</label>
+      <div class="col-xs-3">
+        <input class="form-control" type="text" name="company_name" value="<%= @business.name %>">
+      </div>
+      <label for="example-search-input" class="col-xs-1 col-form-label">公司名称</label>
+      <div class="col-xs-3">
+        <input class="form-control" type="search" name="company_name" value="<%= @business.company_name %>">
+      </div>
+      <label for="example-search-input" class="col-xs-1 col-form-label">电话</label>
+      <div class="col-xs-3">
+        <input class="form-control" type="search" name="phone" value="<%= @business.phone %>">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-text-input" class="col-xs-1 col-form-label">商家邮箱</label>
+      <div class="col-xs-3">
+        <input class="form-control" type="text" name="email" value="<%= @business.email %>">
+      </div>
+      <label for="example-search-input" class="col-xs-1 col-form-label">公司类型</label>
+      <div class="col-xs-3">
+        <%= select_tag 'company_type',
+                       options_from_collection_for_select(@company_types, 'id', 'description', @business.company_type_id), class: 'form-control' %>
+      </div>
+    </div>
+    <div>
+      <%= submit_tag '更新', class:"btn btn-secondary" %>
+    </div>
   <% end %>
-  图片地址:<%= @business.picture.url if @business.picture.url != '/pictures/original/missing.png' %><br/>
+  <!-- 图片地址:<%= @business.picture.url if @business.picture.url != '/pictures/original/missing.png' %><br/> -->
   <hr/>
   <%= image_tag @business.picture.url, width: 75, height: 50  if @business.picture.url != '/pictures/original/missing.png' %>
 
-  <%= form_tag customer_service_business_path(@business), multipart: true, method: :put do %>
-    <%= file_field_tag :picture %>
-    <%= submit_tag '更新图片' %>
-  <% end %>
+  <div class="input-group">
+    <%= form_tag customer_service_business_path(@business), multipart: true, method: :put do %>
+      <label class="btn btn-default btn-file">
+        <%= file_field_tag :picture, class:'form-control' %>
+      </label>
+      <div class="input-group-btn">
+        <%= submit_tag '更新图片', class:"btn btn-secondary"  %>
+      </div>
+    <% end %>
+  </div>
   <hr/>
   <%= form_tag "/customer_service/business/#{@business.id}/post_detail" do %>
     <textarea name="context_1"><%= @context_1 %></textarea><br/>

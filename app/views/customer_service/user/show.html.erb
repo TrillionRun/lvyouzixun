@@ -11,15 +11,6 @@ label {
   margin-top: 20px;
 }
 </style>
-<div class="row user-tool">
-  <div class="col-xs-2">
-    <%= button_to '<<返回列表', {controller: 'user', action: 'index'}, method: :get, class: 'btn btn-secondary btn-sm' %>
-  </div>
-  <div class="col-xs-9"></div>
-  <div class="col-xs-1">
-    <%= button_to '编辑', {controller: 'user', action: 'edit'}, method: :get, class: 'btn btn-outline-primary btn-sm' %>
-  </div>
-</div>
 <div class="card card-block">
   <div class="form-group row">
     <label for="example-text-input" class="col-xs-1 col-form-label">用户ID</label>

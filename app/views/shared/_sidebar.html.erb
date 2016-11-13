@@ -1,27 +1,51 @@
 <style>
-.nav-sidebar {
-  margin-left: 15px;
-  margin-right: -25px;
-  margin-top: 20px;
+.logo {
+  padding: 20px;
+}
+.ly-ul {
+  margin: 0;
+}
+.ly-nav-link {
+  border-left: solid 6px white;
+  /*margin: 20px 0;*/
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 100%;
+}
+.ly-nav-link:hover {
+  border-left: solid 6px #ccc;
+  background: #ccc;
+  color: white;
+}
+.ly-nav-link.active {
+  border-left: solid 6px #ef5a34;
+  color: #ef5a34;
 }
 </style>
-<ul class="nav nav-sidebar nav-pills nav-stacked ">
+<%= image_tag 'logo.png', width: '100%', class:'logo' %>
+<ul class="nav nav-sidebar nav-stacked ly-ul">
   <li class="nav-item">
-    <a class="nav-link <%= 'active' if params[:controller] == 'customer_service/user' %>" href="/customer_service/user">用户</a>
+    <a class="nav-link ly-nav-link <%= 'active' if params[:controller] == 'customer_service/user' %>" href="/customer_service/user">用户</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link <%= 'active' if params[:controller] == 'customer_service/business' %>" href="/customer_service/business">商家</a>
+    <a class="nav-link ly-nav-link <%= 'active' if params[:controller] == 'customer_service/business' %>" href="/customer_service/business">商家</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link <%= 'active' if params[:controller] == 'customer_service/petition' %>" href="/customer_service/petition">入驻申请</a>
+    <a class="nav-link ly-nav-link <%= 'active' if params[:controller] == 'customer_service/petition' %>" href="/customer_service/petition">入驻申请</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link <%= 'active' if params[:controller] == 'customer_service/appointment' %>" href="/customer_service/appointment">预约</a>
+    <a class="nav-link ly-nav-link <%= 'active' if params[:controller] == 'customer_service/appointment' %>" href="/customer_service/appointment">预约</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link disabled" href="#">留言</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link <%= 'active' if params[:controller] == 'customer_service/advertisement' %>" href="/customer_service/advertisement">首页列表</a>
+    <a class="nav-link ly-nav-link <%= 'active' if params[:controller] == 'customer_service/advertisement' %>" href="/customer_service/advertisement">首页列表</a>
   </li>
 </ul>
+<% if service_signed_in? %>
+  <div style="position:absolute;bottom:10px;left:10px;">
+    <%= form_tag(destroy_service_session_path, method: 'delete') do %>
+      <button type="submit" class="btn btn-danger btn-sm" title="退出">
+        <i class="fi-power"></i>
+      </button>
+    <% end %>
+  </div>
+<% end %>
