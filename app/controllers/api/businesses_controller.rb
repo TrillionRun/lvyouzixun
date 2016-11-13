@@ -29,11 +29,11 @@ class Api::BusinessesController < Api::AdminApiController
     businesses = Business.joins('LEFT OUTER JOIN company_types ON businesses.company_type_id = company_types.id').
         select('businesses.*, company_types.name as company_type_name')
     bjson = businesses.as_json
-    bjson.map! do |business|
+    bjson.each do |business|
       bu = Business.find_by_id business['id']
-      business['picture_url'] = bu.picture.url
+      business.merge! picture_url: ('https:'+bu.picture.url)
     end
-    render json: businesses, status: 200
+    render json: bjson, status: 200
   end
 
   def new
