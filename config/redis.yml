@@ -1,0 +1,11 @@
+defaults: &defaults
+  host: <%= ENV['REDIS_URL'] || 'localhost:6379' %>
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
