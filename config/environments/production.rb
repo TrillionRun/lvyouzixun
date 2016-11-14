@@ -94,6 +94,4 @@ Rails.application.configure do
     :s3_host_name => 's3-'+ENV.fetch('AWS_REGION')+'.amazonaws.com'
   }
   config.action_mailer.default_url_options = { host: 'https://lvyouzixun.herokuapp.com' }
-
-  ENV['REDISTOGO_URL'] = "redis://redistogo:3292de5d66b9645e547927c74dafbbdc@crestfish.redistogo.com:9988/"
 end
