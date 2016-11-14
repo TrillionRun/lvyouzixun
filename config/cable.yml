@@ -6,4 +6,4 @@ test:
 
 production:
   adapter: redis
-  url: "redis://crestfish.redistogo.com:9988"
+  url: ENV['REDISTOGO_URL']
