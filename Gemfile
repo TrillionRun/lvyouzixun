@@ -76,4 +76,4 @@ gem 'paperclip-av-transcoder'
 # vuejs sounds awesome
 gem 'vuejs-rails'
 
-# gem 'redis'
+gem 'redis'
