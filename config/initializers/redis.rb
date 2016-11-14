@@ -1,3 +1,3 @@
-puts '####', ENV["REDIS_URL"], '$$$$$$'
-uri = URI.parse(ENV["REDIS_URL"] || "redis://localhost:6379/" )
+puts '####', ENV["REDISTOGO_URL"], '$$$$$$'
+uri = URI.parse(ENV["REDISTOGO_URL"] || "redis://localhost:6379/" )
 REDIS = Redis.new(:url => uri)
