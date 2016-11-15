@@ -12,7 +12,7 @@ Rails.application.routes.draw do
         resources :daily_plan
       end
       resources :chats do
-        get 'show_messages', on: :member
+        get 'messages' => :show_messages, on: :collection
       end
       post 'post_detail', on: :member
     end

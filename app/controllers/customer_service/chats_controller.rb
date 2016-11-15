@@ -6,7 +6,8 @@ class CustomerService::ChatsController < ApplicationController
 	end
 
 	def show_messages
-		con = Conversation.find_by(business_id: params[:business_id], user_id: params[:id])
+		con = Conversation.find_by(business_id: params[:business_id], user_id: params[:user_id])
 		@messages = con.present? ? con.messages : []
+		render json: @messages, status: 200
 	end
 end
