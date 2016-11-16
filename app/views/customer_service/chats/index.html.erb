@@ -29,6 +29,8 @@
     $(function () {  
         $('ul.ul-list li').each(function () {  
             $(this).click(function(){
+              $(".li-list.active").removeClass('active')
+              $(this).addClass('active');
               $('textarea').removeAttr('disabled');
               $('#user_id').text($(this).data('uid'));
               $.get(
@@ -36,8 +38,15 @@
                   {user_id: $(this).data('uid')},
                   function(data){
                     $('ul.message').empty();
+                    var business_id = "<%= params[:business_id] %>";
                       $.each(data, function(index,item){
-                          $('ul.message').append("<li><div class='message-content'>"+ item.content +"</div></li>")
+                        var string = "";
+                        if(business_id === item.from_id){
+                          string = "right";
+                        }else{
+                          string = "left";
+                        }
+                          $('ul.message').append("<li class='"+ string +"'><div class='message-content'>"+ item.content +"</div></li>")
                       })
                       $(".messages").scrollTop($(".messages")[0].scrollHeight);
                   }
