@@ -1,36 +1,41 @@
-<div class="row">
-  <div class="col-md-2" style='height: 450px; width: 160px; overflow-y: scroll;'>
-    <ul class="nav nav-sidebar nav-pills nav-stacked ">
+<div class='chat'>
+  <div class='sidebar'>
+    <div class='user-list'>
+      <ul class='ul-list' style='list-style: none;'>
         <% @users.each do |u| %>
-            <li class="nav-item" data-uid="<%= u.id %>">
-              <%=u.name%>
+            <li class='li-list' data-uid="<%= u.id %>">
+              <p class='name'><%=u.name%></p>
             </li>
         <%end%>
-    </ul>
+      </ul>
+    </div>
   </div>
-  <div class="col-md-10">
+  <div class='main-messages'>
     <div class='messages'>
       <ul class='message'></ul>
     </div>
-    <form>
-        <input type='text' data-behavior='room_speaker' style='width:600px;' class="form-control" placeholder='回复：'>
-    </form>
+    <div class='inputs'>
+      <form>
+        <textarea disabled data-behavior='room_speaker' placeholder="按 Enter 发送"></textarea>
+      </form>
+      
+    </div>
   </div>
 </div>
+
 <script>
-    $(document).ready(function(){
-        $(".messages").scrollTop($(".messages")[0].scrollHeight);
-    });
     $(function () {  
-        $('ul.nav li').each(function () {  
+        $('ul.ul-list li').each(function () {  
             $(this).click(function(){
+              $(".messages").scrollTop($(".messages")[0].scrollHeight);
+              $('textarea').removeAttr('disabled');
               $.get(
                   "<%= messages_customer_service_business_chats_path(params[:business_id])  %>",
                   {user_id: $(this).data('uid')},
                   function(data){
                     $('ul.message').empty();
                       $.each(data, function(index,item){
-                          $('ul.message').append("<li>"+ item.content +"</li>")
+                          $('ul.message').append("<li><div class='message-content'>"+ item.content +"</div></li>")
                       })
                   }
               );

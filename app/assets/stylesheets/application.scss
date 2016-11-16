@@ -24,12 +24,66 @@
   display: flex;
   align-items: center;
 }
-.messages {
-  height: 450px;
-  width: 600px;
-  overflow-y: scroll;
-  background: -webkit-linear-gradient(-45deg, #183850 0, #183850 25%, #192c46 50%, #22254c 75%, #22254c 100%);
-}
+.chat {
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 3px;
+    height: 600px;
+    width: 800px;
+  }
+  .chat .sidebar {
+    float: left;
+    width: 200px;
+    color: #f4f4f4;
+    background-color: #2e3238;
+    height: 100%;
+  }
+    .ul-list {
+      text-align: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .li-list {
+      padding: 9pt 15px;
+      border-bottom: 1px solid #292c33;
+      cursor: pointer;
+      -webkit-transition: background-color .1s;
+      transition: background-color .1s;
+
+      .name {
+        vertical-align: middle;
+      }
+    }
+  .main-messages {
+    position: relative;
+    overflow: hidden;
+    background-color: #eee;
+    height: 100%;
+    padding: 10px 15px;
+  }
+  .main-messages .messages {
+    height: calc(100% - 10pc);
+    overflow-y: scroll;
+  }
+  .inputs {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 10pc;
+    border: 1px solid #ddd;
+    textarea {
+      padding: 10px;
+      height: 158px;
+      width: 598px;
+      border: none;
+      outline: 0;
+      font-family: Micrsofot Yahei;
+      resize: none;
+    }
+  }
+
 .message li {
   float: left;
   left: -52px;
