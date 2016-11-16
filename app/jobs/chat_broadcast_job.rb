@@ -8,6 +8,7 @@ class ChatBroadcastJob < ActiveJob::Base
 
   private
   def render_message(message)
-    ApplicationController.renderer.render(partial:'customer_service/messages/message',locals:{message:message})
+    "<li><div class='message-content'>"+ message.content + "</li>".html_safe
+    # ApplicationController.renderer.render(partial:'customer_service/messages/message',locals:{message:message})
   end
 end
