@@ -1,5 +1,8 @@
 class Api::UsersController < Api::AdminApiController
    # before_action :authenticate_user!, except: [:create]
+   def code
+     send_code '15618171506', '2222' 
+   end
 
   def show
     user_id = params[:id]
@@ -43,16 +46,47 @@ class Api::UsersController < Api::AdminApiController
     user.update picture: params[:picture]
     render json: user, status: 200
   end
-  
+
+  # def create
+  #   user_check = User.find_by(phone: params[:phone])
+  #   if user_check.present?
+  #     render json:{'message' => 'error: phone' + params[:phone] + 'has been registered !' }, status: 400
+  #     return
+  #   end
+  #   options = user_params
+  #   user = User.create! options
+  #   render json: user, status: 200
+  # end
+
   def create
+    code = params[:code]
+    user = User.find_by(phone: params[:phone])
+    if user.present? && user.status == 'pending' && user.code == code
+      user.update! password: params[:password],
+                   status: nil
+      render json: user, status: 200
+    else
+      render json: {result: 'code error'}, status: 400
+    end
+  end
+
+  def get_code
     user_check = User.find_by(phone: params[:phone])
-    if user_check.present?
+    if user_check && user_check.status.nil?
       render json:{'message' => 'error: phone' + params[:phone] + 'has been registered !' }, status: 400
       return
     end
-    options = user_params
-    user = User.create! options
-    render json: user, status: 200
+    code = Random.new.rand(999..9999).to_s
+    if user_check.nil?
+      user = User.create! phone: params[:phone], password: '1234567', code: code, status: 'pending'
+    else
+      user.update! code: code
+    end
+    #send code
+    render json: {result: true}, status: 200
+  end
+
+  def forget_password_get_code
   end
 
   def business_user

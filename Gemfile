@@ -77,3 +77,5 @@ gem 'paperclip-av-transcoder'
 gem 'vuejs-rails'
 
 gem 'redis'
+
+gem 'rest-client'

@@ -1,7 +1,7 @@
 class Api::SessionsController < Api::AdminApiController
   def create
     @user = User.find_by(phone: create_params[:phone])
-    if @user && @user.authenticate(create_params[:password])
+    if @user && @user.status!='pending' && @user.authenticate(create_params[:password])
       render json: {  'token' => @user.authentication_token, 'user_info' => @user}, status: 200
     else
       return api_error(status: 401)

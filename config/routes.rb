@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :petition
     resources :appointment
     resources :advertisement
-    
+
   end
 
   namespace :public do
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
+    get 'code' => 'users#code'
     resources :users, only: [:show, :update, :create]
     resources :sessions, only: [:create]
     resources :advertisements, only: [:show]
