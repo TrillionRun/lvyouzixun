@@ -11,27 +11,7 @@ class CustomerService::PetitionController < ApplicationController
   end
 
   def new
-    array_base = []
-    array_tmp = []
-    company_types = CompanyType.all
-    company_types.each do |company_type|
-      array_tmp.push(company_type.description)
-      array_tmp.push(company_type.id)
-      array_base.push array_tmp
-      array_tmp = []
-    end
-    @company_types = array_base
-
-    array_base_user = []
-    array_tmp_user = []
-    users = User.all
-    users.each do |user|
-      array_tmp_user.push(user.name)
-      array_tmp_user.push(user.id)
-      array_base_user.push array_tmp_user
-      array_tmp_user = []
-    end
-    @users = array_base_user
+    @petition = Petition.new
   end
 
   def create
@@ -51,8 +31,7 @@ class CustomerService::PetitionController < ApplicationController
 
   def update
     @petition = Petition.find params[:id]
-    options = params.permit(:status)
-    @petition.update! options
+    @petition.update! petition_params
     redirect_to action: :index
   end
 
@@ -60,6 +39,6 @@ class CustomerService::PetitionController < ApplicationController
   end
 
   def petition_params
-    params.permit(:user_id, :name, :contact, :email, :contact_phone, :company_type_id, :status)
+    params.require(:petition).permit(:user_id, :name, :contact, :email, :contact_phone, :company_type_id, :status)
   end
 end

@@ -1,0 +1,41 @@
+<div class="form-group row">
+  <%= f.label '用户', class: "col-sm-2 form-control-label" %>
+    <div class="col-sm-10">
+        <%= f.select :user_id, User.all.collect { |u| [ u.name, u.id ] }, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label '商家名称', class: "col-sm-2 form-control-label" %>
+    <div class="col-sm-10">
+        <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label '联系人', class: "col-sm-2 form-control-label" %>
+    <div class="col-sm-10">
+        <%= f.text_field :contact, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label '联系人电话', class: "col-sm-2 form-control-label" %>
+    <div class="col-sm-10">
+        <%= f.text_field :contact_phone, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label '邮箱', class: "col-sm-2 form-control-label" %>
+    <div class="col-sm-10">
+        <%= f.text_field :email, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label '公司类型', class: "col-sm-2 form-control-label" %>
+    <div class="col-sm-10">
+        <%= f.select :company_type_id, CompanyType.all.collect { |cp| [ cp.description, cp.id ] }, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-offset-2 col-sm-10"> 
+        <%= f.submit '保存', class: "btn btn-primary" %>
+    </div>
+  </div>
