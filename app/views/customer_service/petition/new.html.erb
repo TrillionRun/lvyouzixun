@@ -1,24 +1,43 @@
 <%= form_tag customer_service_petition_index_path do %>
-    <%= label_tag '用户' %>:
-    <%= select_tag :user_id, options_for_select(@users, params[:user_id]) %><br />
-
-    <%= label_tag '商家名称' %>:
-    <%= text_field_tag :name %><br />
-
-    <%= label_tag '联系人' %>:
-    <%= text_field_tag :contact %><br />
-
-    <%= label_tag '联系人电话' %>:
-    <%= text_field_tag :contact_phone %><br />
-
-    <%= label_tag '邮箱' %>:
-    <%= text_field_tag :email %><br />
-
-    <%= label_tag '公司类型' %>:
-    <%= select_tag :company_type_id, options_for_select(@company_types, params[:company_type_id]) %><br />
-
-    <%= label_tag '状态' %>:
-    <%= text_field_tag :status %><br />
-
-    <%= submit_tag '创建' %>
+  <div class="form-group row">
+  <%= label_tag '用户', nil, class: "col-sm-2 form-control-label" %>
+    <div class="col-sm-10">
+        <%= select_tag :user_id, options_for_select(@users, params[:user_id]), class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= label_tag '商家名称', nil, class: "col-sm-2 form-control-label" %>
+    <div class="col-sm-10">
+        <%= text_field_tag :name, nil, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= label_tag '联系人', nil, class: "col-sm-2 form-control-label" %>
+    <div class="col-sm-10">
+        <%= text_field_tag :contact, nil, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= label_tag '联系人电话', nil, class: "col-sm-2 form-control-label" %>
+    <div class="col-sm-10">
+        <%= text_field_tag :contact_phone, nil, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= label_tag '邮箱', nil, class: "col-sm-2 form-control-label" %>
+    <div class="col-sm-10">
+        <%= text_field_tag :email, nil, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= label_tag '公司类型', nil, class: "col-sm-2 form-control-label" %>
+    <div class="col-sm-10">
+        <%= select_tag :company_type_id, options_for_select(@company_types, params[:company_type_id]), class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-offset-2 col-sm-10"> 
+        <%= submit_tag '创建', class: "btn btn-primary" %>
+    </div>
+  </div>
 <% end %>

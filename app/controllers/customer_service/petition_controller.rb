@@ -35,7 +35,9 @@ class CustomerService::PetitionController < ApplicationController
   end
 
   def create
-    @petition = Petition.create! petition_params
+    @petition = Petition.new petition_params
+    @petition.status = "verifying"
+    @petition.save!
     redirect_to action: :show, id: @petition.id if @petition
   end
 
