@@ -1,7 +1,7 @@
 class CustomerService::AppointmentController < ApplicationController
   layout 'customer_service_layout'
   def index
-    @appointments = Appointment.all
+    @appointments = Appointment.page(params[:page]).per(10)
   end
 
   def show

@@ -1,10 +1,5 @@
 <%= button_to '创建', {controller: 'petition', action: 'new'}, method: :get, class: 'btn btn-secondary btn-sm' %>
 
-<style>
-    .card-block {
-        margin: 20px;
-    }
-</style>
 <table class="table table-striped table-hover">
   <thead class="bg-primary">
   <tr>
@@ -35,7 +30,7 @@
               <%= submit_tag '审核通过', class: 'btn btn-primary btn-sm' %>
           <% end %>
           <%end%>
-          <% if petition.status === 'verify' %>
+          <% if petition.status === 'verifying' %>
           <%= form_tag customer_service_petition_path(petition), method: :put do %>
               <%= hidden_field_tag 'status', 'rejected'  %>
               <%= submit_tag '驳回', class: 'btn btn-danger btn-sm' %>

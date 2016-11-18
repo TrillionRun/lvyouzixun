@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
   devise_for :services
+  concern :paginatable do
+    get '(page/:page)', :action => :index, :on => :collection, :as => ''
+  end
   root to: "customer_service/home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount ActionCable.server => '/cable'
-  resources :users
+  resources :users, :concerns => :paginatable
 
   namespace :customer_service do
-    resources :user
-    resources :business do
+    resources :user, :concerns => :paginatable
+    resources :business, :concerns => :paginatable do
       resources :itinerary do
         resources :daily_plan
       end
@@ -16,8 +19,8 @@ Rails.application.routes.draw do
       end
       post 'post_detail', on: :member
     end
-    resources :petition
-    resources :appointment
+    resources :petition, :concerns => :paginatable
+    resources :appointment, :concerns => :paginatable
     resources :advertisement
     
   end

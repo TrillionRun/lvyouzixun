@@ -25,6 +25,10 @@ class CustomerService::UserController < ApplicationController
   end
 
   def destroy
+    @user = User.find params[:id]
+    if @user.destroy
+      redirect_to action: :index
+    end
   end
 
   def user_params
