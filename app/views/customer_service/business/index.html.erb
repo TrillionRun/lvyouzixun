@@ -9,21 +9,20 @@
     overflow-y:auto;
   }
 </style>
-<div class="card card-block ly-list">
-  <table class="table table-striped">
-    <thead class="bg-primary">
+<table class="table table-striped">
+  <thead class="bg-primary">
+  <tr>
+    <th width="320">商家ID</th>
+    <th>名称</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @businesses.each do |business| %>
     <tr>
-      <th width="320">商家ID</th>
-      <th>名称</th>
+      <td><%= business.id %></td>
+      <td><%= link_to business.name, controller: "business", action: "show", id: business.id %></td>
     </tr>
-    </thead>
-    <tbody>
-    <% @businesses.each do |business| %>
-      <tr>
-        <td><%= business.id %></td>
-        <td><%= link_to business.name, controller: "business", action: "show", id: business.id %></td>
-      </tr>
-    <% end%>
-    </tbody>
-  </table>
-</div>
+  <% end%>
+  </tbody>
+</table>
+<div style='text-align: center;'><%= paginate @businesses %></div>

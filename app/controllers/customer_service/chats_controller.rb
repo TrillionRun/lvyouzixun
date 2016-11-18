@@ -2,7 +2,7 @@ class CustomerService::ChatsController < ApplicationController
 	layout 'customer_service_layout'
 	def index
 		@business = Business.find_by_id params[:business_id]
-    	@users = User.all
+    @users = User.all
 	end
 
 	def show_messages

@@ -77,3 +77,6 @@ gem 'paperclip-av-transcoder'
 gem 'vuejs-rails'
 
 gem 'redis'
+
+# paging
+gem 'kaminari'

@@ -1,7 +1,7 @@
 class CustomerService::PetitionController < ApplicationController
   layout 'customer_service_layout'
   def index
-    @petitions = Petition.all
+    @petitions = Petition.page(params[:page]).per(10)
   end
 
   def show
