@@ -9,7 +9,7 @@ class Api::UsersController < Api::AdminApiController
 
   def update
     user = User.find(params[:id])
-    authorize user, :update?
+    # authorize user, :update?
     user.update_attributes(user_params)
     render json: user, status: 200
   end
@@ -43,7 +43,7 @@ class Api::UsersController < Api::AdminApiController
     user.update picture: params[:picture]
     render json: user, status: 200
   end
-  
+
   def create
     user_check = User.find_by(phone: params[:phone])
     if user_check.present?
