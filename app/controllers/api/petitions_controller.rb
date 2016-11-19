@@ -2,7 +2,8 @@ class Api::PetitionsController < Api::AdminApiController
   # before_action :authenticate_user!
 
   def create
-    petition = Petition.new petitions_params
+    peti_params = petitions_params.merge company_type_id: get_company_type(params[:company_type]).id
+    petition = Petition.new peti_params
     petition.status = 'verifying'
     petition.save!
     render json: petition, status: 200
@@ -17,7 +18,16 @@ class Api::PetitionsController < Api::AdminApiController
   private
 
   def petitions_params
-    columns = [:name, :contact, :contact_phone, :email, :user_id,:company_type_id, :status]
+    columns = [:name, :contact, :contact_phone, :email, :user_id, :status]
     params.permit(columns)
+  end
+
+  def get_company_type(company_type)
+    ct = CompanyType.find_by name: company_type
+    if ct.present?
+      ct
+    else
+      CompanyType.find_by name: 'Other'
+    end
   end
 end
