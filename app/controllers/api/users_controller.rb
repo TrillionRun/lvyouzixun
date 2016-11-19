@@ -39,9 +39,13 @@ class Api::UsersController < Api::AdminApiController
   def upload_picture
     user_id = params[:user_id]
     user = User.find_by_id user_id
-    authorize user, :update?
+    # authorize user, :update?
     user.update picture: params[:picture]
-    render json: user, status: 200
+    user.reload
+    user_json = user.as_json
+    picture_url = user.picture.url.nil? ? '' :  ("https:"+user.picture.url)
+    user_json.merge! picture_url: picture_url
+    render json: user_json, status: 200
   end
 
   def create
