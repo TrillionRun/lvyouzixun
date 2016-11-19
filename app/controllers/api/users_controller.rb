@@ -17,7 +17,7 @@ class Api::UsersController < Api::AdminApiController
   def update_password
     user_id = params[:user_id]
     user = User.find_by_id user_id
-    authorize user, :update?
+    # authorize user, :update?
     unless user.authenticate(params[:current_password])
       render json: { 'message' => 'error: current password is not correct!' }, status: 400
       return
