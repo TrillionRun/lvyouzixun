@@ -1,0 +1,48 @@
+<div class="form-group row">
+  <%= f.label '用户名', class: "col-sm-2 form-control-label" %>
+  <div class="col-sm-10">
+      <%= f.text_field :name, class: 'form-control' %>
+  </div>
+</div>
+<div class="form-group row">
+  <%= f.label '邮箱', class: "col-sm-2 form-control-label" %>
+  <div class="col-sm-10">
+      <%= f.text_field :email, class: "form-control" %>
+  </div>
+</div>
+<div class="form-group row">
+  <%= f.label '昵称', class: "col-sm-2 form-control-label" %>
+  <div class="col-sm-10">
+      <%= f.text_field :nickname, class: "form-control" %>
+  </div>
+</div>
+<div class="form-group row">
+  <%= f.label '角色', class: "col-sm-2 form-control-label" %>
+  <div class="col-sm-10">
+      <%= f.text_field :role, class: "form-control" %>
+  </div>
+</div>
+<div class="form-group row">
+  <%= f.label '手机号码', class: "col-sm-2 form-control-label" %>
+  <div class="col-sm-10">
+      <%= f.text_field :phone, class: "form-control" %>
+  </div>
+</div>
+<div class="form-group row">
+  <%= f.label '状态', class: "col-sm-2 form-control-label" %>
+  <div class="col-sm-10">
+      <%= f.text_field :status, class: 'form-control' %>
+  </div>
+</div>
+<div class="form-group row">
+  <%= f.label '密码', class: "col-sm-2 form-control-label" %>
+  <div class="col-sm-10">
+      <%= f.text_field :password, class: 'form-control' %>
+  </div>
+</div>
+<div class="form-group row">
+  <div class="col-sm-offset-2 col-sm-10">
+      <%= link_to "取消", customer_service_user_index_path, class: 'btn btn-secondary' %> 
+      <%= f.submit '保存', class: "btn btn-primary" %>
+  </div>
+</div>

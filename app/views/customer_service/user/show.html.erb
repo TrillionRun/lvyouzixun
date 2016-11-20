@@ -1,6 +1,8 @@
 <style>
 .card-block {
-  margin: 20px;
+  margin: 33px;
+  margin-top: 0;
+  border-top: 0;
 }
 label {
   font-size: 12px;
@@ -11,7 +13,18 @@ label {
   margin-top: 20px;
 }
 </style>
-<div class="card card-block">
+<div>
+  <%= link_to "返回用户列表", customer_service_user_index_path, class: 'btn btn-secondary', style: 'margin: 0 0 20px 33px' %>
+</div>
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <%= link_to '用户信息', customer_service_user_path(@user), class: 'nav-link active' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to '关注', "#", class: 'nav-link'%>
+  </li>
+</ul>
+<div class="card card-block ly-tab">
   <div class="form-group row">
     <label for="example-text-input" class="col-xs-1 col-form-label">用户ID</label>
     <div class="col-xs-5">
@@ -63,7 +76,4 @@ label {
     </div>
   </div>
   <div class="form-group row"><%= @user.password %></div>
-</div>
-<div class="card card-block">
-  关注列表
 </div>

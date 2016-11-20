@@ -1,4 +1,4 @@
-<%= button_to '创建', {controller: 'user', action: 'new'}, method: :get, class: 'btn btn-secondary btn-sm' %>
+<%= link_to '创建', new_customer_service_user_path, class: "btn btn-secondary" %>
 
 <style>
 .card-block {
@@ -25,6 +25,7 @@
         <td><%= link_to user.name, controller: "user", action: "show", id: user.id %></td>
         <td><%= user.phone %></td>
         <td>
+          <%= link_to '编辑', edit_customer_service_user_path(user) %>
           <%= link_to '删除', customer_service_user_path(user), method: 'delete', data: { confirm: "确认要删除该用户吗？" } %>
         </td>
       </tr>
