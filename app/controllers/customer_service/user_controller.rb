@@ -7,7 +7,6 @@ class CustomerService::UserController < ApplicationController
 
   def show
     @user = User.find params[:id]
-    @follows = @user.follows
   end
 
   def new
