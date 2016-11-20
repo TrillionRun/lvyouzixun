@@ -7,6 +7,7 @@ class CustomerService::UserController < ApplicationController
 
   def show
     @user = User.find params[:id]
+    @follows = @user.follows
   end
 
   def new
@@ -31,6 +32,11 @@ class CustomerService::UserController < ApplicationController
     end
   end
 
+  def user_follows
+    @user = User.find params[:id]
+    @follows = @user.follows.page(params[:page]).per(10)
+  end
+  
   def destroy
     @user = User.find params[:id]
     if @user.destroy

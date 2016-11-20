@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :users, :concerns => :paginatable
 
   namespace :customer_service do
-    resources :user, :concerns => :paginatable
+    resources :user, :concerns => :paginatable do
+      get 'follows' => :user_follows, on: :member
+    end
     resources :business, :concerns => :paginatable do
       resources :itinerary do
         resources :daily_plan

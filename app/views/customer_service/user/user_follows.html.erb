@@ -1,0 +1,50 @@
+<style>
+.card-block {
+  margin: 33px;
+  margin-top: 0;
+  border-top: 0;
+}
+label {
+  font-size: 12px;
+}
+.user-tool {
+  margin-left: 6px;
+  margin-right: -4px;
+  margin-top: 20px;
+}
+</style>
+<div>
+  <%= link_to "返回用户列表", customer_service_user_index_path, class: 'btn btn-secondary', style: 'margin: 0 0 20px 33px' %>
+</div>
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <%= link_to '用户信息', customer_service_user_path(@user), class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to '关注', follows_customer_service_user_path(@user), class: 'nav-link active'%>
+  </li>
+</ul>
+<div class="card card-block ly-tab tab-pane"">
+  <table class="table table-striped">
+  <thead class="bg-primary">
+    <tr>
+      <th width="320">关注对象ID</th>
+      <th>状态</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @follows.each do |follow| %>
+      <tr>
+        <td><%= follow.object_id %></td>
+        <td><%= follow.status %></td>
+        <td>
+          <%#= link_to '删除', customer_service_user_path(user), method: 'delete', data: { confirm: "确认要删除该用户吗？" } %>
+        </td>
+      </tr>
+    <% end%>
+  </tbody>
+</table>
+<div style='text-align: center;'><%= paginate @follows %></div>
+</div>
+
