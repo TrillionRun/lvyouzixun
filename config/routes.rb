@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :petition, :concerns => :paginatable
     resources :appointment, :concerns => :paginatable
     resources :advertisement
-    
+
   end
 
   namespace :public do
@@ -86,6 +86,9 @@ Rails.application.routes.draw do
     # petitions
     post 'users/:user_id/petitions' => 'petitions#create'
     get 'users/:user_id/petitions' => 'petitions#index'
+
+    # code
+    post 'register_code' => 'users#code_before_create'
 
   end
 end

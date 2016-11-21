@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   has_attached_file :picture
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
-  
+
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   process_in_background :avatar

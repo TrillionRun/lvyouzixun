@@ -49,14 +49,37 @@ class Api::UsersController < Api::AdminApiController
   end
 
   def create
-    user_check = User.find_by(phone: params[:phone])
-    if user_check.present?
-      render json:{'message' => 'error: phone' + params[:phone] + 'has been registered !' }, status: 400
+    if User.find_by phone: params[:phone]
+      render json: {result: 'phone registered'}, status: 400
       return
     end
-    options = user_params
-    user = User.create! options
-    render json: user, status: 200
+    code = params[:code]
+    op = Code.find_by phone: params[:phone], operation: 'register'
+    if op.present? && op.code && op.code == code
+      user = User.create! user_params
+      op.destroy!
+      render json: user, status: 200
+    else
+      render json: {result: 'wrong code'}
+    end
+  end
+
+  def code_before_create
+    if User.find_by phone: params[:phone]
+      render json: {result: 'phone registered'}, status: 400
+      return
+    end
+    op = Code.find_by phone: params[:phone], operation: 'register'
+    code = Random.new.rand(1000..9999).to_s
+    if op.nil?
+      op = Code.create! phone: params[:phone], code: code, operation: 'register'
+    else
+      op.update! code: code
+    end
+
+    send_code(params[:phone], code)
+
+    render json: {result: 'success'}, status: 200
   end
 
   def business_user
@@ -69,7 +92,7 @@ class Api::UsersController < Api::AdminApiController
   end
 
   def user_params
-    columns = [:email, :name, :nickname, :image_url, :last_sign_in,:role, :phone, :status, :password]
+    columns = [:email, :name, :nickname, :image_url, :last_sign_in,:role, :phone, :password]
     params.permit(columns)
   end
 end

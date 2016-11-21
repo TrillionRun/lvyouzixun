@@ -1,5 +1,6 @@
 class Api::AdminApiController < ActionController::Base
   include Pundit
+  include Taobao
 
   rescue_from Pundit::NotAuthorizedError, with: :deny_access
 

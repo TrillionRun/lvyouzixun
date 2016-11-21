@@ -87,3 +87,6 @@ gem 'redis'
 
 # paging
 gem 'kaminari'
+
+# taobao api
+gem 'alidayu'
