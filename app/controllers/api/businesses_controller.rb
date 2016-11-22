@@ -6,6 +6,8 @@ class Api::BusinessesController < Api::AdminApiController
     itineraries = business.itineraries
     informations = business.informations
     picture_url = business.picture.url
+    video_url = business.video.url
+    video_screenshot_url = business.video.url(:thumb)
     its = itineraries.as_json
     its.each do |it|
       it.merge! link: "/public/business/#{business.id}/itinerary/#{it['id']}"
@@ -13,6 +15,8 @@ class Api::BusinessesController < Api::AdminApiController
     company_type_name = business.company_type.nil? ? '' : business.company_type.name
     business_json.merge!(company_type_name: company_type_name)
     business_json.merge!(picture_url: ('https:'+picture_url))
+    business_json.merge!(video_url: ('https:'+video_url))
+    business_json.merge!(video_screenshot: ('https:'+video_screenshot_url))
     business_json.merge!("itineraries_info" => its)
     business_json.merge!("informations_info" => informations.as_json)
     unless business_json['details'].nil?
