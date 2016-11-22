@@ -66,14 +66,28 @@
 
   <div class="input-group row">
     <%= form_tag customer_service_business_path(@business), multipart: true, method: :put do %>
-      <div class="col-xs-2" hidden="<%= @business.picture.url == '/pictures/original/missing.png' %>">
-        <%= image_tag @business.picture.url, width: 75, height: 50  if @business.picture.url != '/pictures/original/missing.png' %>
-      </div>
+      <% if @business.picture.url != '/pictures/original/missing.png' %>
+        <div class="col-xs-2">
+          <%= image_tag @business.picture.url, width: 75, height: 50  if @business.picture.url != '/pictures/original/missing.png' %>
+        </div>
+      <% end %>
       <label class="btn btn-default btn-file col-xs-3">
         <%= file_field_tag :picture, class:'form-control' %>
       </label>
       <div class="col-xs-3 update-image">
         <%= submit_tag '更新图片', class:"btn btn-secondary"  %>
+      </div>
+    <% end %>
+    <%= form_tag customer_service_business_path(@business), multipart: true, method: :put do %>
+      <div class="col-xs-2">
+        <%= image_tag @business.video.url(:thumb), width: 75, height: 50 %>
+        <%= video_tag @business.video.url, controls: true, autobuffer: true, height: 200, width: 200 %>
+      </div>
+      <label class="btn btn-default btn-file col-xs-3">
+        <%= file_field_tag :video, class:'form-control' %>
+      </label>
+      <div class="col-xs-3 update-image">
+        <%= submit_tag '更新视频', class:"btn btn-secondary"  %>
       </div>
     <% end %>
   </div>
