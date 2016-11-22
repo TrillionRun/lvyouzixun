@@ -6,8 +6,11 @@ class CustomerService::PetitionController < ApplicationController
 
   def show
     # @petition = Petition.find params[:id]
-    @petition = Petition.joins(:user).joins(:company_type).
-        select('petitions.*, users.name as user_name, company_types.description as company_type_name').where('petitions.id = ?', params[:id]).first
+    @petition = Petition.joins(:user).joins(:company_type).where('petitions.id = ?', params[:id]).
+        select('petitions.*, users.name as user_name, company_types.description as company_type_name').first
+
+    pp @petition
+    pp '------'
   end
 
   def new
