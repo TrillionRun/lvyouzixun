@@ -66,7 +66,7 @@
 
   <div class="input-group row">
     <%= form_tag customer_service_business_path(@business), multipart: true, method: :put do %>
-      <div class="col-xs-2" hidden="<%= @business.picture.url != '/pictures/original/missing.png' %>">
+      <div class="col-xs-2" hidden="<%= @business.picture.url == '/pictures/original/missing.png' %>">
         <%= image_tag @business.picture.url, width: 75, height: 50  if @business.picture.url != '/pictures/original/missing.png' %>
       </div>
       <label class="btn btn-default btn-file col-xs-3">
