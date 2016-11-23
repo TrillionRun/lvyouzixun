@@ -54,7 +54,7 @@
   <div class="form-group row">
     <label for="example-password-input" class="col-xs-1 col-form-label">用户姓名</label>
     <div class="col-xs-5">
-      <input class="form-control" type="text" value="<%= @user.name %>" id="example-password-input" disabled>
+      <input class="form-control" type="text" value="<%= @user.name if @user %>" id="example-password-input" disabled>
     </div>
     <label for="example-number-input" class="col-xs-1 col-form-label">状态</label>
     <div class="col-xs-5">
