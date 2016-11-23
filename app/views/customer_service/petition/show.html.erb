@@ -54,7 +54,7 @@
   <div class="form-group row">
     <label for="example-password-input" class="col-xs-1 col-form-label">用户姓名</label>
     <div class="col-xs-5">
-      <input class="form-control" type="text" value="<%= @petition.user_name %>" id="example-password-input" disabled>
+      <input class="form-control" type="text" value="<%= @user.name %>" id="example-password-input" disabled>
     </div>
     <label for="example-number-input" class="col-xs-1 col-form-label">状态</label>
     <div class="col-xs-5">
@@ -74,7 +74,7 @@
   <div class="form-group row">
     <label for="example-datetime-local-input" class="col-xs-1 col-form-label">公司类型</label>
     <div class="col-xs-5">
-      <input class="form-control" type="text" value="<%= @petition.company_type_name %>" id="example-datetime-local-input" disabled>
+      <input class="form-control" type="text" value="<%= @company_type.description %>" id="example-datetime-local-input" disabled>
     </div>
   </div>
 </div>
