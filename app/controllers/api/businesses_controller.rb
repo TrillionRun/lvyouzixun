@@ -15,8 +15,13 @@ class Api::BusinessesController < Api::AdminApiController
     company_type_name = business.company_type.nil? ? '' : business.company_type.name
     business_json.merge!(company_type_name: company_type_name)
     business_json.merge!(picture_url: ('https:'+picture_url))
-    business_json.merge!(video_url: ('https:'+video_url))
-    business_json.merge!(video_screenshot: ('https:'+video_screenshot_url))
+    if video_url != '/videos/original/missing.png'
+      business_json.merge!(video_url: ('https:'+video_url))
+      business_json.merge!(video_screenshot: ('https:'+video_screenshot_url))
+    else
+      business_json.merge! video_url: nil, video_screenshot: nil
+    end
+
     business_json.merge!("itineraries_info" => its)
     business_json.merge!("informations_info" => informations.as_json)
     unless business_json['details'].nil?
