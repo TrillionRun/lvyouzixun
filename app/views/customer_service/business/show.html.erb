@@ -81,7 +81,7 @@
     <%= form_tag customer_service_business_path(@business), multipart: true, method: :put do %>
       <div class="col-xs-2">
         <%= image_tag @business.video.url(:thumb), width: 75, height: 50 %>
-        <%= video_tag @business.video.url, controls: true, autobuffer: true, height: 200, width: 200 %>
+        <%= video_tag @business.video.url(:medium), controls: true, autobuffer: true, height: 200, width: 200 %>
       </div>
       <label class="btn btn-default btn-file col-xs-3">
         <%= file_field_tag :video, class:'form-control' %>
