@@ -48,7 +48,7 @@ label {
   <div class="form-group row">
     <label for="example-url-input" class="col-xs-1 col-form-label">头像地址</label>
     <div class="col-xs-5">
-      <input class="form-control" type="url" value="http://getbootstrap.com" id="example-url-input" disabled>
+      <%= image_tag @user.avatar.url(:thumb), width: 75, height: 50 %>
     </div>
     <label for="example-tel-input" class="col-xs-1 col-form-label">最后登录</label>
     <div class="col-xs-5">

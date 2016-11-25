@@ -14,7 +14,9 @@ class CustomerService::UserController < ApplicationController
   end
 
   def create
-    @user = User.create! user_params
+    @user = User.new user_params
+    @user.password = '123123'
+    @user.save!
     redirect_to action: :show, id: @user.id if @user
   end
 
@@ -25,6 +27,10 @@ class CustomerService::UserController < ApplicationController
   def update
     @user = User.find params[:id]
     if @user.update user_params
+      if @user.password
+        @user.password = '123123'
+        @user.save!
+      end
       redirect_to @user
     else
       render :edit
@@ -44,6 +50,6 @@ class CustomerService::UserController < ApplicationController
   end
 
   def user_params
-    params.permit(:name, :nickname, :email, :role, :phone, :password, :status )
+    params.require(:user).permit(:name, :nickname, :email, :role, :phone, :password, :status, :avatar)
   end
 end
