@@ -1,7 +1,46 @@
+<style>
+.upfilebox {
+                position: relative;
+            }
+            .upfilebox input {
+                width: 121px;
+                height: 45px;
+                position: relative;
+                z-index: 9;
+                opacity: 0;
+                margin-top: -44px;
+            }
+            .upfilebox label {
+                position: absolute;
+                display: inline-block;
+                color: #fff;
+                width: 120px;
+                height: 45px;
+                line-height: 45px;
+                text-align: center;
+                top: 77px;
+                left: 15px;
+                opacity:0;
+                background-color: #777;
+            }
+            .prv:hover .divcss5 { 
+              opacity:0.6; 
+              text-align:center; 
+              color:#fff;
+              font-size:15px; 
+              font-family:"Times New Roman", Times, serif;
+              }
+        </style>
+
 <div class="form-group row">
   <%= f.label '用户头像', class: "col-sm-2 form-control-label" %>
-  <div class="col-sm-10">
+  
+  <div class="col-sm-10 upfilebox">
+    <div class='prv' style='width: 120px;height: 120px;border: 1px solid #eee;'>
+      <%= image_tag @user.avatar, id: 'ImgPr', width: 120, height: 120 %>
       <%= f.file_field :avatar, class: 'form-control' %>
+      <label class='divcss5'>上传头像</label>
+    </div>
   </div>
 </div>
 <div class="form-group row">
@@ -46,3 +85,46 @@
       <%= f.submit '保存', class: "btn btn-primary" %>
   </div>
 </div>
+
+<script>
+
+jQuery.fn.extend({
+    uploadPreview: function (opts) {
+        var _self = this,
+            _this = $(this);
+        opts = jQuery.extend({
+            Img: "ImgPr",
+            Width: 100,
+            Height: 100,
+            ImgType: ["gif", "jpeg", "jpg", "bmp", "png"],
+            Callback: function () {}
+        }, opts || {});
+        _self.getObjectURL = function (file) {
+            var url = null;
+            if (window.createObjectURL != undefined) {
+                url = window.createObjectURL(file)
+            } else if (window.URL != undefined) {
+                url = window.URL.createObjectURL(file)
+            } else if (window.webkitURL != undefined) {
+                url = window.webkitURL.createObjectURL(file)
+            }
+            return url
+        };
+        _this.change(function () {
+            if (this.value) {
+                if (!RegExp("\.(" + opts.ImgType.join("|") + ")$", "i").test(this.value.toLowerCase())) {
+                    alert("选择文件错误,图片类型必须是" + opts.ImgType.join("，") + "中的一种");
+                    this.value = "";
+                    return false
+                }
+                $("#" + opts.Img).attr('src', _self.getObjectURL(this.files[0]))
+                    
+                opts.Callback()
+            }
+        })
+    }
+});
+$(function () {
+$("#user_avatar").uploadPreview({ Img: "ImgPr", Width: 120, Height: 120 });
+});
+</script>
