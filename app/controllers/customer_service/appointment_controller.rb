@@ -5,9 +5,7 @@ class CustomerService::AppointmentController < ApplicationController
   end
 
   def show
-    # @appointment = Appointment.find params[:id]
-    @appointment = Appointment.joins(:user).joins(:business).
-        select('appointments.*, users.name as user_name, businesses.name as business_name').where('appointments.id = ?', params[:id]).first
+    @appointment = Appointment.find params[:id]
   end
 
   def new

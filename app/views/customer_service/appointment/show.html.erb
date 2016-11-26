@@ -28,13 +28,13 @@
     </div>
     <label for="example-search-input" class="col-xs-1 col-form-label">预约用户</label>
     <div class="col-xs-5">
-      <input class="form-control" type="search" value="<%= @appointment.user_name %>" id="example-search-input" disabled>
+      <input class="form-control" type="search" value="<%= @appointment.user.try(:name) %>" id="example-search-input" disabled>
     </div>
   </div>
   <div class="form-group row">
     <label for="example-search-input" class="col-xs-1 col-form-label">被预约商家</label>
     <div class="col-xs-5">
-      <input class="form-control" type="search" value="<%= @appointment.business_name %>" id="example-search-input" disabled>
+      <input class="form-control" type="search" value="<%= @appointment.business.try(:name) %>" id="example-search-input" disabled>
     </div>
     <label for="example-email-input" class="col-xs-1 col-form-label">预约人</label>
     <div class="col-xs-5">

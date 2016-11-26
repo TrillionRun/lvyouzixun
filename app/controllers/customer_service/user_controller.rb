@@ -27,11 +27,11 @@ class CustomerService::UserController < ApplicationController
   def update
     @user = User.find params[:id]
     if @user.update user_params
-      if @user.password
+      unless @user.password
         @user.password = '123123'
         @user.save!
       end
-      redirect_to @user
+      redirect_to action: :show, id: @user.id if @user
     else
       render :edit
     end
