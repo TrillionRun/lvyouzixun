@@ -2,7 +2,9 @@ class CustomerService::UserController < ApplicationController
   layout 'customer_service_layout'
 
   def index
-    @users = User.order('updated_at DESC').page(params[:page]).per(10)
+    @users = User
+    @users = @users.where('name like :name', name: "%#{params[:name]}%") unless params[:name].blank?
+    @users = @users.order('updated_at DESC').page(params[:page]).per(10)
   end
 
   def show

@@ -1,39 +1,56 @@
-<%= link_to '创建', new_customer_service_appointment_path, class: 'btn btn-secondary btn-sm' %>
-<table class="table table-striped">
-  <thead class="bg-primary">
-  <tr>
-    <th>联系人</th>
-    <th>日期</th>
-    <th>联系人电话</th>
-    <th>备注</th>
-    <th>用户ID</th>
-    <th>商家ID</th>
-    <th>状态</th>
-    <th>操作</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @appointments.each do |appointment| %>
+<div class='row' style='margin-bottom: 20px;'>
+  <div class='create-btn col-sm-3'>
+    <%= link_to '创建', new_customer_service_appointment_path, class: 'btn btn-secondary' %>
+  </div>
+  <div class='search_businesses'>
+    <%= form_tag customer_service_appointment_index_path, method: 'GET' do %>
+      <div class='col-sm-4'>
+        <%= text_field_tag "name", params[:name], class: 'form-control', placeholder: '按联系人搜索' %>
+      </div>
+      
+      <%= submit_tag '搜索', class: 'btn' %>
+    <%end%>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-sm-12'>
+    <table class="table table-striped">
+      <thead class="bg-primary">
       <tr>
-        <td>
-          <%= link_to appointment.name, controller: "appointment", action: "show", id: appointment.id %>
-        </td>
-        <td><%= appointment.date %></td>
-        <td><%= appointment.phone %></td>
-        <td><%= appointment.description %></td>
-        <td><%= appointment.user_id %></td>
-        <td><%= appointment.business_id %></td>
-        <td><%= appointment.status %></td>
-        <td>
-          <% if appointment.status != 'inactive' %>
-              <%= form_tag customer_service_appointment_path(appointment), method: :put do %>
-                  <%= hidden_field_tag 'status', 'inactive'  %>
-                  <%= submit_tag '取消' %>
-              <% end %>
-          <%end%>
-        </td>
+        <th>联系人</th>
+        <th>日期</th>
+        <th>联系人电话</th>
+        <th>备注</th>
+        <th>用户ID</th>
+        <th>商家ID</th>
+        <th>状态</th>
+        <th>操作</th>
       </tr>
-  <% end%>
-  </tbody>
-</table>
-<div style='text-align: center;'><%= paginate @appointments %></div>
+      </thead>
+      <tbody>
+      <% @appointments.each do |appointment| %>
+          <tr>
+            <td>
+              <%= link_to appointment.name, controller: "appointment", action: "show", id: appointment.id %>
+            </td>
+            <td><%= appointment.date %></td>
+            <td><%= appointment.phone %></td>
+            <td><%= appointment.description %></td>
+            <td><%= appointment.user_id %></td>
+            <td><%= appointment.business_id %></td>
+            <td><%= appointment.status %></td>
+            <td>
+              <% if appointment.status != 'inactive' %>
+                  <%= form_tag customer_service_appointment_path(appointment), method: :put do %>
+                      <%= hidden_field_tag 'status', 'inactive'  %>
+                      <%= submit_tag '取消' %>
+                  <% end %>
+              <%end%>
+            </td>
+          </tr>
+      <% end%>
+      </tbody>
+    </table>
+    <div style='text-align: center;'><%= paginate @appointments %></div>
+  </div>
+</div>

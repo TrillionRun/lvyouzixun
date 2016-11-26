@@ -1,7 +1,9 @@
 class CustomerService::PetitionController < ApplicationController
   layout 'customer_service_layout'
   def index
-    @petitions = Petition.order('updated_at DESC').page(params[:page]).per(10)
+    @petitions = Petition
+    @petitions = @petitions.where('name like :name', name: "%#{params[:name]}%") unless params[:name].blank?
+    @petitions = @petitions.order('updated_at DESC').page(params[:page]).per(10)
   end
 
   def show

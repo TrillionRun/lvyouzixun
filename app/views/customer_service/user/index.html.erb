@@ -1,4 +1,4 @@
-<%= link_to '创建', new_customer_service_user_path, class: "btn btn-secondary" %>
+
 
 <style>
 .card-block {
@@ -9,27 +9,46 @@
   overflow-y:auto;
 }
 </style>
-<table class="table table-striped">
-  <thead class="bg-primary">
-    <tr>
-      <th width="320">用户ID</th>
-      <th>姓名</th>
-      <th>电话</th>
-      <th>操作</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= link_to user.name, controller: "user", action: "show", id: user.id %></td>
-        <td><%= user.phone %></td>
-        <td>
-          <%= link_to '编辑', edit_customer_service_user_path(user) %>
-          <%= link_to '删除', customer_service_user_path(user), method: 'delete', data: { confirm: "确认要删除该用户吗？" } %>
-        </td>
-      </tr>
-    <% end%>
-  </tbody>
-</table>
-<div style='text-align: center;'><%= paginate @users %></div>
+<div class='row' style='margin-bottom: 20px;'>
+  <div class='create-btn col-sm-3'>
+    <%= link_to '创建', new_customer_service_user_path, class: "btn btn-secondary" %>
+  </div>
+  <div class='search_businesses'>
+    <%= form_tag customer_service_user_index_path, method: 'GET' do %>
+      <div class='col-sm-4'>
+        <%= text_field_tag "name", params[:name], class: 'form-control', placeholder: '按名称搜索' %>
+      </div>
+      
+      <%= submit_tag '搜索', class: 'btn' %>
+    <%end%>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-sm-12'>
+    <table class="table table-striped">
+      <thead class="bg-primary">
+        <tr>
+          <th width="320">用户ID</th>
+          <th>姓名</th>
+          <th>电话</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= link_to user.name, controller: "user", action: "show", id: user.id %></td>
+            <td><%= user.phone %></td>
+            <td>
+              <%= link_to '编辑', edit_customer_service_user_path(user) %>
+              <%= link_to '删除', customer_service_user_path(user), method: 'delete', data: { confirm: "确认要删除该用户吗？" } %>
+            </td>
+          </tr>
+        <% end%>
+      </tbody>
+    </table>
+    <div style='text-align: center;'><%= paginate @users %></div>
+  </div>
+</div>
+

@@ -1,7 +1,9 @@
 class CustomerService::AppointmentController < ApplicationController
   layout 'customer_service_layout'
   def index
-    @appointments = Appointment.order('updated_at DESC').page(params[:page]).per(10)
+    @appointments = Appointment
+    @appointments = @appointments.where('name like :name', name: "%#{params[:name]}%") unless params[:name].blank?
+    @appointments = @appointments.order('updated_at DESC').page(params[:page]).per(10)
   end
 
   def show
