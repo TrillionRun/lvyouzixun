@@ -2,7 +2,7 @@ class CustomerService::UserController < ApplicationController
   layout 'customer_service_layout'
 
   def index
-    @users = User.page(params[:page]).per(10)
+    @users = User.order('updated_at DESC').page(params[:page]).per(10)
   end
 
   def show

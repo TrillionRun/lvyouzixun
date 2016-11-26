@@ -1,7 +1,7 @@
 class CustomerService::BusinessController < ApplicationController
   layout 'customer_service_layout'
   def index
-    @businesses = Business.page(params[:page]).per(10)
+    @businesses = Business.order('updated_at DESC').page(params[:page]).per(10)
   end
 
   def show

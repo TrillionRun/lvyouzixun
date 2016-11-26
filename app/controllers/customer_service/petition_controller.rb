@@ -1,7 +1,7 @@
 class CustomerService::PetitionController < ApplicationController
   layout 'customer_service_layout'
   def index
-    @petitions = Petition.page(params[:page]).per(10)
+    @petitions = Petition.order('updated_at DESC').page(params[:page]).per(10)
   end
 
   def show
@@ -10,9 +10,6 @@ class CustomerService::PetitionController < ApplicationController
     #     select('petitions.*, users.name as user_name, company_types.description as company_type_name').first
     @user = User.find_by_id @petition.user_id
     @company_type = (CompanyType.find_by_id @petition.company_type_id) || (CompanyType.find_by_name 'Other')
-
-    pp @petition
-    pp '------'
   end
 
   def new
