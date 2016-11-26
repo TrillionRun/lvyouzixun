@@ -1,1 +1,3 @@
-<%= @appointment.inspect %>
+<%= form_for @appointment, url: customer_service_appointment_path(@appointment) do |f| %>
+    <%= render 'form', f: f %>
+<% end %>

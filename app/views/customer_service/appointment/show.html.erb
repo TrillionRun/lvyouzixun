@@ -17,7 +17,7 @@
   </div>
   <div class="col-xs-9"></div>
   <div class="col-xs-1">
-    <%= button_to '编辑', {controller: 'appointment', action: 'edit'}, method: :get, class: 'btn btn-outline-primary btn-sm' %>
+    <%= link_to '编辑', edit_customer_service_appointment_path(@appointment),class: 'btn btn-outline-primary btn-sm' %>
   </div>
 </div>
 <div class="card card-block">
