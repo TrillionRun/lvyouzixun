@@ -26,6 +26,9 @@
   padding-left: 100px;
   padding-right: 50px;
 }
+.ly-padding-20 {
+  padding-left: 20px;
+}
 .ly-line {
   margin-left: 100px;
   margin-right: 50px;
@@ -44,11 +47,17 @@
 .ly-margin-bottom-half {
   margin-bottom: 20px;
 }
+.ly-location-logo {
+  margin-left: 20px;
+  margin-top: 20px;
+}
 </style>
 <div class="itinerary-page">
 <% @itinerary.daily_plans.each_with_index do |daily_plan, index|%>
-  <div><%= image_tag '/location.png', height: '70', width: '50' %></div>
-  <div class="ly-orange ly-padding ly-day-font">第<%= index + 1 %>天</div>
+  <div class="ly-location-logo">
+    <%= image_tag '/location.png', height: '70', width: '50' %>
+    <span class="ly-orange ly-padding-20 ly-day-font">第<%= index + 1 %>天</span>
+  </div>
   <div class="ly-grey ly-padding ly-margin-top-half"><%= daily_plan.places %></div>
   <!-- <div class="ly-grey ly-padding ly-margin-bottom-half"><%= daily_plan.dates %></div> -->
   <div class="ly-line ly-margin-top-half"></div>
