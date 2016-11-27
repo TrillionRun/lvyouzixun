@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     patch 'users/:user_id/logout' => 'sessions#destroy'
 
     # update password
+    post 'users/:user_id/update_password_code' => 'users#code_before_update_password'
     patch 'users/:user_id/update_password' => 'users#update_password'
 
     # check follow

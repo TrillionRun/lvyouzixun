@@ -15,17 +15,25 @@ class Api::UsersController < Api::AdminApiController
   end
 
   def update_password
-    user_id = params[:user_id]
-    user = User.find_by_id user_id
-    # authorize user, :update?
-    unless user.authenticate(params[:current_password])
-      render json: { 'message' => 'error: current password is not correct!' }, status: 400
+    user = User.find_by phone: params[:phone]
+    if user.nil?
+      render json: {result: 'user doesn\'t exist'}, status: 400
       return
     end
-    options = params.permit(:password)
-    user.update! options
-    user.reset_auth_token!
-    render json: user, status: 200
+    unless user.id == params[:user_id]
+      render json: {result: 'phone doesn\'t match current user'}, status: 400
+      return
+    end
+    code = params[:code]
+    op = Code.find_by phone: params[:phone], operation: 'update_password'
+    if op.present? && op.code && op.code == code
+      user.update! password: params[:password]
+      user.reset_auth_token!
+      op.destroy!
+      render json: user, status: 200
+    else
+      render json: {result: 'wrong code'}, status: 400
+    end
   end
 
   def image
@@ -60,7 +68,7 @@ class Api::UsersController < Api::AdminApiController
       op.destroy!
       render json: user, status: 200
     else
-      render json: {result: 'wrong code'}
+      render json: {result: 'wrong code'}, status: 400
     end
   end
 
@@ -79,6 +87,27 @@ class Api::UsersController < Api::AdminApiController
 
     send_code(params[:phone], code)
 
+    render json: {result: 'success'}, status: 200
+  end
+
+  def code_before_update_password
+    user = User.find_by phone: params[:phone]
+    if user.nil?
+      render json: {result: 'user doesn\'t exist '}, status: 400
+      return
+    end
+    unless user.id == params[:user_id]
+      render json: {result: 'phone doesn\'t match current user'}, status: 400
+      return
+    end
+    code = Random.new.rand(1000..9999).to_s
+    op = Code.find_by phone: params[:phone], operation: 'update_password'
+    if op.nil?
+      op = Code.create(phone: params[:phone], code: code, operation: 'update_password')
+    else
+      op.update! code: code
+    end
+    send_code(params[:phone], code)
     render json: {result: 'success'}, status: 200
   end
 
