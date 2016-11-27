@@ -18,7 +18,7 @@
       <div class='col-sm-4'>
         <%= text_field_tag "name", params[:name], class: 'form-control', placeholder: '按名称搜索' %>
       </div>
-      
+
       <%= submit_tag '搜索', class: 'btn' %>
     <%end%>
   </div>
@@ -42,7 +42,7 @@
             <td><%= user.phone %></td>
             <td>
               <%= link_to '编辑', edit_customer_service_user_path(user) %>
-              <%= link_to '删除', customer_service_user_path(user), method: 'delete', data: { confirm: "确认要删除该用户吗？" } %>
+              <!-- <%= link_to '删除', customer_service_user_path(user), method: 'delete', data: { confirm: "确认要删除该用户吗？" } %> -->
             </td>
           </tr>
         <% end%>
@@ -51,4 +51,3 @@
     <div style='text-align: center;'><%= paginate @users %></div>
   </div>
 </div>
-

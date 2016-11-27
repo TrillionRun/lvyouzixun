@@ -10,11 +10,18 @@ class CustomerService::AdvertisementController < ApplicationController
   end
 
   def create
-    Advertisement.create! advertisement_params
-    redirect_to :index
+    adparams = advertisement_params
+    Advertisement.create! adparams
+    redirect_to action: :index
   end
 
   def new
+  end
+
+  def destroy
+    @advertisement = Advertisement.find_by_id params[:id]
+    @advertisement.destroy!
+    redirect_to action: :index
   end
 
   private

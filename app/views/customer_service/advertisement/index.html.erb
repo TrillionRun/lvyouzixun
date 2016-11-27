@@ -1,4 +1,6 @@
-<%= link_to '创建', controller: :advertisement, action: :new %>
+<div class='create-btn col-sm-3'>
+  <%= link_to '创建', :new_customer_service_advertisement, class: "btn btn-secondary" %>
+</div>
 <table class="table table-striped">
   <thead class="bg-primary">
     <tr>
@@ -16,7 +18,7 @@
         <td><%= advertisement.ad_url %></td>
         <td>
           <%= link_to '查看', customer_service_advertisement_path(advertisement.id) %>
-          <%= link_to '删除', customer_service_advertisement_path(advertisement.id) %>
+          <%= link_to '删除', customer_service_advertisement_path(advertisement.id), method: :delete, data: { confirm: "确认要删除该广告吗？" } %>
         </td>
       </tr>
     <% end %>

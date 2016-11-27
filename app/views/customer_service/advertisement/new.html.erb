@@ -1,7 +1,11 @@
 <%= form_tag customer_service_advertisement_index_path, multipart: true do %>
   <%= label_tag '协议' %>:
-  <%= text_field_tag :protocol %><br/>
-
+  <select id='protocol' name='protocol'>
+    <option value='http'>http</option>
+    <option value='inapp'>inapp</option>
+  </select>
+  <br/>
+  
   <%= label_tag '地址' %>:
   <%= text_field_tag :ad_url %><br/>
 
