@@ -16,6 +16,19 @@ class Api::UsersController < Api::AdminApiController
 
   def update_password
     user = User.find_by phone: params[:phone]
+    unless user.authenticate(params[:current_password])
+      render json: { 'message' => 'error: current password is not correct!' }, status: 400
+      return
+    end
+
+    options = params.permit(:password)
+    user.update! options
+    user.reset_auth_token!
+    render json: user, status: 200
+  end
+
+  def update_forgotten_password
+    user = User.find_by phone: params[:phone]
     if user.nil?
       render json: {result: 'user doesn\'t exist'}, status: 400
       return
@@ -25,7 +38,7 @@ class Api::UsersController < Api::AdminApiController
       return
     end
     code = params[:code]
-    op = Code.find_by phone: params[:phone], operation: 'update_password'
+    op = Code.find_by phone: params[:phone], operation: 'forget_password'
     if op.present? && op.code && op.code == code
       user.update! password: params[:password]
       user.reset_auth_token!
@@ -90,7 +103,7 @@ class Api::UsersController < Api::AdminApiController
     render json: {result: 'success'}, status: 200
   end
 
-  def code_before_update_password
+  def code_before_forget_password
     user = User.find_by phone: params[:phone]
     if user.nil?
       render json: {result: 'user doesn\'t exist '}, status: 400
@@ -101,9 +114,9 @@ class Api::UsersController < Api::AdminApiController
       return
     end
     code = Random.new.rand(1000..9999).to_s
-    op = Code.find_by phone: params[:phone], operation: 'update_password'
+    op = Code.find_by phone: params[:phone], operation: 'forget_password'
     if op.nil?
-      op = Code.create(phone: params[:phone], code: code, operation: 'update_password')
+      op = Code.create(phone: params[:phone], code: code, operation: 'forget_password')
     else
       op.update! code: code
     end

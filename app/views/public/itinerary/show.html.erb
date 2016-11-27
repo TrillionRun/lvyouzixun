@@ -47,6 +47,7 @@
 </style>
 <div class="itinerary-page">
 <% @itinerary.daily_plans.each_with_index do |daily_plan, index|%>
+  <div><%= image_tag '/location.png', height: '70', width: '50' %></div>
   <div class="ly-orange ly-padding ly-day-font">第<%= index + 1 %>天</div>
   <div class="ly-grey ly-padding ly-margin-top-half"><%= daily_plan.places %></div>
   <!-- <div class="ly-grey ly-padding ly-margin-bottom-half"><%= daily_plan.dates %></div> -->
