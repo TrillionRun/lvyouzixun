@@ -15,7 +15,7 @@ class Api::UsersController < Api::AdminApiController
   end
 
   def update_password
-    user = User.find_by phone: params[:phone]
+    user = User.find_by_id: params[:user_id]
     unless user.authenticate(params[:current_password])
       render json: { 'message' => 'error: current password is not correct!' }, status: 400
       return
