@@ -28,13 +28,15 @@
       <tr>
         <th width="320">商家ID</th>
         <th>名称</th>
+        <th>操作</th>
       </tr>
       </thead>
       <tbody>
       <% @businesses.each do |business| %>
         <tr>
           <td><%= business.id %></td>
-          <td><%= link_to business.name, controller: "business", action: "show", id: business.id %></td>
+          <td><%= business.name %></td>
+          <td><%= link_to "查看", customer_service_business_path(business) %></td>
         </tr>
       <% end%>
       </tbody>

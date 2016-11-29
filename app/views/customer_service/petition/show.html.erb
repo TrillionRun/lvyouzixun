@@ -15,10 +15,6 @@
   <div class="col-xs-2">
     <%= button_to '<<返回列表', {controller: 'petition', action: 'index'}, method: :get, class: 'btn btn-secondary btn-sm' %>
   </div>
-  <div class="col-xs-9"></div>
-  <div class="col-xs-1">
-    <%= link_to '编辑', edit_customer_service_petition_path(@petition), class: 'btn btn-outline-primary btn-sm' %>
-  </div>
 </div>
 <div class="card card-block">
   <div class="form-group row">
@@ -77,4 +73,18 @@
       <input class="form-control" type="text" value="<%= @company_type.description %>" id="example-datetime-local-input" disabled>
     </div>
   </div>
+  <div style='margin-left: 45%;'>
+    <% if @petition.status != 'passed' %>
+      <%= form_tag customer_service_petition_path(@petition), method: :put, style: 'float: left; margin-right: 4px' do %>
+        <%= hidden_field_tag 'status', 'passed'  %>
+        <%= submit_tag '审核通过', class: 'btn btn-primary' %>
+      <% end %>
+    <%end%>
+    <% if @petition.status === 'verifying' %>
+      <%= form_tag customer_service_petition_path(@petition), method: :put do %>
+        <%= hidden_field_tag 'status', 'rejected'  %>
+        <%= submit_tag '驳回', class: 'btn btn-danger' %>
+      <% end %>
+    <%end%>
+  <div>
 </div>

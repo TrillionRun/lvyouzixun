@@ -29,7 +29,7 @@
       <% @petitions.each do |petition| %>
           <tr>
             <td>
-              <%= link_to petition.name, controller: "petition", action: "show", id: petition.id %>
+              <%= petition.name %>
             </td>
             <td><%= petition.contact %></td>
             <td><%= petition.contact_phone %></td>
@@ -38,18 +38,8 @@
             <td><%= Petition::STATUS[petition.status] %></td>
 
             <td>
-              <% if petition.status != 'passed' %>
-              <%= form_tag customer_service_petition_path(petition), method: :put, style: 'float: left; margin-right: 4px' do %>
-                  <%= hidden_field_tag 'status', 'passed'  %>
-                  <%= submit_tag '审核通过', class: 'btn btn-primary btn-sm' %>
-              <% end %>
-              <%end%>
-              <% if petition.status === 'verifying' %>
-              <%= form_tag customer_service_petition_path(petition), method: :put do %>
-                  <%= hidden_field_tag 'status', 'rejected'  %>
-                  <%= submit_tag '驳回', class: 'btn btn-danger btn-sm' %>
-              <% end %>
-              <%end%>
+              <%= link_to '查看', customer_service_petition_path(petition) %>
+              <%= link_to '编辑', edit_customer_service_petition_path(petition) %>
             </td>
           </tr>
       <% end%>

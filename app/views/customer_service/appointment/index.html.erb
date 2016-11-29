@@ -21,8 +21,8 @@
         <th>日期</th>
         <th>联系人电话</th>
         <th>备注</th>
-        <th>用户ID</th>
-        <th>商家ID</th>
+        <th>用户</th>
+        <th>商家</th>
         <th>状态</th>
         <th>操作</th>
       </tr>
@@ -31,15 +31,17 @@
       <% @appointments.each do |appointment| %>
           <tr>
             <td>
-              <%= link_to appointment.name, controller: "appointment", action: "show", id: appointment.id %>
+              <%= appointment.name %>
             </td>
             <td><%= appointment.date %></td>
             <td><%= appointment.phone %></td>
-            <td><%= appointment.description %></td>
-            <td><%= appointment.user_id %></td>
-            <td><%= appointment.business_id %></td>
+            <td><%= appointment.description.truncate(8)%></td>
+            <td><%= appointment.user.try(:name) %></td>
+            <td><%= appointment.business.try(:name) %></td>
             <td><%= appointment.status %></td>
             <td>
+            <%= link_to '查看', customer_service_appointment_path(appointment) %>
+            <%= link_to '编辑', edit_customer_service_appointment_path(appointment) %>
               <% if appointment.status != 'inactive' %>
                   <%= form_tag customer_service_appointment_path(appointment), method: :put do %>
                       <%= hidden_field_tag 'status', 'inactive'  %>
