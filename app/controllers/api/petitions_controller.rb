@@ -6,7 +6,9 @@ class Api::PetitionsController < Api::AdminApiController
     petition = Petition.new peti_params
     petition.status = 'verifying'
     petition.save!
-    render json: petition, status: 200
+    petition_json = petition.as_json
+    petition_json.merge! company_type: get_company_type(params[:company_type]).name
+    render json: petition_json, status: 200
   end
 
   def index
