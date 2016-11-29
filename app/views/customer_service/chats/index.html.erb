@@ -1,10 +1,74 @@
+<style>
+.unread::after {
+    content: '●';
+    color: red;
+}
+</style>
+<script>
+(function() {
+  this.App || (this.App = {});
+
+  var App = this.App;
+  if(Object.keys(App).length === 0){
+    App.cable = ActionCable.createConsumer();
+
+    App.chat = App.cable.subscriptions.create("ChatChannel", {
+      connected: function(){},
+
+      disconnected: function(){
+      },
+
+      received: function(data){
+        $(".message").append(data['message']);
+        $(".messages").scrollTop($(".messages")[0].scrollHeight);
+        this.read({
+          sender_id: "<%= params[:business_id] %>",
+          reciver_id: $($('.li-list.active')[0]).data('uid')
+        });
+        this.update_other(data);
+      },
+      speak: function(data){
+        this.perform('speak', data);
+      },
+      read: function(data){
+        this.perform('read', data);
+      },
+      update_other: function(data){
+        var received_userid = $($(data['message']).find('.message-content')[0]).data('userid')
+        if($($('.li-list.active')[0]).data('uid')!= received_userid){
+          if($('[data-uid='+received_userid+']').length!=0){
+            $($('[data-uid='+received_userid+']')[0]).addClass('unread');
+          }
+        }
+      }
+    });
+
+  }
+
+
+
+  $(document).on('keypress','[data-behavior~=room_speaker]', function(event){
+    if(event.keyCode == 13){
+      if(event.target.value == '')return false;
+      App.chat.speak({
+        message: event.target.value,
+        sender_id: $("#business_id").text(),
+        reciver_id: $("#user_id").text()
+      });
+      event.target.value = '';
+      event.preventDefault();
+    }
+  });
+}).call(this);
+</script>
 <div class='chat'>
   <div class='sidebar'>
     <div class='user-list'>
       <ul class='ul-list' style='list-style: none;'>
-        <% @users.each do |u| %>
-            <li class='li-list' data-uid="<%= u.id %>">
-              <p class='name'><%=u.name%></p>
+        <% @user_collection.each do |u| %>
+            <!-- <%= u.inspect%> -->
+            <li class='li-list <%= 'unread' if u[:has_unread] %>' data-uid="<%= u[:user].id %>">
+              <%= u[:user].name %>
             </li>
         <%end%>
       </ul>
@@ -20,17 +84,21 @@
       <form>
         <textarea disabled data-behavior='room_speaker' placeholder="按 Enter 发送"></textarea>
       </form>
-      
+
     </div>
   </div>
 </div>
 
 <script>
-    $(function () {  
-        $('ul.ul-list li').each(function () {  
+    $(function () {
+        $('ul.ul-list li').each(function () {
             $(this).click(function(){
+              App.chat.read({
+                sender_id: "<%=  params[:business_id]%>",
+                reciver_id: $(this).data('uid')
+              })
               $(".li-list.active").removeClass('active')
-              $(this).addClass('active');
+              $(this).addClass('active').removeClass('unread');
               $('textarea').removeAttr('disabled');
               $('#user_id').text($(this).data('uid'));
               $.get(
@@ -51,7 +119,7 @@
                       $(".messages").scrollTop($(".messages")[0].scrollHeight);
                   }
               );
-        });  
+        });
     });
     });
 </script>

@@ -19,3 +19,7 @@
 //= require vue-router
 //= require vue-resource
 //= require_tree .
+
+$(document).on('turbolinks:change', function(event){
+  alert('ready');
+})

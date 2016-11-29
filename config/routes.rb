@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   namespace :public do
     get 'business/:business_id/itinerary/:itinerary_id' => 'itinerary#show'
+    get 'terms' => 'terms#index'
   end
 
   namespace :api do

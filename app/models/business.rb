@@ -13,4 +13,14 @@ class Business < ApplicationRecord
   belongs_to :company_type, required: false
 
   # process_in_background :video, queue: 'video'
+  def has_unread_message?
+    has_unread_message = false
+    cons = Conversation.where business_id: self.id
+    cons.each do |con|
+      if con.read_last_message_id != con.messages.order(:created_at).last.id
+        has_unread_message = true
+      end
+    end
+    has_unread_message
+  end
 end

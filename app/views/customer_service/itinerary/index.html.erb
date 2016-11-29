@@ -1,3 +1,9 @@
+<style>
+.unread::after {
+    content: '●';
+    color: red;
+}
+</style>
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item">
     <%= link_to '商家信息', customer_service_business_path(@business), class: 'nav-link' %>
@@ -6,9 +12,10 @@
     <%= link_to '行程', customer_service_business_itinerary_index_path(@business), class: 'nav-link active'%>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#information" role="tab" data-toggle="tab">资讯</a>
+    <%= link_to '留言', customer_service_business_chats_path(@business), class: "nav-link #{'unread' if @business.has_unread_message? }"%>
   </li>
 </ul>
+
 <%= form_tag customer_service_business_itinerary_index_path, method: :post do %>
   <input name='name' />
   <%= submit_tag '添加'%>
