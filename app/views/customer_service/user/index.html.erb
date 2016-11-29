@@ -38,9 +38,10 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= user.id %></td>
-            <td><%= link_to user.name, controller: "user", action: "show", id: user.id %></td>
+            <td><%= user.name %></td>
             <td><%= user.phone %></td>
             <td>
+              <%= link_to '查看', customer_service_user_path(user) %>
               <%= link_to '编辑', edit_customer_service_user_path(user) %>
               <!-- <%= link_to '删除', customer_service_user_path(user), method: 'delete', data: { confirm: "确认要删除该用户吗？" } %> -->
             </td>
