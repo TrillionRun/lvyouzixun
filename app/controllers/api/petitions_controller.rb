@@ -13,8 +13,14 @@ class Api::PetitionsController < Api::AdminApiController
 
   def index
     user = User.find(params[:user_id])
-    petitions = Petition.where(user_id: user.id)
-    render json: petitions, status: 200
+    petition = Petition.where(user_id: user.id).order("created_at").last
+    if petition.present?
+      petition_json = petition.as_json
+      petition_json.merge! company_type: CompanyType.find_by_id(petition.company_type_id).name
+    else
+      petition_json = {}
+    end
+    render json: petition_json, status: 200
   end
 
   private
