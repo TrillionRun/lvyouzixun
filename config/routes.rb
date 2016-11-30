@@ -33,6 +33,10 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
+    # forget password
+    post 'users/update_forgotten_password_code' => 'users#code_before_forget_password'
+    patch 'users/update_forgotten_password' => 'users#update_forgotten_password'
+
     resources :users, only: [:show, :update, :create]
     resources :sessions, only: [:create]
     resources :advertisements, only: [:show]
@@ -42,11 +46,7 @@ Rails.application.routes.draw do
 
     # update password
     patch 'users/:user_id/update_password' => 'users#update_password'
-
-    # forget password
-    post 'users/update_forgotten_password_code' => 'users#code_before_forget_password'
-    patch 'users/update_forgotten_password' => 'users#update_forgotten_password'
-
+    
     # check follow
     get 'users/:user_id/business/:business_id/check' => 'users#business_user'
     delete 'users/:user_id/business/:business_id/uncheck' => 'users#business_user'
