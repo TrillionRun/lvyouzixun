@@ -44,8 +44,8 @@ Rails.application.routes.draw do
     patch 'users/:user_id/update_password' => 'users#update_password'
 
     # forget password
-    post 'users/:user_id/update_forgotten_password_code' => 'users#code_before_forget_password'
-    patch 'users/:user_id/update_forgotten_password' => 'users#update_forgotten_password'
+    post 'users/update_forgotten_password_code' => 'users#code_before_forget_password'
+    patch 'users/update_forgotten_password' => 'users#update_forgotten_password'
 
     # check follow
     get 'users/:user_id/business/:business_id/check' => 'users#business_user'

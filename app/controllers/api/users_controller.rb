@@ -33,10 +33,10 @@ class Api::UsersController < Api::AdminApiController
       render json: {result: 'user doesn\'t exist'}, status: 400
       return
     end
-    unless user.id == params[:user_id]
-      render json: {result: 'phone doesn\'t match current user'}, status: 400
-      return
-    end
+    # unless user.id == params[:user_id]
+    #   render json: {result: 'phone doesn\'t match current user'}, status: 400
+    #   return
+    # end
     code = params[:code]
     op = Code.find_by phone: params[:phone], operation: 'forget_password'
     if op.present? && op.code && op.code == code
@@ -109,10 +109,10 @@ class Api::UsersController < Api::AdminApiController
       render json: {result: 'user doesn\'t exist '}, status: 400
       return
     end
-    unless user.id == params[:user_id]
-      render json: {result: 'phone doesn\'t match current user'}, status: 400
-      return
-    end
+    # unless user.id == params[:user_id]
+    #   render json: {result: 'phone doesn\'t match current user'}, status: 400
+    #   return
+    # end
     code = Random.new.rand(1000..9999).to_s
     op = Code.find_by phone: params[:phone], operation: 'forget_password'
     if op.nil?
