@@ -10,6 +10,20 @@
     content: '●';
     color: red;
 }
+.part {
+  width: 100%;
+  height: 260px;
+}
+legde {
+  display: block;
+  width: 100%;
+  height: 20px;
+  border-bottom: 1px solid #eee;
+  color: #ccc;
+  font-size: 11px;
+  margin-bottom: 10px;
+
+}
 </style>
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item">
@@ -24,51 +38,55 @@
 </ul>
 
 <div class="ly-tab">
-  <div class="form-group row">
-    <label for="example-text-input" class="col-xs-1 col-form-label">商家ID</label>
-    <div class="col-xs-3">
-      <input class="form-control" type="text" value="<%= @business.id %>" id="example-text-input" disabled>
+  
+  <div class='part'>
+  <legde>基本信息</legde>
+    <div class="form-group row">
+      <label for="example-text-input" class="col-xs-1 col-form-label">商家ID</label>
+      <div class="col-xs-3">
+        <input class="form-control" type="text" value="<%= @business.id %>" id="example-text-input" disabled>
+      </div>
+      <label for="example-search-input" class="col-xs-1 col-form-label">用户ID</label>
+      <div class="col-xs-3">
+        <input class="form-control" type="search" value="<%= @business.user_id %>" id="example-search-input" disabled>
+      </div>
     </div>
-    <label for="example-search-input" class="col-xs-1 col-form-label">用户ID</label>
-    <div class="col-xs-3">
-      <input class="form-control" type="search" value="<%= @business.user_id %>" id="example-search-input" disabled>
-    </div>
+    <%= form_tag customer_service_business_path(@business), method: :put do %>
+      <div class="form-group row">
+        <label for="example-text-input" class="col-xs-1 col-form-label">商家名称</label>
+        <div class="col-xs-3">
+          <input class="form-control" type="text" name="name" value="<%= @business.name %>">
+        </div>
+        <label for="example-search-input" class="col-xs-1 col-form-label">公司名称</label>
+        <div class="col-xs-3">
+          <input class="form-control" type="search" name="company_name" value="<%= @business.company_name %>">
+        </div>
+        <label for="example-search-input" class="col-xs-1 col-form-label">电话</label>
+        <div class="col-xs-3">
+          <input class="form-control" type="search" name="phone" value="<%= @business.phone %>">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-text-input" class="col-xs-1 col-form-label">商家邮箱</label>
+        <div class="col-xs-3">
+          <input class="form-control" type="text" name="email" value="<%= @business.email %>">
+        </div>
+        <label for="example-search-input" class="col-xs-1 col-form-label">公司类型</label>
+        <div class="col-xs-3">
+          <%= select_tag 'company_type',
+                        options_from_collection_for_select(@company_types, 'id', 'description', @business.company_type_id), class: 'form-control' %>
+        </div>
+        <div class="col-xs-3"></div>
+        <div class="col-xs-1">
+          <div flex></div>
+          <%= submit_tag '更新', class:"btn btn-secondary pull-right" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <%= form_tag customer_service_business_path(@business), method: :put do %>
-    <div class="form-group row">
-      <label for="example-text-input" class="col-xs-1 col-form-label">商家名称</label>
-      <div class="col-xs-3">
-        <input class="form-control" type="text" name="name" value="<%= @business.name %>">
-      </div>
-      <label for="example-search-input" class="col-xs-1 col-form-label">公司名称</label>
-      <div class="col-xs-3">
-        <input class="form-control" type="search" name="company_name" value="<%= @business.company_name %>">
-      </div>
-      <label for="example-search-input" class="col-xs-1 col-form-label">电话</label>
-      <div class="col-xs-3">
-        <input class="form-control" type="search" name="phone" value="<%= @business.phone %>">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="example-text-input" class="col-xs-1 col-form-label">商家邮箱</label>
-      <div class="col-xs-3">
-        <input class="form-control" type="text" name="email" value="<%= @business.email %>">
-      </div>
-      <label for="example-search-input" class="col-xs-1 col-form-label">公司类型</label>
-      <div class="col-xs-3">
-        <%= select_tag 'company_type',
-                       options_from_collection_for_select(@company_types, 'id', 'description', @business.company_type_id), class: 'form-control' %>
-      </div>
-      <div class="col-xs-3"></div>
-      <div class="col-xs-1">
-        <div flex></div>
-        <%= submit_tag '更新', class:"btn btn-secondary pull-right" %>
-      </div>
-    </div>
-  <% end %>
-  <hr/>
-
-  <div class="input-group row">
+  <div class='part'>
+  <legde>图片</legde>
+  <div class="form-group row" style=''>
     <%= form_tag customer_service_business_path(@business), multipart: true, method: :put do %>
       <% if @business.picture.url != '/pictures/original/missing.png' %>
         <div class="col-xs-2">
@@ -82,6 +100,11 @@
         <%= submit_tag '更新图片', class:"btn btn-secondary"  %>
       </div>
     <% end %>
+    </div>
+  </div>
+  <div class='part' style='height: 300px;'>
+  <legde>视频</legde>
+  <div class="form-group row">
     <%= form_tag customer_service_business_path(@business), multipart: true, method: :put do %>
       <div class="col-xs-2">
         <%= image_tag @business.video.url(:thumb), width: 75, height: 50 %>
@@ -94,17 +117,22 @@
         <%= submit_tag '更新视频', class:"btn btn-secondary"  %>
       </div>
     <% end %>
+    </div>
   </div>
-  <hr/>
-  <%= form_tag "/customer_service/business/#{@business.id}/post_detail" do %>
-    <div class="form-group">
-      <label>介绍1</label>
-      <textarea class="form-control" name="context_1"><%= @context_1 %></textarea>
+  <div class='part'>
+  <legde>介绍</legde>
+  <div class="form-group row">
+    <%= form_tag "/customer_service/business/#{@business.id}/post_detail" do %>
+      <div class="form-group">
+        <label>介绍1</label>
+        <textarea class="form-control" name="context_1"><%= @context_1 %></textarea>
+      </div>
+      <div class="form-group">
+        <label>介绍2</label>
+        <textarea class="form-control" name="context_2"><%= @context_2 %></textarea>
+      </div>
+      <%= submit_tag '更新', class:"btn btn-secondary"%>
+    <% end %>
     </div>
-    <div class="form-group">
-      <label>介绍2</label>
-      <textarea class="form-control" name="context_2"><%= @context_2 %></textarea>
-    </div>
-    <%= submit_tag '更新', class:"btn btn-secondary"%>
-  <% end %>
+  </div>
 </div>
