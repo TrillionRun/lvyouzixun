@@ -63,6 +63,15 @@
 </script>
 <div class='chat'>
   <div class='sidebar'>
+    <div class='business-card' style='padding: 9pt;
+    border-bottom: 1px solid #24272c;
+    width: 200px;
+    height: 80px;'>
+    <header>
+      <%= @business.name %>
+    </header>
+    
+    </div>
     <div class='user-list'>
       <ul class='ul-list' style='list-style: none;'>
         <% @user_collection.each do |u| %>
