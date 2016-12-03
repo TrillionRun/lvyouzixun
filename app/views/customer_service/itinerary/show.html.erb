@@ -9,6 +9,7 @@
     <a class="nav-link" href="#information" role="tab" data-toggle="tab">资讯</a>
   </li>
 </ul>
+<div style='overflow-y: scroll; height: 560px;margin: 0 35px;'>
 <%= link_to '返回', customer_service_business_itinerary_index_path(@business) %>
 <%= link_to "查看", public_path(@business, @itinerary), target: "_blank" %>
 <%= form_tag customer_service_business_itinerary_path(@business, @itinerary), method: :put do %>
@@ -16,33 +17,58 @@
   <%= submit_tag '更新' %>
 <% end %>
 <hr/>
-<div style="border:solid 1px red;">
+<div style="width: 100%" class='row'>
   <%= form_tag '/customer_service/business/'+@business.id+'/itinerary/'+@itinerary.id+'/daily_plan', multipart: true do %>
-    <%= label_tag '日期' %>:
-    <%= text_field_tag :dates %><br/>
-
-    <%= label_tag '地点' %>:
-    <%= text_field_tag :places %><br/>
-
-    <%= label_tag '图片' %>
-    <%= file_field_tag :picture%><br/>
-
-    <%= label_tag '行程描述' %>:
-    <%= text_field_tag :description %><br/>
-
-    <%= label_tag '餐饮' %>:
-    <%= text_field_tag :food %><br/>
-
-    <%= label_tag '住宿' %>:
-    <%= text_field_tag :hotel %><br/>
-
-    <%= submit_tag '创建' %>
+    <div class='col-sm-6'>
+     <div class="form-group row">
+        <%= label_tag '', "日期", class: "col-sm-2 form-control-label" %>
+        <div class="col-sm-10">
+            <%= date_field_tag :dates, "", class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= label_tag '', "地点", class: "col-sm-2 form-control-label" %>
+        <div class="col-sm-10">
+            <%= text_field_tag :places, "", class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= label_tag '', "图片", class: "col-sm-2 form-control-label" %>
+        <div class="col-sm-10">
+            <%= file_field_tag :picture, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= label_tag '', "餐饮", class: "col-sm-2 form-control-label" %>
+        <div class="col-sm-10">
+            <%= text_field_tag :food, "", class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= label_tag '', "住宿", class: "col-sm-2 form-control-label" %>
+        <div class="col-sm-10">
+            <%= text_field_tag :hotel, "", class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class='col-sm-6'>
+      <div class="form-group row">
+        <%= label_tag '', "行程描述", class: "col-sm-3 form-control-label" %>
+        <div class="col-sm-9">
+            <%= text_area_tag :description, "", class: "form-control",rows: 12 %>
+        </div>
+      </div>
+      <div class='form-group row'>
+        <%= submit_tag '创建', class: 'btn btn-primary' %>
+      </div>
+    </div>
+    
   <% end %>
 </div>
 <hr/>
+<div style="width: 100%;border: solid 1px #bbb;">
 <% @daily_plans.each_with_index do |daily_plan, index| %>
-  <div style="border: solid 1px black">
-    <%= form_tag customer_service_business_itinerary_daily_plan_path(@business, @itinerary, daily_plan),method: :put do%>
+    <%= form_tag customer_service_business_itinerary_daily_plan_path(@business, @itinerary, daily_plan),method: :put, style: 'padding: 18px' do%>
       第<%= index+1 %>天<br/>
       日期：<input name='dates' value="<%= daily_plan.dates %>"/>
       地点：<input name='places' value="<%= daily_plan.places %>"/>
@@ -58,5 +84,9 @@
                     data: {confirm: '你确定要删除这项行程吗？'}%>
     <% end %>
     <!-- <= link_to 'X', controller: :daily_plan, action: :destroy, method: :delete %> -->
-  </div>
+<% if (index + 1) != @daily_plans.length %>
+  <hr style='margin: 18px;'/>
 <% end %>
+<% end %>
+</div>
+</div>

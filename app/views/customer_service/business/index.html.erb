@@ -6,6 +6,10 @@
     max-height: 500px;
     overflow-y:auto;
   }
+  .unread::after {
+    content: '●';
+    color: red;
+}
 </style>
 <div class='row' style='margin-bottom: 20px;'>
   <div class='create-btn col-sm-3'>
@@ -36,7 +40,12 @@
         <tr>
           <td><%= business.id %></td>
           <td><%= business.name %></td>
-          <td><%= link_to "查看", customer_service_business_path(business) %></td>
+          <td>
+          <%= link_to "查看", customer_service_business_path(business) %>
+          <% if business.has_unread_message? %>
+            | <%= link_to "新消息", customer_service_business_chats_path(business), class: 'unread'%>
+          <% end %>
+          </td>
         </tr>
       <% end%>
       </tbody>

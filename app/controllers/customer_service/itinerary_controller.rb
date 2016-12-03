@@ -10,6 +10,9 @@ class CustomerService::ItineraryController < ApplicationController
     @business = Business.find_by_id params[:business_id]
     @itinerary = @business.itineraries.find_by_id params[:id]
     @daily_plans = @itinerary.daily_plans
+    @daily_plans.sort do |n1, n2|
+      Date.parse(n1.dates) <=> Date.parse(n2.dates) if n1.dates.present? && n1.dates.present?
+    end
   end
 
   def create
