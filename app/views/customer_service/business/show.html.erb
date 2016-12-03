@@ -16,14 +16,24 @@
 }
 legde {
   display: block;
-  width: 100%;
-  height: 20px;
   border-bottom: 1px solid #eee;
   color: #ccc;
   font-size: 11px;
   margin-bottom: 10px;
 
 }
+input {
+  padding: 0;
+}
+select {
+  height: 14px;
+}
+.upload-image input{ vertical-align:middle; margin:0; padding:0}
+.upload-image .file-box{ position:relative;width:340px}
+.upload-image .txt{ height:22px; float: left; border:1px solid #cdcdcd; width:180px;}
+.upload-image .btn{ background-color:#FFF; border:1px solid #CDCDCD;height:24px; width:70px;}
+.upload-image .file{ position:absolute; top:0; filter:alpha(opacity:0);opacity: 0;width:70px; left: 200px; }
+input.liulan{ position: absolute; left: 200px; }
 </style>
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item">
@@ -37,9 +47,9 @@ legde {
   </li>
 </ul>
 
-<div class="ly-tab">
+<div class="ly-tab" style='height: 560px; overflow-y: scroll;'>
   
-  <div class='part'>
+  <div class='part' style='height: 180px'>
   <legde>基本信息</legde>
     <div class="form-group row">
       <label for="example-text-input" class="col-xs-1 col-form-label">商家ID</label>
@@ -84,7 +94,7 @@ legde {
       </div>
     <% end %>
   </div>
-  <div class='part'>
+  <div class='part' style='width: 48%;float: left;'>
   <legde>图片</legde>
   <div class="form-group row" style=''>
     <%= form_tag customer_service_business_path(@business), multipart: true, method: :put do %>
@@ -93,16 +103,17 @@ legde {
           <%= image_tag @business.picture.url, width: 75, height: 50  if @business.picture.url != '/pictures/original/missing.png' %>
         </div>
       <% end %>
-      <label class="btn btn-default btn-file col-xs-3">
-        <%= file_field_tag :picture, class:'form-control' %>
+      <label class="upload-image col-xs-3">
+        <input type='text' name='textfield' id='textfield' class='txt' disabled />  
+ <input type='button' class='btn liulan' value='浏览...' />
+    <input type="file" name="picture" class="file" id="fileField" size="28" onchange="document.getElementById('textfield').value=this.value" />
+ <input type="submit" name="submit" class="btn" style='margin-top: 12px;' value="上传" />
+        <%#= file_field_tag :picture, class:'form-control' %>
       </label>
-      <div class="col-xs-3 update-image">
-        <%= submit_tag '更新图片', class:"btn btn-secondary"  %>
-      </div>
     <% end %>
     </div>
   </div>
-  <div class='part' style='height: 300px;'>
+  <div class='part' style='width: 48%;height: 300px;float: left;margin-left: 4%'>
   <legde>视频</legde>
   <div class="form-group row">
     <%= form_tag customer_service_business_path(@business), multipart: true, method: :put do %>
@@ -123,11 +134,11 @@ legde {
   <legde>介绍</legde>
   <div class="form-group row">
     <%= form_tag "/customer_service/business/#{@business.id}/post_detail" do %>
-      <div class="form-group">
+      <div class="form-group" style='width: 49%; float: left;'>
         <label>介绍1</label>
         <textarea class="form-control" name="context_1"><%= @context_1 %></textarea>
       </div>
-      <div class="form-group">
+      <div class="form-group" style='width: 49%; margin-left: 2%; float: left;'>
         <label>介绍2</label>
         <textarea class="form-control" name="context_2"><%= @context_2 %></textarea>
       </div>
