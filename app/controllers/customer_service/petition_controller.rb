@@ -3,7 +3,7 @@ class CustomerService::PetitionController < ApplicationController
   def index
     @petitions = Petition
     @petitions = @petitions.where('name like :name', name: "%#{params[:name]}%") unless params[:name].blank?
-    @petitions = @petitions.order('updated_at DESC').page(params[:page]).per(10)
+    @petitions = @petitions.order('updated_at DESC').page(params[:page]).per(9)
   end
 
   def show

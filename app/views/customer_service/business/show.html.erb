@@ -47,7 +47,7 @@ input.liulan{ position: absolute; left: 200px; }
   </li>
 </ul>
 
-<div class="ly-tab" style='height: 560px; overflow-y: scroll;'>
+<div class="ly-tab" style='height: 560px; overflow-y: scroll; margin: 0 13px;'>
   
   <div class='part' style='height: 180px'>
   <legde>基本信息</legde>
@@ -87,7 +87,7 @@ input.liulan{ position: absolute; left: 200px; }
                         options_from_collection_for_select(@company_types, 'id', 'description', @business.company_type_id), class: 'form-control' %>
         </div>
         <div class="col-xs-3"></div>
-        <div class="col-xs-1">
+        <div>
           <div flex></div>
           <%= submit_tag '更新', class:"btn btn-secondary pull-right" %>
         </div>
@@ -103,36 +103,36 @@ input.liulan{ position: absolute; left: 200px; }
           <%= image_tag @business.picture.url, width: 75, height: 50  if @business.picture.url != '/pictures/original/missing.png' %>
         </div>
       <% end %>
-      <label class="upload-image col-xs-3">
-        <input type='text' name='textfield' id='textfield' class='txt' disabled />  
- <input type='button' class='btn liulan' value='浏览...' />
-    <input type="file" name="picture" class="file" id="fileField" size="28" onchange="document.getElementById('textfield').value=this.value" />
- <input type="submit" name="submit" class="btn" style='margin-top: 12px;' value="上传" />
+      <label class="upload-image col-xs-6">
+        <input type='text' id='textfield' class='txt' disabled />  
+        <input type='button' class='btn liulan' value='浏览...' />
+        <input type="file" name="picture" class="file" id="fileField" size="28" onchange="document.getElementById('textfield').value=this.value" />
+        <input type="submit" name="submit" class="btn" style='margin-top: 12px;' value="上传" />
         <%#= file_field_tag :picture, class:'form-control' %>
       </label>
     <% end %>
     </div>
   </div>
-  <div class='part' style='width: 48%;height: 300px;float: left;margin-left: 4%'>
+  <div class='part' style='width: 48%;height: 270px;float: left;margin-left: 4%'>
   <legde>视频</legde>
   <div class="form-group row">
     <%= form_tag customer_service_business_path(@business), multipart: true, method: :put do %>
-      <div class="col-xs-2">
+      <div class="col-xs-5">
         <%= image_tag @business.video.url(:thumb), width: 75, height: 50 %>
         <%= video_tag @business.video.url(:medium), controls: true, autobuffer: true, height: 200, width: 200 %>
       </div>
-      <label class="btn btn-default btn-file col-xs-3">
-        <%= file_field_tag :video, class:'form-control' %>
+      <label class="upload-image col-xs-6">
+        <input type='text' id='videofield' class='txt' disabled />  
+        <input type='button' class='btn liulan' value='浏览...' />
+        <input type="file" name="video" class="file" id="fileField" size="28" onchange="document.getElementById('videofield').value=this.value" />
+        <input type="submit" name="submit" class="btn" style='margin-top: 12px;' value="更新视频" />
       </label>
-      <div class="col-xs-3 update-image">
-        <%= submit_tag '更新视频', class:"btn btn-secondary"  %>
-      </div>
     <% end %>
     </div>
   </div>
   <div class='part'>
   <legde>介绍</legde>
-  <div class="form-group row">
+  <div class="form-group row" style='margin: 0;'>
     <%= form_tag "/customer_service/business/#{@business.id}/post_detail" do %>
       <div class="form-group" style='width: 49%; float: left;'>
         <label>介绍1</label>

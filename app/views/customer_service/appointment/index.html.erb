@@ -20,8 +20,6 @@
         <th>联系人</th>
         <th>日期</th>
         <th>联系人电话</th>
-        <th>备注</th>
-        <th>用户</th>
         <th>商家</th>
         <th>状态</th>
         <th>操作</th>
@@ -35,8 +33,6 @@
             </td>
             <td><%= appointment.date %></td>
             <td><%= appointment.phone %></td>
-            <td><%= appointment.description.truncate(8)%></td>
-            <td><%= appointment.user.try(:name) %></td>
             <td><%= appointment.business.try(:name) %></td>
             <td><%= appointment.status %></td>
             <td>
