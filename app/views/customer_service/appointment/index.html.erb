@@ -40,7 +40,7 @@
             <td><%= appointment.business.try(:name) %></td>
             <td><%= appointment.status %></td>
             <td>
-            <%= link_to '查看', customer_service_appointment_path(appointment) %>
+            <%= link_to '查看', customer_service_appointment_path(appointment) %> |
             <%= link_to '编辑', edit_customer_service_appointment_path(appointment) %>
               <% if appointment.status != 'inactive' %>
                   <%= form_tag customer_service_appointment_path(appointment), method: :put do %>
