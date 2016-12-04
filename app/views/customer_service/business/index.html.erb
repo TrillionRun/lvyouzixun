@@ -46,7 +46,7 @@
           <td class="header-center"><%= business.id %></td>
           <td class="header-center"><%= business.name %></td>
           <td class="header-center"><%= business.company_name %></td>
-          <td class="header-center"><%= CompanyType.find_by(id: business.company_type_id).try(:name) %></td>
+          <td class="header-center"><%= CompanyType.find_by(id: business.company_type_id).try(:description) %></td>
           <td class="header-center">
             <%= link_to "查看", customer_service_business_path(business) %>
              <% if business.has_unread_message? %>

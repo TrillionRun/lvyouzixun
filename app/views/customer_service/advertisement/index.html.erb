@@ -26,7 +26,7 @@
             <td class="header-center"><%= advertisement.protocol %></td>
             <td class="header-center"><%= advertisement.ad_url %></td>
             <td class="header-center">
-              <%= link_to '查看', customer_service_advertisement_path(advertisement.id) %>
+              <!-- <%= link_to '查看', customer_service_advertisement_path(advertisement.id) %> -->
               <%= link_to '删除', customer_service_advertisement_path(advertisement.id), method: :delete, data: { confirm: "确认要删除该广告吗？" } %>
             </td>
           </tr>
