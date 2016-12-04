@@ -1,3 +1,8 @@
+<style>
+.header-center {
+  text-align:center;
+}
+</style>
 <div class='row' style='margin-bottom: 20px;'>
   <div class='create-btn col-sm-3'>
     <%= link_to '创建', new_customer_service_appointment_path, class: 'btn btn-secondary' %>
@@ -7,7 +12,7 @@
       <div class='col-sm-4'>
         <%= text_field_tag "name", params[:name], class: 'form-control', placeholder: '按联系人搜索' %>
       </div>
-      
+
       <%= submit_tag '搜索', class: 'btn' %>
     <%end%>
   </div>
@@ -15,31 +20,29 @@
 <div class='row'>
   <div class='col-sm-12'>
     <table class="table table-striped">
-      <thead class="bg-primary">
+      <thead>
       <tr>
-        <th>联系人</th>
-        <th>日期</th>
-        <th>联系人电话</th>
-        <th>备注</th>
-        <th>用户</th>
-        <th>商家</th>
-        <th>状态</th>
-        <th>操作</th>
+        <th class="header-center">联系人</th>
+        <th class="header-center">日期</th>
+        <th class="header-center">联系人电话</th>
+        <th class="header-center">用户</th>
+        <th class="header-center">商家</th>
+        <th class="header-center">状态</th>
+        <th class="header-center">操作</th>
       </tr>
       </thead>
       <tbody>
       <% @appointments.each do |appointment| %>
           <tr>
-            <td>
+            <td class="header-center">
               <%= appointment.name %>
             </td>
-            <td><%= appointment.date %></td>
-            <td><%= appointment.phone %></td>
-            <td><%= appointment.description.truncate(8)%></td>
-            <td><%= appointment.user.try(:name) %></td>
-            <td><%= appointment.business.try(:name) %></td>
-            <td><%= appointment.status %></td>
-            <td>
+            <td class="header-center"><%= appointment.date %></td>
+            <td class="header-center"><%= appointment.phone %></td>
+            <td class="header-center"><%= appointment.user.try(:name) %></td>
+            <td class="header-center"><%= appointment.business.try(:name) %></td>
+            <td class="header-center"><%= appointment.status %></td>
+            <td class="header-center">
             <%= link_to '查看', customer_service_appointment_path(appointment) %> |
             <%= link_to '编辑', edit_customer_service_appointment_path(appointment) %>
               <% if appointment.status != 'inactive' %>

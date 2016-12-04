@@ -8,6 +8,9 @@
   max-height: 500px;
   overflow-y:auto;
 }
+.header-center {
+  text-align:center;
+}
 </style>
 <div class='row' style='margin-bottom: 20px;'>
   <div class='create-btn col-sm-3'>
@@ -26,21 +29,23 @@
 <div class='row'>
   <div class='col-sm-12'>
     <table class="table table-striped">
-      <thead class="bg-primary">
+      <thead>
         <tr>
-          <th width="320">用户ID</th>
-          <th>姓名</th>
-          <th>电话</th>
-          <th>操作</th>
+          <th width="320" class="header-center">用户ID</th>
+          <th width="200" class="header-center">姓名</th>
+          <th width="200" class="header-center">电话</th>
+          <th width="280" class="header-center">邮箱</th>
+          <th width="" class="header-center">操作</th>
         </tr>
       </thead>
       <tbody>
         <% @users.each do |user| %>
           <tr>
-            <td><%= user.id %></td>
-            <td><%= user.name %></td>
-            <td><%= user.phone %></td>
-            <td>
+            <td class="header-center"><%= user.id %></td>
+            <td class="header-center"><%= user.name %></td>
+            <td class="header-center"><%= user.phone %></td>
+            <td class="header-center"><%= user.email %></td>
+            <td class="header-center">
               <%= link_to '查看', customer_service_user_path(user) %> |
               <%= link_to '编辑', edit_customer_service_user_path(user) %>
               <!-- <%= link_to '删除', customer_service_user_path(user), method: 'delete', data: { confirm: "确认要删除该用户吗？" } %> -->

@@ -3,8 +3,11 @@
     content: '●';
     color: red;
 }
+.header-center {
+  text-align:center;
+}
 </style>
-<ul class="nav nav-tabs" role="tablist">
+<ul class="nav nav-tabs" role="tablist" style="margin:0;">
   <li class="nav-item">
     <%= link_to '商家信息', customer_service_business_path(@business), class: 'nav-link' %>
   </li>
@@ -16,16 +19,40 @@
   </li>
 </ul>
 
-<%= form_tag customer_service_business_itinerary_index_path, method: :post do %>
-  <input name='name' />
-  <%= submit_tag '添加'%>
-<% end %>
-<hr/>
-<% @itineraries.each do |itinerary| %>
-  <%= link_to itinerary.name, controller: :itinerary, action: :show, id: itinerary.id %>
-  <%= button_to '删除',
-                customer_service_business_itinerary_path(@business, itinerary),
-                method: :delete,
-                data: {confirm: '你确定要删除这个行程吗？'}%>
-  <br/>
-<% end %>
+<div class='row' style='margin-bottom: 10px; margin-top: 10px; height:30px;'>
+  <div class="col-sm-4">
+    商家名称: <%= @business.name %>
+  </div>
+  <div class="col-sm-4">
+  </div>
+  <div class='create-btn col-sm-4 row'>
+    <%= form_tag customer_service_business_itinerary_index_path, method: :post do %>
+      <div class="col-sm-8 input-group-sm"><input name='name' class="form-control"/></div>
+      <div class="col-sm-2 input-group-sm"><%= submit_tag '添加行程', class: "btn btn-secondary btn-sm"%></div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="header-center">行程名称</th>
+      <th width="200" class="header-center">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @itineraries.each do |itinerary| %>
+      <tr>
+        <td class="header-center"><%= itinerary.name %></td>
+        <td class="header-center">
+          <%= link_to '查看', controller: :itinerary, action: :show, id: itinerary.id %> |
+          <%= link_to '删除',
+                        customer_service_business_itinerary_path(@business, itinerary),
+                        method: :delete,
+                        data: {confirm: '你确定要删除这个行程吗？'}%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,26 +1,37 @@
-<div class='create-btn col-sm-3'>
-  <%= link_to '创建', :new_customer_service_advertisement, class: "btn btn-secondary" %>
+<style>
+.header-center {
+  text-align:center;
+}
+</style>
+<div class='row' style='margin-bottom: 20px;'>
+  <div class='create-btn col-sm-3'>
+    <%= link_to '创建', :new_customer_service_advertisement, class: "btn btn-secondary" %>
+  </div>
 </div>
-<table class="table table-striped">
-  <thead class="bg-primary">
-    <tr>
-      <th align='center'>图片</th>
-      <th width='30'>协议</th>
-      <th align='center'>地址</th>
-      <th width='100'>操作</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @advertisements.each do |advertisement| %>
-      <tr>
-        <td><%= image_tag advertisement.picture.url, width: 75, height: 50 %></td>
-        <td><%= advertisement.protocol %></td>
-        <td><%= advertisement.ad_url %></td>
-        <td>
-          <%= link_to '查看', customer_service_advertisement_path(advertisement.id) %>
-          <%= link_to '删除', customer_service_advertisement_path(advertisement.id), method: :delete, data: { confirm: "确认要删除该广告吗？" } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class='row'>
+  <div class='col-sm-12'>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th width='200' class="header-center">图片</th>
+          <th width='100' class="header-center">协议</th>
+          <th class="header-center">地址</th>
+          <th width='100' class="header-center">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @advertisements.each do |advertisement| %>
+          <tr>
+            <td class="header-center"><%= image_tag advertisement.picture.url, width: 75, height: 50 %></td>
+            <td class="header-center"><%= advertisement.protocol %></td>
+            <td class="header-center"><%= advertisement.ad_url %></td>
+            <td class="header-center">
+              <%= link_to '查看', customer_service_advertisement_path(advertisement.id) %>
+              <%= link_to '删除', customer_service_advertisement_path(advertisement.id), method: :delete, data: { confirm: "确认要删除该广告吗？" } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

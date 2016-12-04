@@ -48,7 +48,7 @@ label {
   <div class="form-group row">
     <label for="example-url-input" class="col-xs-1 col-form-label">头像地址</label>
     <div class="col-xs-5">
-      <%= image_tag @user.avatar.url(:thumb), width: 75, height: 50 %>
+      <%= image_tag @user.picture.url, width: 75, height: 50 %>
     </div>
     <label for="example-tel-input" class="col-xs-1 col-form-label">最后登录</label>
     <div class="col-xs-5">
@@ -77,4 +77,3 @@ label {
   </div>
   <div class="form-group row"><%= @user.password %></div>
 </div>
-

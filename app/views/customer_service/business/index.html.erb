@@ -6,6 +6,9 @@
     max-height: 500px;
     overflow-y:auto;
   }
+  .header-center {
+    text-align:center;
+  }
 </style>
 <div class='row' style='margin-bottom: 20px;'>
   <div class='create-btn col-sm-3'>
@@ -16,7 +19,7 @@
       <div class='col-sm-4'>
         <%= text_field_tag "name", params[:name], class: 'form-control', placeholder: '按名称搜索' %>
       </div>
-      
+
       <%= submit_tag '搜索', class: 'btn' %>
     <%end%>
   </div>
@@ -24,19 +27,25 @@
 <div class='row'>
   <div class='col-sm-12'>
     <table class="table table-striped">
-      <thead class="bg-primary">
+      <thead>
       <tr>
-        <th width="320">商家ID</th>
-        <th>名称</th>
-        <th>操作</th>
+        <th width="320" class="header-center">商家ID</th>
+        <th width="200" class="header-center">名称</th>
+        <th width="180" class="header-center">电话</th>
+        <th width="200" class="header-center">公司名称</th>
+        <th width="180" class="header-center">类型</th>
+        <th class="header-center">操作</th>
       </tr>
       </thead>
       <tbody>
       <% @businesses.each do |business| %>
         <tr>
-          <td><%= business.id %></td>
-          <td><%= business.name %></td>
-          <td><%= link_to "查看", customer_service_business_path(business) %></td>
+          <td class="header-center"><%= business.id %></td>
+          <td class="header-center"><%= business.name %></td>
+          <td class="header-center"><%= business.phone %></td>
+          <td class="header-center"><%= business.company_name %></td>
+          <td class="header-center"><%= business.name %></td>
+          <td class="header-center"><%= link_to "查看", customer_service_business_path(business) %></td>
         </tr>
       <% end%>
       </tbody>
