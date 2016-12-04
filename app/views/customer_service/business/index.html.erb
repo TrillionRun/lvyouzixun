@@ -9,6 +9,10 @@
   .header-center {
     text-align:center;
   }
+  .unread::after {
+    content: '●';
+    color: red;
+}
 </style>
 <div class='row' style='margin-bottom: 20px;'>
   <div class='create-btn col-sm-3'>
@@ -45,7 +49,12 @@
           <td class="header-center"><%= business.phone %></td>
           <td class="header-center"><%= business.company_name %></td>
           <td class="header-center"><%= business.name %></td>
-          <td class="header-center"><%= link_to "查看", customer_service_business_path(business) %></td>
+          <td class="header-center">
+            <%= link_to "查看", customer_service_business_path(business) %>
+             <% if business.has_unread_message? %>
+            | <%= link_to "新消息", customer_service_business_chats_path(business), class: 'unread'%>
+          <% end %>
+          </td>
         </tr>
       <% end%>
       </tbody>

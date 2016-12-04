@@ -3,7 +3,7 @@ class CustomerService::BusinessController < ApplicationController
   def index
     @businesses = Business
     @businesses = @businesses.where('name like :name', name: "%#{params[:name]}%") unless params[:name].blank?
-    @businesses = @businesses.order('updated_at DESC').page(params[:page]).per(10)
+    @businesses = @businesses.order('updated_at DESC').page(params[:page]).per(9)
   end
 
   def show

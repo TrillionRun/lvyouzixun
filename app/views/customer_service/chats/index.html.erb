@@ -61,12 +61,27 @@
   });
 }).call(this);
 </script>
+<style>
+  back a {
+    display: block;
+    border-bottom: 1px solid;
+    margin-left: -11px;
+    margin-right: -11px;
+    margin-top: -11px;
+    color: #fff;
+    background-color: #3d3d3d;
+  }
+</style>
 <div class='chat'>
   <div class='sidebar'>
     <div class='business-card' style='padding: 9pt;
     border-bottom: 1px solid #24272c;
     width: 200px;
+    background-color: #a1a1a1;
     height: 80px;'>
+    <back>
+    <%= link_to '< 返回', customer_service_business_path(@business), style: 'color: #fff; text-decoration: none;' %>
+    </back>
     <header>
       <%= @business.name %>
     </header>
@@ -76,8 +91,8 @@
       <ul class='ul-list' style='list-style: none;'>
         <% @user_collection.each do |u| %>
             <!-- <%= u.inspect%> -->
-            <li class='li-list <%= 'unread' if u[:has_unread] %>' data-uid="<%= u[:user].id %>">
-              <%= u[:user].name %>
+            <li class='li-list <%= 'unread' if u[:has_unread] %>' data-uid="<%= u[:user].try(:id) %>">
+              <%= u[:user].try(:name) %>
             </li>
         <%end%>
       </ul>

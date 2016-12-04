@@ -3,7 +3,7 @@ class CustomerService::AppointmentController < ApplicationController
   def index
     @appointments = Appointment
     @appointments = @appointments.where('name like :name', name: "%#{params[:name]}%") unless params[:name].blank?
-    @appointments = @appointments.order('updated_at DESC').page(params[:page]).per(10)
+    @appointments = @appointments.order('updated_at DESC').page(params[:page]).per(9)
   end
 
   def show
