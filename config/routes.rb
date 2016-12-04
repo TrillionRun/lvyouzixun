@@ -22,7 +22,10 @@ Rails.application.routes.draw do
       post 'post_detail', on: :member
     end
     resources :petition, :concerns => :paginatable
-    resources :appointment, :concerns => :paginatable
+    resources :appointment, :concerns => :paginatable do
+      patch 'finish' => :finished, on: :member
+      patch 'unfinish'=> :unfinished, on: :member
+    end
     resources :advertisement
 
   end
@@ -46,7 +49,7 @@ Rails.application.routes.draw do
 
     # update password
     patch 'users/:user_id/update_password' => 'users#update_password'
-    
+
     # check follow
     get 'users/:user_id/business/:business_id/check' => 'users#business_user'
     delete 'users/:user_id/business/:business_id/uncheck' => 'users#business_user'

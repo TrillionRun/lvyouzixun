@@ -22,10 +22,9 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th class="header-center">联系人</th>
         <th class="header-center">日期</th>
+        <th class="header-center">联系人</th>
         <th class="header-center">联系人电话</th>
-        <th class="header-center">用户</th>
         <th class="header-center">商家</th>
         <th class="header-center">状态</th>
         <th class="header-center">操作</th>
@@ -34,23 +33,16 @@
       <tbody>
       <% @appointments.each do |appointment| %>
           <tr>
+            <td class="header-center"><%= appointment.date %></td>
             <td class="header-center">
               <%= appointment.name %>
             </td>
-            <td class="header-center"><%= appointment.date %></td>
+
             <td class="header-center"><%= appointment.phone %></td>
-            <td class="header-center"><%= appointment.user.try(:name) %></td>
             <td class="header-center"><%= appointment.business.try(:name) %></td>
-            <td class="header-center"><%= appointment.status %></td>
+            <td class="header-center"><%= appointment.status=='finished' ? '完成' : '未通过' %></td>
             <td class="header-center">
-            <%= link_to '查看', customer_service_appointment_path(appointment) %> |
-            <%= link_to '编辑', edit_customer_service_appointment_path(appointment) %>
-              <% if appointment.status != 'inactive' %>
-                  <%= form_tag customer_service_appointment_path(appointment), method: :put do %>
-                      <%= hidden_field_tag 'status', 'inactive'  %>
-                      <%= submit_tag '取消' %>
-                  <% end %>
-              <%end%>
+            <%= link_to '查看', customer_service_appointment_path(appointment) %>
             </td>
           </tr>
       <% end%>

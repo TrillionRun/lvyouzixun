@@ -26,10 +26,10 @@ label {
 </ul>
 <div class="card card-block ly-tab tab-pane">
   <table class="table table-striped">
-  <thead class="bg-primary">
+  <thead>
     <tr>
       <th width="320">关注对象ID</th>
-      <th>状态</th>
+      <th width>商家名</th>
       <th>操作</th>
     </tr>
   </thead>
@@ -37,9 +37,9 @@ label {
     <% @follows.each do |follow| %>
       <tr>
         <td><%= follow.object_id %></td>
-        <td><%= follow.status %></td>
+        <td><%= Business.find_by_id(follow.object_id).try(:name) %></td>
         <td>
-          <%#= link_to '删除', customer_service_user_path(user), method: 'delete', data: { confirm: "确认要删除该用户吗？" } %>
+          <%= link_to '删除', customer_service_user_path(user), method: 'delete', data: { confirm: "确认要删除该用户吗？" } %>
         </td>
       </tr>
     <% end%>
@@ -47,4 +47,3 @@ label {
 </table>
 <div style='text-align: center;'><%= paginate @follows %></div>
 </div>
-

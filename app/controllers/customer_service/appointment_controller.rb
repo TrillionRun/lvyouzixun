@@ -30,6 +30,18 @@ class CustomerService::AppointmentController < ApplicationController
     redirect_to action: :index
   end
 
+  def finished
+    @appointment = Appointment.find params[:id]
+    @appointment.update! status: 'finished'
+    redirect_to action: :show, id: params[:id]
+  end
+
+  def unfinished
+    @appointment = Appointment.find params[:id]
+    @appointment.update! status: 'active'
+    redirect_to action: :show, id: params[:id]
+  end
+
   def destroy
   end
 

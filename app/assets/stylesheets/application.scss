@@ -17,6 +17,17 @@
 @import "bootstrap";
 @import 'foundation-icons';
 
+a {
+  color: black;
+}
+a:visited {
+  color: black;
+}
+a:hover {
+  color: #ef5a34;
+  background-color: transparent;
+}
+
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
@@ -108,5 +119,5 @@
     left: -52px;
     float: left;
     background-color: #fff;
-  }  
+  }
 }

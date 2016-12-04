@@ -60,20 +60,9 @@ label {
     <div class="col-xs-5">
       <input class="form-control" type="text" value="<%= @user.phone %>" id="example-password-input" disabled>
     </div>
-    <label for="example-number-input" class="col-xs-1 col-form-label">状态</label>
-    <div class="col-xs-5">
-      <input class="form-control" type="text" value="<%= @user.status %>" id="example-number-input" disabled>
-    </div>
-  </div>
-  <div class="form-group row">
     <label for="example-datetime-local-input" class="col-xs-1 col-form-label">创建时间</label>
     <div class="col-xs-5">
       <input class="form-control" type="text" value="<%= @user.created_at %>" id="example-datetime-local-input" disabled>
     </div>
-    <label for="example-date-input" class="col-xs-1 col-form-label">角色</label>
-    <div class="col-xs-5">
-      <input class="form-control" type="text" value="<%= @user.role %>" id="example-date-input" disabled>
-    </div>
   </div>
-  <div class="form-group row"><%= @user.password %></div>
 </div>

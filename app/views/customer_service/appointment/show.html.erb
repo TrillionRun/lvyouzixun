@@ -48,23 +48,29 @@
     </div>
   </div>
   <div class="form-group row">
-    <label for="example-password-input" class="col-xs-1 col-form-label">描述</label>
-    <div class="col-xs-5">
-      <input class="form-control" type="text" value="<%= @appointment.description %>" id="example-password-input" disabled>
-    </div>
-    <label for="example-number-input" class="col-xs-1 col-form-label">状态</label>
-    <div class="col-xs-5">
-      <input class="form-control" type="text" value="<%= @appointment.status %>" id="example-number-input" disabled>
-    </div>
-  </div>
-  <div class="form-group row">
     <label for="example-datetime-local-input" class="col-xs-1 col-form-label">创建时间</label>
     <div class="col-xs-5">
       <input class="form-control" type="text" value="<%= @appointment.created_at %>" id="example-datetime-local-input" disabled>
     </div>
-    <label for="example-date-input" class="col-xs-1 col-form-label">最后更新时间</label>
+    <label for="example-number-input" class="col-xs-1 col-form-label">状态</label>
     <div class="col-xs-5">
-      <input class="form-control" type="text" value="<%= @appointment.updated_at %>" id="example-date-input" disabled>
+      <input class="form-control" type="text" value="<%= @appointment.status=='finished' ? '完成' : '未通过' %>" id="example-number-input" disabled>
     </div>
   </div>
+  <div class="form-group row">
+    <label for="example-password-input" class="col-xs-1 col-form-label">描述</label>
+    <div class="col-xs-5">
+      <input class="form-control" type="text" value="<%= @appointment.description %>" id="example-password-input" disabled>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%if @appointment.status == 'finished'%>
+      <%=button_to '未完成', unfinish_customer_service_appointment_path(@appointment.id), class: 'btn btn-secondary btn-sm',
+                   method: :patch%>
+    <%else%>
+      <%=button_to '完成', finish_customer_service_appointment_path(@appointment.id), class: 'btn btn-secondary btn-sm',
+                 method: :patch%>
+    <%end%>
+  </div>
+
 </div>
