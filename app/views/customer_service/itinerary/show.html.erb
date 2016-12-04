@@ -128,7 +128,10 @@
       <div class="row form-group">
         <div class="col-sm-9"></div>
         <div class="col-sm-3 row">
-          <%= submit_tag '更新', class:'btn btn-secondary btn-sm col-sm-5'%>
+          <%= button_to'更新',
+                        customer_service_business_itinerary_daily_plan_path(@business, @itinerary, daily_plan),
+                        method: :patch,
+                        class:'btn btn-secondary btn-sm col-sm-5'%>
           <div class="col-sm-2"></div>
           <%= button_to '删除',
                         customer_service_business_itinerary_daily_plan_path(@business, @itinerary, daily_plan),
