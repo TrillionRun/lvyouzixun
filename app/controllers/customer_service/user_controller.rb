@@ -43,7 +43,14 @@ class CustomerService::UserController < ApplicationController
     @user = User.find params[:id]
     @follows = @user.follows.page(params[:page]).per(10)
   end
-  
+
+  def user_unfollow
+    @user = User.find params[:id]
+    @follow = @user.follows.find_by object_id: params[:business_id]
+    @follow.destroy if @follow
+    redirect_to action: :user_follows
+  end
+
   def destroy
     @user = User.find params[:id]
     if @user.destroy

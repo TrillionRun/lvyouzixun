@@ -39,7 +39,7 @@ label {
         <td><%= follow.object_id %></td>
         <td><%= Business.find_by_id(follow.object_id).try(:name) %></td>
         <td>
-          <%= link_to '删除', customer_service_user_path(user), method: 'delete', data: { confirm: "确认要删除该用户吗？" } %>
+          <%= link_to '删除', follows_customer_service_user_path(Business.find_by_id(follow.object_id)), method: 'delete', data: { confirm: "确认要取消关注该商家吗？" } %>
         </td>
       </tr>
     <% end%>

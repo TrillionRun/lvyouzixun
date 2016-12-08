@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :customer_service do
     resources :user, :concerns => :paginatable do
       get 'follows' => :user_follows, on: :member
+      delete 'follows/:business_id' => :user_unfollow, on: :member
     end
     resources :business, :concerns => :paginatable do
       resources :itinerary do
