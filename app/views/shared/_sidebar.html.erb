@@ -28,7 +28,8 @@
     <a class="nav-link ly-nav-link <%= 'active' if params[:controller] == 'customer_service/user' %>" href="/customer_service/user">用户</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link ly-nav-link <%= 'active' if params[:controller] == 'customer_service/business' %>" href="/customer_service/business">商家</a>
+    <a class="nav-link ly-nav-link
+    <%= 'active' if params[:controller] == 'customer_service/business' || params[:controller] == 'customer_service/itinerary' || params[:controller] == 'customer_service/chats'%>" href="/customer_service/business">商家</a>
   </li>
   <li class="nav-item">
     <a class="nav-link ly-nav-link <%= 'active' if params[:controller] == 'customer_service/petition' %>" href="/customer_service/petition">入驻申请</a>
