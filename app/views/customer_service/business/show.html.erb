@@ -117,7 +117,7 @@ legde {
   <legde>图片 & 视频</legde>
   <div class="row">
     <div class="col-sm-6 row imagevideo">
-      <%= image_tag @business.picture.url, width: 210, height: 140%>
+      <%= image_tag @business.picture.url(:medium), width: 210, height: 140%>
       <%= form_tag customer_service_business_path(@business), multipart: true, method: :put do %>
         <label class="btn btn-default btn-file col-xs-10 input-group-sm">
           <%= file_field_tag :picture, class:'form-control' %>

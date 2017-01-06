@@ -1,9 +1,11 @@
 class Business < ApplicationRecord
-  has_attached_file :picture
+  has_attached_file :picture, {
+    medium: "320x240>"
+  }
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
   has_attached_file :video, styles: {
     medium: {geometry: '640x480', format: 'mp4'},
-    thumb: {geometry: '100x100#', format: 'jpg', time: 5}
+    thumb: {geometry: '320x240#', format: 'jpg', time: 5}
   }, processors: [:transcoder]
   # validates_attachment_content_type :video, content_type: /\Avideo\/.*\Z/
   has_many :informations
