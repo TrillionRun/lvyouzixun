@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  get 'services/sign_up', to: redirect('/services/sign_in')
   devise_for :services
   concern :paginatable do
     get '(page/:page)', :action => :index, :on => :collection, :as => ''
-  end
+  end  
   root to: "customer_service/home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount ActionCable.server => '/cable'
