@@ -1,7 +1,5 @@
 class Business < ApplicationRecord
-  has_attached_file :picture, {
-    medium: "320x240>"
-  }
+  has_attached_file :picture
   validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
   has_attached_file :video, styles: {
     medium: {geometry: '640x480', format: 'mp4'},
