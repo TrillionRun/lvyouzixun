@@ -53,7 +53,7 @@ class CustomerService::BusinessController < ApplicationController
     company_type = CompanyType.find_by_id params[:company_type]
     company_type_id = company_type.nil? ?  '' : company_type.id
     bu_paramters = image_params
-    bu_paramters.merge!(company_type_id: company_type_id)
+    bu_paramters.merge!(company_type_id: company_type_id) if company_type_id.present?
     @business = Business.find params[:id]
     @business.update!(bu_paramters)
     redirect_to action: :show, id: @business.id if @business
